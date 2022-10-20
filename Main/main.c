@@ -5,7 +5,7 @@
 
 int main()
 {
-
+    //// PROBANDO GIT !! ////
     /// ESTILO DE MENU (GENERICO PARA TODOS LOS MENUS)
     desactivarMaximizar();
     system("mode con: cols=80 lines=25"); // SE DEFINE LAS DIMENSIONES DE LA VENTANA DEL PROGRAMA A 80 COLUMNAS Y 25 FILAS
@@ -16,16 +16,17 @@ int main()
     int opcion, opcion2;
 
     system("cls");
-    printf("Ingresa 1 o 2: ");a
-    scanf("%i", &opcion2);
+    printf("Ingresa 1 o 2: ");
+    a
+        scanf("%i", &opcion2);
 
-    if(opcion2 == 1)
+    if (opcion2 == 1)
     {
-        opcion = menuUsuario(1,1);
+        opcion = menuUsuario(1, 1);
     }
-    else if(opcion2 == 2)
+    else if (opcion2 == 2)
     {
-        opcion = menuAdmin(1,1);
+        opcion = menuAdmin(1, 1);
     }
 
     /// PAUSAR EJECUCION
@@ -35,4 +36,3 @@ int main()
 
     return 0;
 }
-
