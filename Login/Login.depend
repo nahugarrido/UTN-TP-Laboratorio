@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1666286577 source:c:\users\garri\desktop\menus proyecto\login\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+

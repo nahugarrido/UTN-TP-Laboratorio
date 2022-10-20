@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1666267212 source:c:\users\garri\desktop\menu\menu\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1666267212 source:c:\users\garri\desktop\menus proyecto\menu\menu\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
