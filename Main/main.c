@@ -7,7 +7,7 @@
 
 int main()
 {
-
+    //// PROBANDO GIT !! ////
     /// ESTILO DE MENU (GENERICO PARA TODOS LOS MENUS)
     desactivarMaximizar();
     system("mode con: cols=80 lines=25"); // SE DEFINE LAS DIMENSIONES DE LA VENTANA DEL PROGRAMA A 80 COLUMNAS Y 25 FILAS
@@ -19,25 +19,39 @@ int main()
 
     system("cls");
     printf("Ingresa 1 o 2: ");
+<<<<<<< HEAD
     scanf("%i", &opcion2);
+=======
+    a
+        scanf("%i", &opcion2);
+>>>>>>> 8bd3aeacff0be89a0cb6bdcd2bc60bc8bf46e534
 
-    if(opcion2 == 1)
+    if (opcion2 == 1)
     {
+<<<<<<< HEAD
         do
         {
         opcion = menuUsuario(id,1);
         switchUsuario(id,opcion);
         } while( 1 == 1); /// bucle infinito de momento
+=======
+        opcion = menuUsuario(1, 1);
+>>>>>>> 8bd3aeacff0be89a0cb6bdcd2bc60bc8bf46e534
     }
-    else if(opcion2 == 2)
+    else if (opcion2 == 2)
     {
+<<<<<<< HEAD
         opcion = menuAdmin(id,1);
+=======
+        opcion = menuAdmin(1, 1);
+>>>>>>> 8bd3aeacff0be89a0cb6bdcd2bc60bc8bf46e534
     }
 
     /// TERMINAR EJECUCION
     system("cls");
     return 0;
 }
+<<<<<<< HEAD
 
 
 ///// TESTEANDO
@@ -133,3 +147,5 @@ int main()
 //
 //    return mostrarProductos(id, cursor);
 //}
+=======
+>>>>>>> 8bd3aeacff0be89a0cb6bdcd2bc60bc8bf46e534
