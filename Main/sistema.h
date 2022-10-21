@@ -15,11 +15,6 @@ void centrarTexto(char *texto, int y);
 void animacionCarga();
 void animacionPassword(char *password[]);
 int login(int cursor);
-int menuAdmin(int id, int cursor);
-int menuUsuario(int id, int cursor);
-void mostrarOpcionesLogin(int cantidadOpciones,opciones arreglo[], int cursor);
-void mostrarOpcionesAdmin(int cantidadOpciones,opciones arreglo[], int cursor);
-void mostrarOpcionesUsuario(int cantidadOpciones,opciones arreglo[], int cursor);
 
 /// COLORES
 void black();

@@ -1,0 +1,8 @@
+#pragma once
+/// ACA VAN LAS ESTRUCTURAS Y PROTOTIPADOS
+
+/// ESTRUCTURAS
+
+/// FUNCIONES
+
+

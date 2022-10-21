@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1666376783 source:c:\users\garri\desktop\utn\utn segundo cuatrimestre (primer año)\trabajo integrador laboratorio\recorrerlista\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+

@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1666380076 source:c:\users\garri\desktop\utn\utn segundo cuatrimestre (primer año)\trabajo integrador laboratorio\main\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuUsuario.h"
+	"menuAdmin.h"
+
+1666379935 c:\users\garri\desktop\utn\utn segundo cuatrimestre (primer año)\trabajo integrador laboratorio\main\sistema.h
+
+1666379466 source:c:\users\garri\desktop\utn\utn segundo cuatrimestre (primer año)\trabajo integrador laboratorio\main\sistema.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+
+1666378589 source:c:\users\garri\desktop\utn\utn segundo cuatrimestre (primer año)\trabajo integrador laboratorio\main\menuadmin.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuAdmin.h"
+
+1666378663 c:\users\garri\desktop\utn\utn segundo cuatrimestre (primer año)\trabajo integrador laboratorio\main\menuadmin.h
+
+1666380141 source:c:\users\garri\desktop\utn\utn segundo cuatrimestre (primer año)\trabajo integrador laboratorio\main\menuusuario.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuUsuario.h"
+
+1666379660 c:\users\garri\desktop\utn\utn segundo cuatrimestre (primer año)\trabajo integrador laboratorio\main\menuusuario.h
+
