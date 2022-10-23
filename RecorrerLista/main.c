@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
+#include <math.h>
 
 #define KEY_UP 72 +256
 #define KEY_DOWN 80 +256
@@ -13,6 +14,7 @@ typedef struct
 {
     char nombre[30];
     char descripcion[280];
+    char categoria[3];
     float precioVenta;
     float precioCosto;
     int cantidad;
@@ -39,7 +41,19 @@ void desactivarMaximizar();
 int mostrarProductos(int id, int cursor);
 int capturarTecla();
 void ocultarCursor();
+int contarOpcionesProductos(nodoProductoD* lista);
 void suma();
+
+/// PROTOTIPADO DE LISTAS
+nodoProductoD *agregarAlFinalDobleProducto(nodoProductoD *lista, nodoProductoD *nuevoNodo);
+nodoProductoD *buscarUltimoDobleProducto(nodoProductoD *lista);
+nodoProductoD *crearNodoDobleProducto(producto A);
+nodoProductoD *inicListaDobleProducto();
+nodoProductoD *borrarnodoProductoD(nodoProductoD *lista, int idPedido);
+void showListproducto(nodoProductoD *lista);
+nodoProductoD* despersistirListaDobleProductos(nodoProductoD* lista);
+void mostrarProductoCorto(producto nombre);
+nodoProductoD* moveToList(nodoProductoD* lista);
 
 //FUNCION PRINCIPAL MAIN
 int main()
@@ -47,14 +61,15 @@ int main()
 
     /// ESTILO DE MENU (GENERICO PARA TODOS LOS MENUS)
     desactivarMaximizar();
-    system("mode con: cols=80 lines=25"); //SE DEFINE LAS DIMENSIONES DE LA VENTANA DEL PROGRAMA A 80 COLUMNAS Y 25 FILAS
+    system("mode con: cols=80 lines=25"); //SE DEFINE LAS DIMENSIONES DE LA productoNA DEL PROGRAMA A 80 COLUMNAS Y 25 FILAS
     system("COLOR 0A"); //SE DA UN COLOR DE FONDO Y COLOR A LAS LETRAS /// E0 // 5F // B0
-
     int id = 1;
 
     int opcion = mostrarProductos(1,1);
 
-    printf("opcion: %i", opcion);
+//    system("cls");
+//    printf("opcion = %i", opcion);
+//    system("pause");
 
     /// PAUSAR EJECUCION
     printf("\n");
@@ -63,21 +78,37 @@ int main()
     return 0;
 }
 
+void mostrarListaTrucho(nodoProductoD* lista)
+{
+    while(lista != NULL)
+    {
+        mostrarProductoCorto(lista->dato);
+        lista = lista->siguiente;
+    }
+
+}
+
 /// PASAR A LIBRERIA
 int mostrarProductos(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
 {
 
     system("cls");
+    nodoProductoD *lista = inicListaDobleProducto();
+    lista = despersistirListaDobleProductos(lista);
+    lista = despersistirListaDobleProductos(lista);
+    lista = despersistirListaDobleProductos(lista);
+    lista = despersistirListaDobleProductos(lista);
+    lista = despersistirListaDobleProductos(lista);
+    lista = despersistirListaDobleProductos(lista);
 
-    nodoProductoD* lista;
-    lista = NULL;
-
-
+//    mostrarListaTrucho(lista);
+//    system("pause");
+//    system("cls");
 
     dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
 
-    centrarTexto("E-COMMERCE - MENU DEL ADMINISTRADOR",2);
+    centrarTexto("E-COMMERCE - PRODUCTOS",2);
 
     gotoxy(70,2);
     printf("ID: %i", id);
@@ -87,7 +118,10 @@ int mostrarProductos(int id, int cursor) /// cursor es donde esta parado el >>>>
 
     /// MUESTRA LAS OPCIONES
     int cantidadOpciones = contarOpcionesProductos(lista);
-    mostrarOpcionesProductos(cantidadOpciones,lista,cursor);
+    //printf("\ncantidadOpciones: %i", cantidadOpciones);
+    //system("pause");
+
+    mostrarOpcionesProductos(lista,cursor);
 
     gotoxy(7,21);
     printf("Para salir presionar ESC");
@@ -95,6 +129,10 @@ int mostrarProductos(int id, int cursor) /// cursor es donde esta parado el >>>>
     ocultarCursor();
 
     int opcion = capturarTecla();
+
+    gotoxy(0,0);
+    printf("cursor: %i", cursor);
+    //system("pause");
 
     /// SONIDO
     if(opcion == KEY_ENTER)
@@ -150,7 +188,7 @@ int mostrarProductos(int id, int cursor) /// cursor es donde esta parado el >>>>
     {
         if(cursor+7 <= cantidadOpciones)
         {
-            cursor += 1;
+            cursor += 7;
         }
     }
 
@@ -191,6 +229,11 @@ int contarOpcionesProductos(nodoProductoD* lista)
 {
     int contador = 0;
 
+    if(lista == NULL)
+    {
+        printf("lista vacia");
+    }
+
     while(lista != NULL)
     {
         contador++;
@@ -201,39 +244,62 @@ int contarOpcionesProductos(nodoProductoD* lista)
 }
 
 /// MOSTRAR OPCIONES
-void mostrarOpcionesProductos(int cantidadOpciones,nodoProductoD* lista, int cursor)
+void mostrarOpcionesProductos(nodoProductoD* lista, int cursor)
 {
     nodoProductoD* anterior;
     int posicionY;
-    int i = 0;
     int posicionX;
+    int contPaginas = ceil(((float)cursor/14));
+
+    int i=  1 + ((contPaginas-1)*14);
+
+    int cantidadxColumna = 7;
+
+    int contColumnas = 0;
 
     /// esto ya deberia funcionar para navegar en el menu en todas las direcciones de no funcionar
     /// hay que revisar en mostrar productos los if a ver si deberiamos poner +1 -1 en condiciones = <=
 
-    while((lista != NULL) && (i < cantidadOpciones))
+    int tope = i + 13;
+
+    for(int i = 0; i < ((contPaginas-1)*14); i++)
     {
+        lista = lista->siguiente;
+    }
 
-        posicionY = 5 + i*2;
+    while((lista != NULL)  && (i <= tope))
+    {
+        posicionY = 28 + 3 + i*2;
 
-        if(i+1 == 7)
+        if((i-1) % 7 == 0 && i != 0)
         {
-            posicionY -= 12;
+            contColumnas++;
         }
 
-        if(i < 7)
+        if(contColumnas % 2 == 0)
+        {
+            posicionX = 45;
+        }
+
+        if(contColumnas % 2 != 0)
         {
             posicionX = 2;
-
         }
-        if (i+1 == 7)
+
+
+        if((contColumnas % 2 != 0) )
         {
-            posicionX = 20;
+            posicionY -= (contPaginas * 28);
+        }
+
+        if(contColumnas % 2 == 0)
+        {
+            posicionY -=  (7 * contColumnas)  + (contPaginas * 28);
         }
 
         gotoxy(posicionX,posicionY);
 
-        if(i+1 == cursor)
+        if(i == cursor)
         {
             printf(" >>>> ");
         }
@@ -243,16 +309,17 @@ void mostrarOpcionesProductos(int cantidadOpciones,nodoProductoD* lista, int cur
         }
 
         printf("%s", lista->dato.nombre);
-        printf(" $%s\n", lista->dato.precioVenta);
 
-
+//        gotoxy(0,0);
+//        //printf("Contcolumnas: %i i = %i",contColumnas, i);
+//        printf("posicionY: %i",posicion);
+//        system("pause");
 
         i++;
         anterior = lista;
         lista = lista->siguiente;
     }
 }
-
 
 /// CAPTURAR INFORMACION TECLA PRESIONADA
 int capturarTecla()
@@ -402,3 +469,156 @@ void reset()
 {
     printf("\033[0m");
 }
+
+
+/// FUNCIONES LISTAS DOBLES
+//nodoProductoD *agregarAlFinalDobleProducto(nodoProductoD *lista, nodoProductoD *nuevoNodo);
+//nodoProductoD *buscarUltimoDobleProducto(nodoProductoD *lista);
+//nodoProductoD *crearNodoDobleProducto(producto A);
+//nodoProductoD *inicListaDobleProducto();
+//nodoProductoD *borrarnodoProductoD(nodoProductoD *lista, int idPedido);
+//void showListproducto(nodoProductoD *lista)
+//nodoProductoD* despersistirListaDobleProductos(nodoProductoD* lista);
+//void mostrarProductoCorto(producto nombre);
+
+//// FUNCIONES LISTA /////
+nodoProductoD* despersistirListaDobleProductos(nodoProductoD* lista)
+{
+    FILE* ptr = fopen("Stock.dat","rb");
+    producto aux;
+    nodoProductoD* aux2;
+
+    if(ptr != NULL)
+    {
+        while(fread(&aux,sizeof(producto),1,ptr) > 0)
+        {
+            aux2 = crearNodoDobleProducto(aux);
+            lista = agregarAlFinalDobleProducto(lista,aux2);
+        }
+        fclose(ptr);
+    }
+    return lista;
+}
+
+nodoProductoD* moveToList(nodoProductoD* lista)
+{
+    producto Aux;
+    nodoProductoD* Temporal;
+
+    FILE* buffer = fopen("Stock.dat", "rb");
+
+    if (buffer != NULL)
+    {
+        while (fread(&Aux, sizeof(producto), 1, buffer) > 0)
+        {
+            mostrarProductoCorto(Aux);
+            Temporal = crearNodoDobleProducto(Aux);
+            printf("TEST");
+            lista = agregarAlFinalDobleProducto(lista, Temporal);
+            printf("TEST");
+        }
+        fclose(buffer);
+    }
+
+    return lista;
+}
+
+void mostrarProductoCorto(producto aux)
+{
+    printf("%s\n",aux.nombre);
+}
+
+nodoProductoD *inicListaDobleProducto()
+{
+
+    return NULL;
+}
+
+nodoProductoD *crearNodoDobleProducto(producto A)
+{
+
+    nodoProductoD* aux = (nodoProductoD*) malloc(sizeof(nodoProductoD));
+
+    aux->dato = A;
+
+    aux->siguiente = NULL;
+    aux->anterior = NULL;
+
+    return aux;
+}
+
+nodoProductoD *buscarUltimoDobleProducto(nodoProductoD *lista)
+{
+    nodoProductoD *ultimo;
+
+    if (lista == NULL)
+    {
+
+        ultimo = NULL;
+    }
+    else
+    {
+        if (lista->siguiente == NULL)
+        {
+            ultimo = lista;
+        }
+        else
+        {
+            ultimo = buscarUltimoDobleProducto(lista->siguiente);
+        }
+    }
+
+    return ultimo;
+}
+
+nodoProductoD *agregarAlFinalDobleProducto(nodoProductoD *lista, nodoProductoD *nuevoNodo)
+{
+
+    if (lista == NULL)
+    {
+        lista = nuevoNodo;
+    }
+    else
+    {
+        nodoProductoD *ultimo = buscarUltimoDobleProducto(lista);
+        ultimo->siguiente = nuevoNodo;
+        nuevoNodo->anterior = ultimo;
+    }
+
+    return lista;
+}
+
+//nodoProductoD *borrarnodoProductoD(nodoProductoD *lista, int idPedido)
+//{
+//
+//    nodoProductoD *seg;
+//    nodoProductoD *ante;
+//    subproducto temporal;
+//
+//    if ((lista != NULL) && (lista->articulo.id == idPedido))
+//    {
+//
+//        nodoProductoD *aux = lista;
+//        temporal = aux->lista = lista->siguiente;
+//        free(aux);
+//    }
+//    else
+//    {
+//        seg = lista;
+//    }
+//    while ((seg != NULL) && (seg->articulo.articulo != idPedido))
+//    {
+//
+//        ante = seg;
+//        seg = seg->siguiente;
+//    }
+//    if (seg != NULL)
+//    {
+//        ante->siguiente = seg->siguiente;
+//        temporal = seg->articulo;
+//        free(seg);
+//    }
+//
+//    return lista;
+//}
+

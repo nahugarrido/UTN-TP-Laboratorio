@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1666289482 source:c:\users\garri\desktop\trabajo integrador laboratorio\menuadmin\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
