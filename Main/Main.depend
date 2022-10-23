@@ -44,7 +44,7 @@
 
 1666378663 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuadmin.h
 
-1666380141 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.c
+1666516147 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -58,4 +58,12 @@
 	<stdlib.h>
 	<windows.h>
 	"sistema.h"
+
+1666516227 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuUsuario.h"
+	"menuAdmin.h"
 

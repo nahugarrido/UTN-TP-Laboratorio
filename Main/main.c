@@ -28,7 +28,7 @@ int main()
         {
         opcion = menuUsuario(id,1);
         switchUsuario(id,opcion);
-        } while( 1 == 1); /// bucle infinito de momento
+        } while( opcion != 0 && opcion != 7); /// bucle infinito de momento
     }
     else if (opcion2 == 2)
     {

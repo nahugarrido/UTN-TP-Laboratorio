@@ -111,22 +111,49 @@ void mostrarOpcionesUsuario(int cantidadOpciones,opciones arreglo[], int cursor)
 
 void switchUsuario(int id, int opcion)
 {
+    int mostrar = 1;
+    int categoria = 0;
+
+
+
+
     switch(opcion)
     {
     case 1:
+        /// CARRITO DE COMPRAS
+        // muestra el carrito de compras si se quiere confirmar la compra se presiona SHIFT, si se quiere salir se presiona ESC,
+        // si se quiere remover una subVenta se presiona enter, preguntara si esta seguro de querer eliminarlo.
         break;
     case 2:
-        mostrarProductos(id,1);
+        /// VER PRODUCTOS
+
+        // categoria = mostrarCategoriasProductos()
+        // tendriamos que pasar categoria por parametro en mostrar productos
+        do
+        {
+        mostrar = mostrarProductos(id,1);
+        if(mostrar != 0)
+        {
+            /// mostrarUnProducto(mostrar);
+            /// (mostrar producto pregunta si quiere añadirlo al carrito, de no querer vuelve al menu de productos ed querer pregunta cantidad y se agrega.
+            /// funcion de mostrar el producto y añadir a carrito
+        }
+        } while(mostrar != 0);
         break;
     case 3:
+        /// MIS DATOS DE ENVIO
+        // esta funcion printea los datos de envio del usuario en la consola que aparece debajo en el menu usuario
         break;
     case 4:
+        /// SALDO DISPONIBLE
+        // esta funcion printea el saldo del usuario en la consola que aparece debajo en el menu usuario
         break;
     case 5:
         break;
     case 6:
         break;
     case 7:
+        return 0;
         break;
     default:
         break;
