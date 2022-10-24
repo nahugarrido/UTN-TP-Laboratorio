@@ -78,15 +78,6 @@ int main()
     return 0;
 }
 
-void mostrarListaTrucho(nodoProductoD* lista)
-{
-    while(lista != NULL)
-    {
-        mostrarProductoCorto(lista->dato);
-        lista = lista->siguiente;
-    }
-
-}
 
 /// PASAR A LIBRERIA
 int mostrarProductos(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
