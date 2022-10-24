@@ -4,28 +4,38 @@
 #include <ctype.h>
 #include <time.h>
 #include <stdbool.h>
-#include "productos.h"
 #define ArchProductos "Stock.Dat"
 
-/// CARGAR UN PRODUCTO A LOS ARCHIVOS.
-void AltaProducto()
+typedef struct
 {
-    FILE *buffer = fopen(ArchProductos, "ab");
-    producto Aux;
-    if (buffer != NULL)
-    {
+    char nombre[30];
+    char descripcion[280];
+    char categoria[3];
+    float precioVenta;
+    float precioCosto;
+    int cantidad;
+    int flagStock; // 0 en stock // 1 fuera de stock
+} producto;
 
-        Aux = cargarProducto();
-        fwrite(&Aux, sizeof(producto), 1, buffer);
-        fclose(buffer);
-    }
-    else
-    {
-        printf("\nNo se pudo abrir el archivo.\n");
-    }
+void AltaProducto();
+producto cargarProducto();
+void mostrarProducto(producto A);
+void showArchive();
+void descontarStock(char aDescontar[100], char categoria[3]);
+void showCategorias();
+
+int main()
+{
+
+    // AltaProducto();
+
+    // showArchive();
+    // descontarStock("SAMSUNG j8", "1.1");
+    showArchive();
+
+    return 0;
 }
 
-/// FUNCION AUXILIAR DE CARGA.
 producto cargarProducto()
 {
 
@@ -54,7 +64,57 @@ producto cargarProducto()
     return nuevo;
 }
 
-/// Para descontar stock. Necesita modificacion. De momento descuenta de a 1.
+void mostrarProducto(producto A)
+{
+    printf("---------------------------------------------");
+    printf("\nProducto: %s \n", A.nombre);
+    printf("\nDescripcion: %s \n", A.descripcion);
+    printf("\nValor Final: $ %.2f \n", A.precioVenta);
+    printf("\nCosto: $ %.2f \n", A.precioCosto);
+    printf("\nCantidad de stock: %i \n", A.cantidad);
+    printf("---------------------------------------------");
+    if (A.flagStock == 0)
+    {
+        printf("\nStock Disponible \n");
+    }
+    else
+    {
+        printf("\n Sin stock disponible. \n");
+    }
+}
+
+void AltaProducto()
+{
+    FILE *buffer = fopen(ArchProductos, "ab");
+    producto Aux;
+    if (buffer != NULL)
+    {
+
+        Aux = cargarProducto();
+        fwrite(&Aux, sizeof(producto), 1, buffer);
+        fclose(buffer);
+    }
+    else
+    {
+        printf("\nNo se pudo abrir el archivo.\n");
+    }
+}
+
+void showArchive()
+{
+    FILE *buffer = fopen(ArchProductos, "rb");
+    producto Aux;
+    if (buffer != NULL)
+    {
+        while (fread(&Aux, sizeof(producto), 1, buffer) > 0)
+        {
+
+            mostrarProducto(Aux);
+        }
+        fclose(buffer);
+    }
+}
+
 void descontarStock(char aDescontar[100], char categoria[])
 {
 
@@ -83,24 +143,6 @@ void descontarStock(char aDescontar[100], char categoria[])
     }
 }
 
-/// MOSTRAR EL ARCHIVO
-
-void showArchive()
-{
-    FILE *buffer = fopen(ArchProductos, "rb");
-    producto Aux;
-    if (buffer != NULL)
-    {
-        while (fread(&Aux, sizeof(producto), 1, buffer) > 0)
-        {
-
-            mostrarProducto(Aux);
-        }
-        fclose(buffer);
-    }
-}
-
-/// MOSTRAR CATEGORIAS (PARA ELEGIR DONDE ASISGNAR EL PRODUCTO)
 void showCategorias()
 {
     printf("\nIngrese 1.1 para Smartphones Samsung. \n");
@@ -112,24 +154,4 @@ void showCategorias()
     printf("\nIngrese 3.1 para Notebooks Samsung. \n");
     printf("\nIngrese 3.2 para Notebooks Apple. \n");
     printf("\nIngrese 3.3 para Otras Notebooks. \n");
-}
-
-/// MUESTRA 1 SOLO PRODUCTO.
-void mostrarProducto(producto A)
-{
-    printf("---------------------------------------------");
-    printf("\nProducto: %s \n", A.nombre);
-    printf("\nDescripcion: %s \n", A.descripcion);
-    printf("\nValor Final: $ %.2f \n", A.precioVenta);
-    printf("\nCosto: $ %.2f \n", A.precioCosto);
-    printf("\nCantidad de stock: %i \n", A.cantidad);
-    printf("---------------------------------------------");
-    if (A.flagStock == 0)
-    {
-        printf("\nStock Disponible \n");
-    }
-    else
-    {
-        printf("\n Sin stock disponible. \n");
-    }
 }
