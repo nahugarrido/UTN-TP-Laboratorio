@@ -81,7 +81,6 @@ int menuUsuario(int id, int cursor) /// cursor es donde esta parado el >>>> , op
         }
     }
 
-
     return menuUsuario(id, cursor);
 }
 
@@ -113,9 +112,6 @@ void switchUsuario(int id, int opcion)
 {
     int mostrar = 1;
     int categoria = 0;
-
-
-
 
     switch(opcion)
     {
