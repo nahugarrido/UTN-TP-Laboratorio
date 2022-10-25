@@ -37,6 +37,7 @@ int login(int cursor) /// cursor es donde esta parado el >>>> , opcion es la tec
     int id = 1;
 
     gotoxy(36,10);
+    fflush(stdin);
     gets(&arrUsuario);
     gotoxy(37,12);
     fflush(stdin);
