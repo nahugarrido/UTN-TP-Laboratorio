@@ -67,3 +67,37 @@
 	"menuUsuario.h"
 	"menuAdmin.h"
 
+1666654075 source:c:\users\nico\desktop\utn-tp-laboratorio\main\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuUsuario.h"
+	"menuAdmin.h"
+
+1666654075 c:\users\nico\desktop\utn-tp-laboratorio\main\sistema.h
+
+1666654075 c:\users\nico\desktop\utn-tp-laboratorio\main\menuusuario.h
+
+1666654075 c:\users\nico\desktop\utn-tp-laboratorio\main\menuadmin.h
+
+1666654075 source:c:\users\nico\desktop\utn-tp-laboratorio\main\menuadmin.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuAdmin.h"
+
+1666654075 source:c:\users\nico\desktop\utn-tp-laboratorio\main\menuusuario.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuUsuario.h"
+
+1666654075 source:c:\users\nico\desktop\utn-tp-laboratorio\main\sistema.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+
