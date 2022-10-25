@@ -97,13 +97,6 @@ int mostrarProductos(int id, int cursor) /// cursor es donde esta parado el >>>>
     lista = despersistirListaDobleProductos(lista);
     lista = despersistirListaDobleProductos(lista);
     lista = despersistirListaDobleProductos(lista);
-    lista = despersistirListaDobleProductos(lista);
-    lista = despersistirListaDobleProductos(lista);
-    lista = despersistirListaDobleProductos(lista);
-
-//    mostrarListaTrucho(lista);
-//    system("pause");
-//    system("cls");
 
     dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
@@ -255,7 +248,7 @@ void mostrarOpcionesProductos(nodoProductoD* lista, int cursor)
 
     int cantidadxColumna = 7;
 
-    int contColumnas = 0;
+    int cantColumnas = 0;
 
     /// esto ya deberia funcionar para navegar en el menu en todas las direcciones de no funcionar
     /// hay que revisar en mostrar productos los if a ver si deberiamos poner +1 -1 en condiciones = <=
@@ -273,28 +266,28 @@ void mostrarOpcionesProductos(nodoProductoD* lista, int cursor)
 
         if((i-1) % 7 == 0 && i != 0)
         {
-            contColumnas++;
+            cantColumnas++;
         }
 
-        if(contColumnas % 2 == 0)
+        if(cantColumnas % 2 == 0)
         {
             posicionX = 45;
         }
 
-        if(contColumnas % 2 != 0)
+        if(cantColumnas % 2 != 0)
         {
             posicionX = 2;
         }
 
 
-        if((contColumnas % 2 != 0) )
+        if((cantColumnas % 2 != 0) )
         {
             posicionY -= (contPaginas * 28);
         }
 
-        if(contColumnas % 2 == 0)
+        if(cantColumnas % 2 == 0)
         {
-            posicionY -=  (7 * contColumnas)  + (contPaginas * 28);
+            posicionY -=  (7 * cantColumnas)  + (contPaginas * 28);
         }
 
         gotoxy(posicionX,posicionY);
@@ -311,7 +304,7 @@ void mostrarOpcionesProductos(nodoProductoD* lista, int cursor)
         printf("%s", lista->dato.nombre);
 
 //        gotoxy(0,0);
-//        //printf("Contcolumnas: %i i = %i",contColumnas, i);
+//        //printf("cantColumnas: %i i = %i",cantColumnas, i);
 //        printf("posicionY: %i",posicion);
 //        system("pause");
 
