@@ -6,28 +6,29 @@
 #define KEY_ENTER 13
 #define KEY_ESC 27
 #include "sistema.h"
-#include "menuProductos.h"
+#include "menuUsuariosAdmin.h"
 
 /// ACA VAN TODOS LOS DEFINE, FUNCIONES Y SE DEBE CONECTAR A SU LIBRERIA.H (#include "ejemplo.h")
 
 /// MENU ADMIN
-int menuEnvios(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
+int menuUsuariosAdmin(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
 {
+
     system("cls");
 
-    opciones arreglo[] = {"Stock disponible", "Buscar producto por nombre", "Agregar producto", "Modificar un producto", "Salir"};
-    int cantidadOpciones = 5;
+    opciones arreglo[] = {"Ver usuarios", "Ver informacion usuario id", "Crear usuario", "Modificar  datos usuario", "Modificar estado de un usuario", "Salir"};
+    int cantidadOpciones = 6;
 
     dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
 
-    centrarTexto("E-COMMERCE - MENU DEL ADMINISTRADOR",2);
+    centrarTexto("E-COMMERCE - MENU USUARIOS",2);
 
     gotoxy(70,2);
     printf("ID: %i", id);
 
     /// MUESTRA LAS OPCIONES
-    mostrarOpcionesEnvios(cantidadOpciones,arreglo,cursor);
+    mostrarOpcionesUsuariosAdmin(cantidadOpciones,arreglo,cursor);
 
     dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
     gotoxy(9,21);
@@ -79,11 +80,11 @@ int menuEnvios(int id, int cursor) /// cursor es donde esta parado el >>>> , opc
     }
 
 
-    return menuEnvios(id, cursor);
+    return menuUsuariosAdmin(id, cursor);
 }
 
 /// MOSTRAR OPCIONES ADMIN
-void mostrarOpcionesEnvios(int cantidadOpciones,opciones arreglo[], int cursor)
+void mostrarOpcionesUsuariosAdmin(int cantidadOpciones,opciones arreglo[], int cursor)
 {
     int contador;
 
@@ -106,7 +107,7 @@ void mostrarOpcionesEnvios(int cantidadOpciones,opciones arreglo[], int cursor)
     }
 }
 
-void switchProductos(int id, int opcion)
+void switchUsuariosAdmin(int id, int opcion)
 {
     int mostrar = 1;
     int categoria = 0;
@@ -122,6 +123,8 @@ void switchProductos(int id, int opcion)
     case 4:
         break;
     case 5:
+        break;
+    case 6:
         return 0;
         break;
     default:

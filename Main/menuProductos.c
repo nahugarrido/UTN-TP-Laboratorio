@@ -11,8 +11,9 @@
 /// ACA VAN TODOS LOS DEFINE, FUNCIONES Y SE DEBE CONECTAR A SU LIBRERIA.H (#include "ejemplo.h")
 
 /// MENU ADMIN
-int menuEnvios(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
+int menuProductos2(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
 {
+
     system("cls");
 
     opciones arreglo[] = {"Stock disponible", "Buscar producto por nombre", "Agregar producto", "Modificar un producto", "Salir"};
@@ -21,13 +22,13 @@ int menuEnvios(int id, int cursor) /// cursor es donde esta parado el >>>> , opc
     dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
 
-    centrarTexto("E-COMMERCE - MENU DEL ADMINISTRADOR",2);
+    centrarTexto("E-COMMERCE - MENU PRODUCTOS",2);
 
     gotoxy(70,2);
     printf("ID: %i", id);
 
     /// MUESTRA LAS OPCIONES
-    mostrarOpcionesEnvios(cantidadOpciones,arreglo,cursor);
+    mostrarOpcionesProductos2(cantidadOpciones,arreglo,cursor);
 
     dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
     gotoxy(9,21);
@@ -83,7 +84,7 @@ int menuEnvios(int id, int cursor) /// cursor es donde esta parado el >>>> , opc
 }
 
 /// MOSTRAR OPCIONES ADMIN
-void mostrarOpcionesEnvios(int cantidadOpciones,opciones arreglo[], int cursor)
+void mostrarOpcionesProductos2(int cantidadOpciones,opciones arreglo[], int cursor)
 {
     int contador;
 

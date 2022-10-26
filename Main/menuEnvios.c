@@ -6,22 +6,23 @@
 #define KEY_ENTER 13
 #define KEY_ESC 27
 #include "sistema.h"
-#include "menuProductos.h"
+#include "menuEnvios.h"
 
 /// ACA VAN TODOS LOS DEFINE, FUNCIONES Y SE DEBE CONECTAR A SU LIBRERIA.H (#include "ejemplo.h")
 
 /// MENU ADMIN
 int menuEnvios(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
 {
+
     system("cls");
 
-    opciones arreglo[] = {"Stock disponible", "Buscar producto por nombre", "Agregar producto", "Modificar un producto", "Salir"};
-    int cantidadOpciones = 5;
+    opciones arreglo[] = {"Envios pendientes", "Confirmar envio", "Cancelar envio", "Salir"};
+    int cantidadOpciones = 4;
 
     dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
 
-    centrarTexto("E-COMMERCE - MENU DEL ADMINISTRADOR",2);
+    centrarTexto("E-COMMERCE - MENU ENVIOS",2);
 
     gotoxy(70,2);
     printf("ID: %i", id);
@@ -106,7 +107,7 @@ void mostrarOpcionesEnvios(int cantidadOpciones,opciones arreglo[], int cursor)
     }
 }
 
-void switchProductos(int id, int opcion)
+void switchEnvios(int id, int opcion)
 {
     int mostrar = 1;
     int categoria = 0;
@@ -120,8 +121,6 @@ void switchProductos(int id, int opcion)
     case 3:
         break;
     case 4:
-        break;
-    case 5:
         return 0;
         break;
     default:
