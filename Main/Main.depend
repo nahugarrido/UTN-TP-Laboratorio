@@ -101,7 +101,7 @@
 	<windows.h>
 	"sistema.h"
 
-1666732969 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\main.c
+1666743549 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -129,7 +129,7 @@
 	"sistema.h"
 	"menuUsuario.h"
 
-1666732969 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\sistema.c
+1666743549 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\sistema.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>

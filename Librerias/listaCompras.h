@@ -28,8 +28,8 @@ typedef struct
 typedef struct
 {
     subVenta articulo;
-    typedef struct nodoVenta *siguiente;
-    typedef struct nodoVenta *anterior;
+    struct nodoVenta *siguiente;
+    struct nodoVenta *anterior;
 
 } nodoVenta;
 
