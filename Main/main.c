@@ -34,11 +34,16 @@ int main()
                 opcion = menuUsuario(id,1);
                 switchUsuario(id,opcion);
             }
-            while( opcion != 0 && opcion != 7);   /// bucle infinito de momento
+            while( opcion != 0 && opcion != 6);   /// bucle infinito de momento
         }
         else if (opcion2 == 2)
         {
-            opcion = menuAdmin(id,1);
+            do
+            {
+                opcion = menuAdmin(id,1);
+                switchAdmin(id,opcion);
+            }
+            while( opcion != 0 && opcion != 6);   /// bucle infinito de momento
         }
 
     }

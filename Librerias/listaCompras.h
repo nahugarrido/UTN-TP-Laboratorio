@@ -10,13 +10,6 @@ typedef struct
 
 typedef struct
 {
-    int idCliente;
-    producto dato;
-    int cantidad;
-} subVenta;
-
-typedef struct
-{
     char nombre[30];
     char descripcion[280];
     float precioVenta;
@@ -27,9 +20,16 @@ typedef struct
 
 typedef struct
 {
+    int idCliente;
+    producto dato;
+    int cantidad;
+} subVenta;
+
+typedef struct
+{
     subVenta articulo;
-    typedef struct nodoVenta *siguiente;
-    typedef struct nodoVenta *anterior;
+     struct nodoVenta *siguiente;
+     struct nodoVenta *anterior;
 
 } nodoVenta;
 
