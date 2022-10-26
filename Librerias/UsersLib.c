@@ -299,3 +299,40 @@ usuario modificarDatosCliente(usuario A)
 
     return A;
 }
+
+usuario BuscarUnClientePorID(int IdUsuario)
+{
+    FILE *buffer = fopen(ARCHIVOUSUARIOS, "rb");
+    usuario Aux;
+    int flag = VerificarPorID(IdUsuario);
+
+    while ((fread(&Aux, sizeof(usuario), 1, buffer) > 0) && flag == 1)
+    {
+        if (Aux.idCliente == IdUsuario)
+        {
+
+            flag = 0;
+            fclose(buffer);
+        }
+    }
+
+    return Aux;
+}
+
+int VerificarPorID(int IdCliente)
+{
+    FILE *buffer = fopen(ARCHIVOUSUARIOS, "rb");
+    usuario Aux;
+    int flag = 0;
+    while ((fread(&Aux, sizeof(usuario), 1, buffer) > 0) && flag == 0)
+    {
+        if (Aux.idCliente == IdCliente)
+        {
+
+            flag = 1;
+            fclose(buffer);
+        }
+    }
+
+    return flag;
+}

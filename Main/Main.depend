@@ -47,14 +47,15 @@
 
 1666378663 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuadmin.h
 
-1666741451 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.c
+1666750020 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"sistema.h"
 	"menuUsuario.h"
+	"productos.h"
 
-1666379660 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.h
+1666750085 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.h
 
 1666740812 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\sistema.c
 	<stdio.h>
@@ -104,10 +105,9 @@
 	<windows.h>
 	"sistema.h"
 
-<<<<<<< HEAD
-1666378589 source:c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuadmin.c
-=======
-1666732969 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\main.c
+1666732969 D
+
+1666745850 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -115,21 +115,48 @@
 	"menuUsuario.h"
 	"menuAdmin.h"
 
+1666378589 source:c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuadmin.c
+
+1666732969 49cd0e8f0c82f82dcf9a3ff020e468a4068e2
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuUsuario.h"
+	"menuAdmin.h"
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+
 1666732969 c:\users\jeremias\desktop\utn-tp-laboratorio\main\sistema.h
 
 1666732969 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuario.h
 
 1666732969 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuadmin.h
 
-1666732969 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuadmin.c
->>>>>>> 57fae274de35b06089da6a72bba1715a817d8241
+1666745850 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuadmin.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"sistema.h"
 	"menuAdmin.h"
+	"menuUsuariosAdmin.h"
+	"menuEnvios.h"
+	"menuProductos.h"
 
-<<<<<<< HEAD
+1666743054 ae274de35b06089da6a72bba1715a817d8241
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuAdmin.h"
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuUsuario.h"
+
 1666295306 c:\users\garri\desktop\trabajo integrador laboratorio\librerias\sistema.h
 
 1666742982 c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuadmin.h
@@ -153,16 +180,15 @@
 1666743004 c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuproductos.h
 
 1666731320 source:c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuusuario.c
-=======
+
 1666732969 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuario.c
->>>>>>> 57fae274de35b06089da6a72bba1715a817d8241
+
+1666743549 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\sistema.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"sistema.h"
-	"menuUsuario.h"
 
-<<<<<<< HEAD
 1666379660 c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuusuario.h
 
 1666743812 source:c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuusuariosadmin.c
@@ -186,15 +212,7 @@
 1666731320 c:\users\garri\desktop\trabajo integrador laboratorio\librerias\productos.h
 
 1666295642 source:c:\users\garri\desktop\trabajo integrador laboratorio\librerias\sistema.c
-=======
-1666732969 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\sistema.c
->>>>>>> 57fae274de35b06089da6a72bba1715a817d8241
-	<stdio.h>
-	<stdlib.h>
-	<windows.h>
-	"sistema.h"
 
-<<<<<<< HEAD
 1666731320 source:c:\users\garri\desktop\trabajo integrador laboratorio\librerias\userslib.c
 	<stdio.h>
 	<stdlib.h>
@@ -206,7 +224,7 @@
 
 1666731320 c:\users\garri\desktop\trabajo integrador laboratorio\librerias\userslib.h
 
-1666745271 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuproductos.c
+1666745479 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuproductos.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -215,7 +233,7 @@
 
 1666745270 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuproductos.h
 
-1666743812 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuariosadmin.c
+1666745497 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuariosadmin.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -226,12 +244,29 @@
 
 1666743835 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuenvios.h
 
-1666743054 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuenvios.c
+1666745470 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuenvios.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"sistema.h"
 	"menuEnvios.h"
 
-=======
->>>>>>> 57fae274de35b06089da6a72bba1715a817d8241
+1666743054 s.h"
+
+1666745850 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuariosadmin.h
+
+1666745850 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuenvios.h
+
+1666745850 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuproductos.h
+
+1666749650 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<time.h>
+	<stdbool.h>
+	"productos.h"
+
+1666750032 c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.h
+

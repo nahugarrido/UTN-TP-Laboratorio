@@ -39,7 +39,7 @@ void dibujarCuadro(int x1,int y1,int x2,int y2);
 void gotoxy(int x,int y);
 void desactivarMaximizar();
 int mostrarProductos(int id, int cursor);
-int capturarTecla();
+int capturarTecla2();
 void ocultarCursor();
 int contarOpcionesProductos(nodoProductoD* lista);
 void suma();
@@ -53,7 +53,8 @@ nodoProductoD *borrarnodoProductoD(nodoProductoD *lista, int idPedido);
 void showListproducto(nodoProductoD *lista);
 nodoProductoD* despersistirListaDobleProductos(nodoProductoD* lista);
 void mostrarProductoCorto(producto nombre);
-nodoProductoD* moveToList(nodoProductoD* lista);
+int mostrarProductos(int id, int cursor);
+void mostrarOpcionesProductos(nodoProductoD* lista, int cursor);
 
 //FUNCION PRINCIPAL MAIN
 int main()
@@ -86,8 +87,6 @@ int mostrarProductos(int id, int cursor) /// cursor es donde esta parado el >>>>
     system("cls");
     nodoProductoD *lista = inicListaDobleProducto();
     lista = despersistirListaDobleProductos(lista);
-    lista = despersistirListaDobleProductos(lista);
-    lista = despersistirListaDobleProductos(lista);
 
     dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
@@ -112,10 +111,10 @@ int mostrarProductos(int id, int cursor) /// cursor es donde esta parado el >>>>
     dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
     ocultarCursor();
 
-    int opcion = capturarTecla();
+    int opcion = capturarTecla2();
 
     gotoxy(0,0);
-    printf("cursor: %i", cursor);
+    //printf("cursor: %i", cursor); //// PARA VER EL CURSOR  --------------------------------------------------------------------------->
     //system("pause");
 
     /// SONIDO
@@ -305,8 +304,8 @@ void mostrarOpcionesProductos(nodoProductoD* lista, int cursor)
     }
 }
 
+int capturarTecla2()
 /// CAPTURAR INFORMACION TECLA PRESIONADA
-int capturarTecla()
 {
     int tecla;
     int opcion;
@@ -484,29 +483,6 @@ nodoProductoD* despersistirListaDobleProductos(nodoProductoD* lista)
     return lista;
 }
 
-nodoProductoD* moveToList(nodoProductoD* lista)
-{
-    producto Aux;
-    nodoProductoD* Temporal;
-
-    FILE* buffer = fopen("Stock.dat", "rb");
-
-    if (buffer != NULL)
-    {
-        while (fread(&Aux, sizeof(producto), 1, buffer) > 0)
-        {
-            mostrarProductoCorto(Aux);
-            Temporal = crearNodoDobleProducto(Aux);
-            printf("TEST");
-            lista = agregarAlFinalDobleProducto(lista, Temporal);
-            printf("TEST");
-        }
-        fclose(buffer);
-    }
-
-    return lista;
-}
-
 void mostrarProductoCorto(producto aux)
 {
     printf("%s\n",aux.nombre);
@@ -572,37 +548,4 @@ nodoProductoD *agregarAlFinalDobleProducto(nodoProductoD *lista, nodoProductoD *
     return lista;
 }
 
-//nodoProductoD *borrarnodoProductoD(nodoProductoD *lista, int idPedido)
-//{
-//
-//    nodoProductoD *seg;
-//    nodoProductoD *ante;
-//    subproducto temporal;
-//
-//    if ((lista != NULL) && (lista->articulo.id == idPedido))
-//    {
-//
-//        nodoProductoD *aux = lista;
-//        temporal = aux->lista = lista->siguiente;
-//        free(aux);
-//    }
-//    else
-//    {
-//        seg = lista;
-//    }
-//    while ((seg != NULL) && (seg->articulo.articulo != idPedido))
-//    {
-//
-//        ante = seg;
-//        seg = seg->siguiente;
-//    }
-//    if (seg != NULL)
-//    {
-//        ante->siguiente = seg->siguiente;
-//        temporal = seg->articulo;
-//        free(seg);
-//    }
-//
-//    return lista;
-//}
 

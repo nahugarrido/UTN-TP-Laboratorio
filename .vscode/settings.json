@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "MAIN.C": "cpp",
+        "listaCompras.C": "cpp",
+        "listaVentas.C": "cpp"
+    }
+}

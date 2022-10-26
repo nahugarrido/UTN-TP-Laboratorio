@@ -5,6 +5,6 @@
 
 
 /// FUNCIONES
-int menuProductos(int id, int cursor);
-void mostrarOpcionesProductos(int cantidadOpciones,opciones arreglo[], int cursor);
+int menuProductos2(int id, int cursor);
+void mostrarOpcionesProductos2(int cantidadOpciones,opciones arreglo[], int cursor);
 void switchProductos(int id, int opcion);

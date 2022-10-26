@@ -22,7 +22,7 @@ int menuUsuariosAdmin(int id, int cursor) /// cursor es donde esta parado el >>>
     dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
 
-    centrarTexto("E-COMMERCE - MENU DEL ADMINISTRADOR",2);
+    centrarTexto("E-COMMERCE - MENU USUARIOS",2);
 
     gotoxy(70,2);
     printf("ID: %i", id);

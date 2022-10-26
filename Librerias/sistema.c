@@ -5,153 +5,9 @@
 #define KEY_DOWN 80 +256
 #define KEY_ENTER 13
 #define KEY_ESC 27
+#define KEY_LEFT 75 +256
+#define KEY_RIGHT 77 +256
 #include "sistema.h"
-
-/// MENU ADMIN
-int menuAdmin(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
-{
-
-    system("cls");
-
-    opciones arreglo[] = {"Despachos pendientes", "Stock disponible","Ventas realizadas", "Ver usuarios", "Cancelar venta", "Ver informacion usuario por id", "Salir"};
-    int cantidadOpciones = 7;
-
-    dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
-    dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
-
-    centrarTexto("E-COMMERCE - MENU DEL ADMINISTRADOR",2);
-
-    gotoxy(70,2);
-    printf("ID: %i", id);
-
-    /// MUESTRA LAS OPCIONES
-    mostrarOpcionesAdmin(cantidadOpciones,arreglo,cursor);
-
-    dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
-    gotoxy(9,21);
-    printf("Mensaje de consola ...");
-    ocultarCursor();
-
-    int opcion = capturarTecla();
-
-    /// SONIDO
-    if(opcion == KEY_ENTER)
-    {
-        Beep(400,80);
-    }
-    else if(opcion == KEY_ESC)
-    {
-        Beep(800,80);
-    }
-    else
-    {
-        Beep(600,80);
-    }
-
-
-    if(opcion == KEY_ESC)
-    {
-        return 0;
-    }
-
-    if(opcion == KEY_ENTER)
-    {
-        return cursor;
-    }
-
-
-    if(opcion == KEY_UP)
-    {
-        if(cursor-1 > 0)
-        {
-            cursor -= 1;
-        }
-    }
-
-    if(opcion == KEY_DOWN)
-    {
-        if(cursor+1 <= cantidadOpciones)
-        {
-            cursor += 1;
-        }
-    }
-
-
-    return menuAdmin(id, cursor);
-}
-
-/// MENU USUARIO ///
-int menuUsuario(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
-{
-
-    system("cls");
-
-    opciones arreglo[] = {"Carrito de compras", "Ver productos", "Mis datos de envio", "Saldo disponible", "Historial de compras", "Cancelar compra", "Salir"};
-    int cantidadOpciones = 7;
-
-    dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
-    dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
-
-    centrarTexto("E-COMMERCE - MENU DEL USUARIO",2);
-
-    gotoxy(70,2);
-    printf("ID: %i", id);
-
-    /// MUESTRA LAS OPCIONES
-    mostrarOpcionesUsuario(cantidadOpciones,arreglo,cursor);
-
-    dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
-    gotoxy(9,21);
-    printf("Mensaje de consola ...");
-    ocultarCursor();
-
-    int opcion = capturarTecla();
-
-    /// SONIDO
-    if(opcion == KEY_ENTER)
-    {
-        Beep(400,80);
-    }
-    else if(opcion == KEY_ESC)
-    {
-        Beep(800,80);
-    }
-    else
-    {
-        Beep(600,80);
-    }
-
-
-    if(opcion == KEY_ESC)
-    {
-        return 0;
-    }
-
-    if(opcion == KEY_ENTER)
-    {
-        return cursor;
-    }
-
-
-    if(opcion == KEY_UP)
-    {
-        if(cursor-1 > 0)
-        {
-            cursor -= 1;
-        }
-    }
-
-    if(opcion == KEY_DOWN)
-    {
-        if(cursor+1 <= cantidadOpciones)
-        {
-            cursor += 1;
-        }
-    }
-
-
-    return menuUsuario(id, cursor);
-}
 
 int login(int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
 {
@@ -181,6 +37,7 @@ int login(int cursor) /// cursor es donde esta parado el >>>> , opcion es la tec
     int id = 1;
 
     gotoxy(36,10);
+    fflush(stdin);
     gets(&arrUsuario);
     gotoxy(37,12);
     fflush(stdin);
@@ -210,29 +67,6 @@ int login(int cursor) /// cursor es donde esta parado el >>>> , opcion es la tec
     }
 }
 
-/// MOSTRAR OPCIONES USUARIO
-void mostrarOpcionesUsuario(int cantidadOpciones,opciones arreglo[], int cursor)
-{
-    int contador;
-
-    for(int i = 0; i < cantidadOpciones; i++)
-    {
-        contador = 5 + i*2;
-
-        gotoxy(2,contador);
-
-        if(i+1 == cursor)
-        {
-            printf(" >>>> ");
-        }
-        else
-        {
-            printf("       ");
-        }
-
-        printf("%s\n", arreglo[i]);
-    }
-}
 
 /// MOSTRAR OPCIONES LOGIN
 void mostrarOpcionesLogin(int cantidadOpciones,opciones arreglo[], int cursor)
@@ -248,30 +82,6 @@ void mostrarOpcionesLogin(int cantidadOpciones,opciones arreglo[], int cursor)
         if(i+1 == cursor)
         {
             printf("       ");
-        }
-        else
-        {
-            printf("       ");
-        }
-
-        printf("%s\n", arreglo[i]);
-    }
-}
-
-/// MOSTRAR OPCIONES ADMIN
-void mostrarOpcionesAdmin(int cantidadOpciones,opciones arreglo[], int cursor)
-{
-    int contador;
-
-    for(int i = 0; i < cantidadOpciones; i++)
-    {
-        contador = 5 + i*2;
-
-        gotoxy(2,contador);
-
-        if(i+1 == cursor)
-        {
-            printf(" >>>> ");
         }
         else
         {
