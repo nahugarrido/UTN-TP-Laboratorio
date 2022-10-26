@@ -101,3 +101,37 @@
 	<windows.h>
 	"sistema.h"
 
+1666732969 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuUsuario.h"
+	"menuAdmin.h"
+
+1666732969 c:\users\jeremias\desktop\utn-tp-laboratorio\main\sistema.h
+
+1666732969 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuario.h
+
+1666732969 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuadmin.h
+
+1666732969 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuadmin.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuAdmin.h"
+
+1666732969 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuario.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuUsuario.h"
+
+1666732969 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\sistema.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+
