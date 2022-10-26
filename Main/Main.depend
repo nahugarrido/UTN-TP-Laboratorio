@@ -104,13 +104,32 @@
 	<windows.h>
 	"sistema.h"
 
+<<<<<<< HEAD
 1666378589 source:c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuadmin.c
+=======
+1666732969 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuUsuario.h"
+	"menuAdmin.h"
+
+1666732969 c:\users\jeremias\desktop\utn-tp-laboratorio\main\sistema.h
+
+1666732969 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuario.h
+
+1666732969 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuadmin.h
+
+1666732969 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuadmin.c
+>>>>>>> 57fae274de35b06089da6a72bba1715a817d8241
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"sistema.h"
 	"menuAdmin.h"
 
+<<<<<<< HEAD
 1666295306 c:\users\garri\desktop\trabajo integrador laboratorio\librerias\sistema.h
 
 1666742982 c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuadmin.h
@@ -134,12 +153,16 @@
 1666743004 c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuproductos.h
 
 1666731320 source:c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuusuario.c
+=======
+1666732969 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuario.c
+>>>>>>> 57fae274de35b06089da6a72bba1715a817d8241
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"sistema.h"
 	"menuUsuario.h"
 
+<<<<<<< HEAD
 1666379660 c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuusuario.h
 
 1666743812 source:c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuusuariosadmin.c
@@ -163,11 +186,15 @@
 1666731320 c:\users\garri\desktop\trabajo integrador laboratorio\librerias\productos.h
 
 1666295642 source:c:\users\garri\desktop\trabajo integrador laboratorio\librerias\sistema.c
+=======
+1666732969 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\sistema.c
+>>>>>>> 57fae274de35b06089da6a72bba1715a817d8241
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"sistema.h"
 
+<<<<<<< HEAD
 1666731320 source:c:\users\garri\desktop\trabajo integrador laboratorio\librerias\userslib.c
 	<stdio.h>
 	<stdlib.h>
@@ -206,3 +233,5 @@
 	"sistema.h"
 	"menuEnvios.h"
 
+=======
+>>>>>>> 57fae274de35b06089da6a72bba1715a817d8241

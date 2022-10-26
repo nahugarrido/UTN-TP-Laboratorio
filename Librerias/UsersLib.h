@@ -2,14 +2,15 @@
 
 typedef struct
 {
-    char userName[30];
-    char password[30];
-    int saldo;
-    int admin;
+    char username[30];  //
+    char password[30];  //
+    venta compras[100]; /// lista doble
+    subVenta carrito[50];
+    int validosCarrito;
+    float saldo;
+    int admin;         // 0 no es admin  // 1 es admin
+    int estadoCliente; // 0 baja // 1 alta
     int idCliente;
-    int estadoCliente;
-    /// venta compras[100];
-
 } usuario;
 
 typedef struct
@@ -52,3 +53,5 @@ void mostrarCliente(usuario Aux);
 void showArchive();
 void AltaAdmin();
 void mostrarAdmin();
+void BajaCliente(char nombreUsuario[]);
+usuario BuscarUnClientePorUserName(char nombreUsuario[]);
