@@ -55,3 +55,7 @@ void AltaAdmin();
 void mostrarAdmin();
 void BajaCliente(char nombreUsuario[]);
 usuario BuscarUnClientePorUserName(char nombreUsuario[]);
+usuario modificarDatosCliente(usuario A);
+void modificarUnCliente(usuario A);
+usuario BuscarUnClientePorID(int IdUsuario);
+int VerificarPorID(int IdCliente);
