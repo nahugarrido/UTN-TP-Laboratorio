@@ -38,10 +38,26 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="menuAdmin.h" />
+		<Unit filename="menuEnvios.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="menuEnvios.h" />
+		<Unit filename="menuProductos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="menuProductos.h" />
 		<Unit filename="menuUsuario.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="menuUsuario.h" />
+		<Unit filename="menuUsuariosAdmin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="menuUsuariosAdmin.h" />
+		<Unit filename="productos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="productos.h" />
 		<Unit filename="sistema.c">
 			<Option compilerVar="CC" />
 		</Unit>

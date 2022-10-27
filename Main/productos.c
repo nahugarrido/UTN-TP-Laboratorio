@@ -464,3 +464,132 @@ int mostrarProductos(int id, int cursor) /// cursor es donde esta parado el >>>>
 
     return mostrarProductos(id, cursor);
 }
+
+void mostrarUnProductoUsuario(int idUsuario, int id)
+{
+    system("cls");
+    nodoProductoD *lista = inicListaDobleProducto();
+    lista = despersistirListaDobleProductos(lista);
+
+    for(int i = 1; i < id; i++)
+    {
+        lista = lista->siguiente;
+    }
+
+    producto mostrar = lista->dato;
+
+    dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
+
+    centrarTexto("E-COMMERCE - PRODUCTOS",2);
+
+    gotoxy(70,2);
+    printf("ID: %i", id);
+
+    gotoxy(8,5);
+    printf("Nombre: ");
+    printf("%s", mostrar.nombre);
+    gotoxy(8,7);
+    printf("Descripcion: ");
+    //printDescripcionProducto(mostrar.descripcion);
+    gotoxy(8,12);
+    printf("Precio: ");
+    printf("%$%.2f",mostrar.precioVenta);
+    gotoxy(8,14);
+    printf("Categoria: ");
+    printCategoriaProducto(mostrar);
+    gotoxy(8,16);
+    printf("Cantidad disponible: ");
+    printf("%i", mostrar.cantidad);
+
+    gotoxy(7,20);
+    printf("Deseas agregar este producto a tu carrito?");
+    dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    int capturarOpcion = seleccionarSiNo(1);
+    int cantidad;
+
+    if(capturarOpcion == 1)
+    {
+        do
+        {
+            limpiarConsola();
+            gotoxy(7,20);
+            printf("Cuantas unidades deseas agregar?");
+            gotoxy(7,22);
+            fflush(stdin);
+            scanf("%i", &cantidad);
+
+            if(cantidad > mostrar.cantidad)
+            {
+                limpiarConsola();
+                gotoxy(7,20);
+                printf("No hay suficientes unidades disponibles . . .");
+                sleep(2);
+            }
+        }
+        while(cantidad > mostrar.cantidad);
+
+        /// FUNCION QUE AÑADE A CARRITO Y MODIFICA EL STOCK DEL PRODUCTO
+        limpiarConsola();
+        gotoxy(7,20);
+        printf("Producto agregado con exito!");
+        sleep(2);
+    }
+
+    return 0;
+}
+
+
+void printDescripcionProducto(producto mostrar)
+{
+    int caracteres = strlen(mostrar.descripcion);
+
+    for(int i = 0; i < caracteres; i++)
+    {
+        printf("%c",mostrar.descripcion[i]);
+        if(i == 57)
+        {
+            printf("\n");
+            gotoxy(8,8);
+        }
+
+        if(i == 127)
+        {
+            printf("\n");
+            gotoxy(8,9);
+        }
+
+        if(i == 197)
+        {
+            printf("\n");
+            gotoxy(8,10);
+        }
+    }
+}
+
+void printCategoriaProducto(producto mostrar)
+{
+    int opcion = mostrar.categoria;
+    switch(opcion)
+    {
+    case 1:
+        printf("Smartphones");
+        break;
+    case 2:
+        printf("Tv smarts");
+        break;
+    case 3:
+        printf("Notebooks");
+        break;
+    case 4:
+        printf("Componentes de pc");
+        break;
+    case 5:
+        printf("Auriculares");
+        break;
+    default:
+        return 0;
+        break;
+    }
+}
+

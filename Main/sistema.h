@@ -15,6 +15,9 @@ void centrarTexto(char *texto, int y);
 void animacionCarga();
 void animacionPassword(char *password[]);
 int login(int cursor);
+int seleccionarSiNo(cursor); /// 1 ES SI 2 ES NO
+void mostrarSiNo(cursor);
+int capturarTeclaSiNo();
 
 /// COLORES
 void black();

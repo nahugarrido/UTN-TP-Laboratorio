@@ -36,3 +36,6 @@ nodoProductoD* despersistirListaDobleProductos(nodoProductoD* lista);
 void mostrarProductoCorto(producto nombre);
 int mostrarProductos(int id, int cursor);
 void mostrarOpcionesProductos(nodoProductoD* lista, int cursor);
+void mostrarUnProductoUsuario(int idUsuario, int id);
+void printDescripcionProducto(producto mostrar);
+void printCategoriaProducto(producto mostrar);

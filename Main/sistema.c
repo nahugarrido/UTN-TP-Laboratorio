@@ -293,3 +293,130 @@ void reset()
 {
     printf("\033[0m");
 }
+
+void limpiarConsola()
+{
+    gotoxy(2,20);
+    printf("                                                                      ");
+    gotoxy(2,21);
+    printf("                                                                      ");
+    gotoxy(2,22);
+    printf("                                                                      ");
+
+}
+
+int seleccionarSiNo(cursor) /// 1 ES SI 2 ES NO
+{
+    mostrarSiNo(cursor);
+
+    int opcion = capturarTeclaSiNo();
+
+    if(opcion == KEY_ESC)
+    {
+        return 0;
+    }
+
+    if(opcion == KEY_ENTER)
+    {
+        return cursor;
+    }
+
+    if(opcion == KEY_LEFT)
+    {
+        if(cursor-1 > 0)
+        {
+            cursor -= 1;
+        }
+    }
+
+    if(opcion == KEY_RIGHT)
+    {
+        if(cursor+1 <= 2)
+        {
+            cursor += 1;
+        }
+    }
+
+    /// SONIDO
+    if(opcion == KEY_ENTER)
+    {
+        Beep(400,80);
+    }
+    else if(opcion == KEY_ESC)
+    {
+        Beep(800,80);
+    }
+    else
+    {
+        Beep(600,80);
+    }
+
+    return seleccionarSiNo(cursor);
+}
+
+void mostrarSiNo(cursor)
+{
+    gotoxy(7,22);
+    if(cursor == 1)
+    {
+        printf(">>>   ");
+    }
+    else
+    {
+        printf("      ");
+    }
+
+    printf("Si");
+    printf("        ");
+
+    if(cursor == 2)
+    {
+        printf(">>>   ");
+    }
+    else
+    {
+        printf("      ");
+    }
+
+    printf("No");
+}
+
+int capturarTeclaSiNo()
+{
+    int tecla;
+    int opcion;
+
+    do
+    {
+        tecla = getch();
+        if(tecla == 0 || tecla == 224)
+        {
+            tecla = 256 + getch();
+        }
+
+    }
+    while((tecla != KEY_LEFT) && (tecla != KEY_RIGHT) && (tecla != KEY_ESC) && (tecla != KEY_ENTER));
+
+
+    switch(tecla)
+    {
+    case KEY_LEFT:
+        opcion = KEY_LEFT;
+        break;
+    case KEY_RIGHT:
+        opcion = KEY_RIGHT;
+        break;
+    case KEY_ENTER:
+        opcion = KEY_ENTER;
+        break;
+    case KEY_ESC:
+        opcion = KEY_ESC;
+        break;
+    default:
+        printf("\nDEFAULT!");
+        system("pause");
+        break;
+    }
+
+    return opcion;
+}
