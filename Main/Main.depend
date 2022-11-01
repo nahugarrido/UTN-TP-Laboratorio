@@ -57,13 +57,13 @@
 
 1666750085 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.h
 
-1666893031 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\sistema.c
+1667332336 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\sistema.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"sistema.h"
 
-1666745400 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\main.c
+1667332414 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -259,7 +259,7 @@
 
 1666745850 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuproductos.h
 
-1666891731 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.c
+1666893200 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -268,5 +268,5 @@
 	<stdbool.h>
 	"productos.h"
 
-1666893089 c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.h
+1666893250 c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.h
 

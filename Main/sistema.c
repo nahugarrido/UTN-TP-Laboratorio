@@ -305,7 +305,7 @@ void limpiarConsola()
 
 }
 
-int seleccionarSiNo(cursor) /// 1 ES SI 2 ES NO
+int seleccionarSiNo(int cursor) /// 1 ES SI 2 ES NO
 {
     mostrarSiNo(cursor);
 
@@ -354,7 +354,7 @@ int seleccionarSiNo(cursor) /// 1 ES SI 2 ES NO
     return seleccionarSiNo(cursor);
 }
 
-void mostrarSiNo(cursor)
+void mostrarSiNo(int cursor)
 {
     gotoxy(7,22);
     if(cursor == 1)
