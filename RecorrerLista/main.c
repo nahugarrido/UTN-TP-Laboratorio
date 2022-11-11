@@ -87,6 +87,11 @@ int mostrarProductos(int id, int cursor) /// cursor es donde esta parado el >>>>
     system("cls");
     nodoProductoD *lista = inicListaDobleProducto();
     lista = despersistirListaDobleProductos(lista);
+    lista = despersistirListaDobleProductos(lista);
+    lista = despersistirListaDobleProductos(lista);
+    lista = despersistirListaDobleProductos(lista);
+    lista = despersistirListaDobleProductos(lista);
+    lista = despersistirListaDobleProductos(lista);
 
     dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO

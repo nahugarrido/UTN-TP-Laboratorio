@@ -4,19 +4,26 @@
 #include "sistema.h"
 #include "menuUsuario.h"
 #include "menuAdmin.h"
+#include "menuEnvios.h"
+#include "menuProductos.h"
+#include "menuUsuariosAdmin.h"
+#include "productos.h"
+
+
 
 int main()
 {
+
     //// PROBANDO GIT !! ////
     /// ESTILO DE MENU (GENERICO PARA TODOS LOS MENUS)
     desactivarMaximizar();
     system("mode con: cols=80 lines=25"); // SE DEFINE LAS DIMENSIONES DE LA VENTANA DEL PROGRAMA A 80 COLUMNAS Y 25 FILAS
     system("COLOR 0A");                   // SE DA UN COLOR DE FONDO Y COLOR A LAS LETRAS /// E0 // 5F // B0 // 0A
-    int id;
+    //int id;
 
     do
     {
-        id = NULL;
+        int id = NULL;
         id = login(1);
 
         int opcion, opcion2;
