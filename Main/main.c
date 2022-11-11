@@ -8,12 +8,12 @@
 #include "menuProductos.h"
 #include "menuUsuariosAdmin.h"
 #include "productos.h"
+#include "UserLibs.h"
 
 
 
 int main()
 {
-    printf("JERE");
     //// PROBANDO GIT !! ////
     /// ESTILO DE MENU (GENERICO PARA TODOS LOS MENUS)
     desactivarMaximizar();
