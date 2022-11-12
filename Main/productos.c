@@ -7,13 +7,12 @@
 #define ArchProductos "Stock.Dat"
 #include "productos.h"
 
-#define KEY_UP 72 +256
-#define KEY_DOWN 80 +256
+#define KEY_UP 72 + 256
+#define KEY_DOWN 80 + 256
 #define KEY_ENTER 13
 #define KEY_ESC 27
-#define KEY_LEFT 75 +256
-#define KEY_RIGHT 77 +256
-
+#define KEY_LEFT 75 + 256
+#define KEY_RIGHT 77 + 256
 
 /// CARGAR UN PRODUCTO A LOS ARCHIVOS.
 void AltaProducto()
@@ -41,13 +40,13 @@ producto cargarProducto()
     printf("Ingrese el nombre del producto: \n");
     fflush(stdin);
     gets(nuevo.nombre);
+    printf("Ingrese una descripcion: (240 caracteres) \n");
+    fflush(stdin);
+    gets(nuevo.descripcion);
     printf("Ingrese una categoria: \n");
     showCategorias();
     fflush(stdin);
     gets(nuevo.categoria);
-    printf("Ingrese una descripcion: (280 caracteres) \n");
-    fflush(stdin);
-    gets(nuevo.descripcion);
     printf("Ingrese el precio venta: \n");
     fflush(stdin);
     scanf("%f", &nuevo.precioVenta);
@@ -62,8 +61,8 @@ producto cargarProducto()
     return nuevo;
 }
 
-/// Para descontar stock. Necesita modificacion. De momento descuenta de a 1.
-void descontarStock(char aDescontar[100], char categoria[])
+/// Para descontar stock
+void descontarStock(char aDescontar[100], char categoria[], int cantidad)
 {
 
     FILE *buffer = fopen(ArchProductos, "r+b");
@@ -80,7 +79,7 @@ void descontarStock(char aDescontar[100], char categoria[])
                 if (0 == strcmpi(Aux.nombre, aDescontar))
                 {
                     fseek(buffer, sizeof(producto) * (-1), SEEK_CUR);
-                    Aux.cantidad = (Aux.cantidad - 1);
+                    Aux.cantidad = (Aux.cantidad - cantidad);
                     mostrarProducto(Aux);
                     fwrite(&Aux, sizeof(producto), 1, buffer);
                     flag = 1;
@@ -142,18 +141,18 @@ void mostrarProducto(producto A)
     }
 }
 
-nodoProductoD* despersistirListaDobleProductos(nodoProductoD* lista)
+nodoProductoD *despersistirListaDobleProductos(nodoProductoD *lista)
 {
-    FILE* ptr = fopen("Stock.dat","rb");
+    FILE *ptr = fopen("Stock.dat", "rb");
     producto aux;
-    nodoProductoD* aux2;
+    nodoProductoD *aux2;
 
-    if(ptr != NULL)
+    if (ptr != NULL)
     {
-        while(fread(&aux,sizeof(producto),1,ptr) > 0)
+        while (fread(&aux, sizeof(producto), 1, ptr) > 0)
         {
             aux2 = crearNodoDobleProducto(aux);
-            lista = agregarAlFinalDobleProducto(lista,aux2);
+            lista = agregarAlFinalDobleProducto(lista, aux2);
         }
         fclose(ptr);
     }
@@ -162,7 +161,7 @@ nodoProductoD* despersistirListaDobleProductos(nodoProductoD* lista)
 
 void mostrarProductoCorto(producto aux)
 {
-    printf("%s\n",aux.nombre);
+    printf("%s\n", aux.nombre);
 }
 
 nodoProductoD *inicListaDobleProducto()
@@ -174,7 +173,7 @@ nodoProductoD *inicListaDobleProducto()
 nodoProductoD *crearNodoDobleProducto(producto A)
 {
 
-    nodoProductoD* aux = (nodoProductoD*) malloc(sizeof(nodoProductoD));
+    nodoProductoD *aux = (nodoProductoD *)malloc(sizeof(nodoProductoD));
 
     aux->dato = A;
 
@@ -225,16 +224,16 @@ nodoProductoD *agregarAlFinalDobleProducto(nodoProductoD *lista, nodoProductoD *
     return lista;
 }
 
-int contarOpcionesProductos(nodoProductoD* lista)
+int contarOpcionesProductos(nodoProductoD *lista)
 {
     int contador = 0;
 
-    if(lista == NULL)
+    if (lista == NULL)
     {
         printf("lista vacia");
     }
 
-    while(lista != NULL)
+    while (lista != NULL)
     {
         contador++;
         lista = lista->siguiente;
@@ -244,14 +243,14 @@ int contarOpcionesProductos(nodoProductoD* lista)
 }
 
 /// MOSTRAR OPCIONES
-void mostrarOpcionesProductos(nodoProductoD* lista, int cursor)
+void mostrarOpcionesProductos(nodoProductoD *lista, int cursor)
 {
-    nodoProductoD* anterior;
+    nodoProductoD *anterior;
     int posicionY;
     int posicionX;
-    int contPaginas = ceil(((float)cursor/14));
+    int contPaginas = ceil(((float)cursor / 14));
 
-    int i=  1 + ((contPaginas-1)*14);
+    int i = 1 + ((contPaginas - 1) * 14);
 
     int cantidadxColumna = 7;
 
@@ -262,44 +261,43 @@ void mostrarOpcionesProductos(nodoProductoD* lista, int cursor)
 
     int tope = i + 13;
 
-    for(int i = 0; i < ((contPaginas-1)*14); i++)
+    for (int i = 0; i < ((contPaginas - 1) * 14); i++)
     {
         lista = lista->siguiente;
     }
 
-    while((lista != NULL)  && (i <= tope))
+    while ((lista != NULL) && (i <= tope))
     {
-        posicionY = 28 + 3 + i*2;
+        posicionY = 28 + 3 + i * 2;
 
-        if((i-1) % 7 == 0 && i != 0)
+        if ((i - 1) % 7 == 0 && i != 0)
         {
             cantColumnas++;
         }
 
-        if(cantColumnas % 2 == 0)
+        if (cantColumnas % 2 == 0)
         {
             posicionX = 45;
         }
 
-        if(cantColumnas % 2 != 0)
+        if (cantColumnas % 2 != 0)
         {
             posicionX = 2;
         }
 
-
-        if((cantColumnas % 2 != 0) )
+        if ((cantColumnas % 2 != 0))
         {
             posicionY -= (contPaginas * 28);
         }
 
-        if(cantColumnas % 2 == 0)
+        if (cantColumnas % 2 == 0)
         {
-            posicionY -=  (7 * cantColumnas)  + (contPaginas * 28);
+            posicionY -= (7 * cantColumnas) + (contPaginas * 28);
         }
 
-        gotoxy(posicionX,posicionY);
+        gotoxy(posicionX, posicionY);
 
-        if(i == cursor)
+        if (i == cursor)
         {
             printf(" >>>> ");
         }
@@ -310,10 +308,10 @@ void mostrarOpcionesProductos(nodoProductoD* lista, int cursor)
 
         printf("%s", lista->dato.nombre);
 
-//        gotoxy(0,0);
-//        //printf("cantColumnas: %i i = %i",cantColumnas, i);
-//        printf("posicionY: %i",posicion);
-//        system("pause");
+        //        gotoxy(0,0);
+        //        //printf("cantColumnas: %i i = %i",cantColumnas, i);
+        //        printf("posicionY: %i",posicion);
+        //        system("pause");
 
         i++;
         anterior = lista;
@@ -330,16 +328,14 @@ int capturarTecla2()
     do
     {
         tecla = getch();
-        if(tecla == 0 || tecla == 224)
+        if (tecla == 0 || tecla == 224)
         {
             tecla = 256 + getch();
         }
 
-    }
-    while((tecla != KEY_UP) && (tecla != KEY_DOWN) && (tecla != KEY_ESC) && (tecla != KEY_ENTER) && (tecla != KEY_LEFT) && (tecla != KEY_RIGHT));
+    } while ((tecla != KEY_UP) && (tecla != KEY_DOWN) && (tecla != KEY_ESC) && (tecla != KEY_ENTER) && (tecla != KEY_LEFT) && (tecla != KEY_RIGHT));
 
-
-    switch(tecla)
+    switch (tecla)
     {
     case KEY_UP:
         opcion = KEY_UP;
@@ -375,88 +371,83 @@ int mostrarProductos(int id, int cursor) /// cursor es donde esta parado el >>>>
     nodoProductoD *lista = inicListaDobleProducto();
     lista = despersistirListaDobleProductos(lista);
 
-    dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
-    dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
+    dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
 
-    centrarTexto("E-COMMERCE - PRODUCTOS",2);
+    centrarTexto("E-COMMERCE - PRODUCTOS", 2);
 
-    gotoxy(70,2);
+    gotoxy(70, 2);
     printf("ID: %i", id);
-
-
-
 
     /// MUESTRA LAS OPCIONES
     int cantidadOpciones = contarOpcionesProductos(lista);
-    //printf("\ncantidadOpciones: %i", cantidadOpciones);
-    //system("pause");
+    // printf("\ncantidadOpciones: %i", cantidadOpciones);
+    // system("pause");
 
-    mostrarOpcionesProductos(lista,cursor);
+    mostrarOpcionesProductos(lista, cursor);
 
-    gotoxy(7,21);
+    gotoxy(7, 21);
     printf("Para salir presionar ESC");
-    dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
     ocultarCursor();
 
     int opcion = capturarTecla2();
 
-    gotoxy(0,0);
-    //printf("cursor: %i", cursor); //// PARA VER EL CURSOR  --------------------------------------------------------------------------->
-    //system("pause");
+    gotoxy(0, 0);
+    // printf("cursor: %i", cursor); //// PARA VER EL CURSOR  --------------------------------------------------------------------------->
+    // system("pause");
 
     /// SONIDO
-    if(opcion == KEY_ENTER)
+    if (opcion == KEY_ENTER)
     {
-        Beep(400,80);
+        Beep(400, 80);
     }
-    else if(opcion == KEY_ESC)
+    else if (opcion == KEY_ESC)
     {
-        Beep(800,80);
+        Beep(800, 80);
     }
     else
     {
-        Beep(600,80);
+        Beep(600, 80);
     }
 
-
-    if(opcion == KEY_ESC)
+    if (opcion == KEY_ESC)
     {
         return 0;
     }
 
-    if(opcion == KEY_ENTER)
+    if (opcion == KEY_ENTER)
     {
         return cursor;
     }
 
-
-    if(opcion == KEY_UP)
+    if (opcion == KEY_UP)
     {
-        if(cursor-1 > 0)
+        if (cursor - 1 > 0)
         {
             cursor -= 1;
         }
     }
 
-    if(opcion == KEY_DOWN)
+    if (opcion == KEY_DOWN)
     {
-        if(cursor+1 <= cantidadOpciones)
+        if (cursor + 1 <= cantidadOpciones)
         {
             cursor += 1;
         }
     }
 
-    if(opcion == KEY_LEFT)
+    if (opcion == KEY_LEFT)
     {
-        if(cursor-7 > 0)
+        if (cursor - 7 > 0)
         {
             cursor -= 7;
         }
     }
 
-    if(opcion == KEY_RIGHT)
+    if (opcion == KEY_RIGHT)
     {
-        if(cursor+7 <= cantidadOpciones)
+        if (cursor + 7 <= cantidadOpciones)
         {
             cursor += 7;
         }
@@ -471,67 +462,66 @@ void mostrarUnProductoUsuario(int idUsuario, int id)
     nodoProductoD *lista = inicListaDobleProducto();
     lista = despersistirListaDobleProductos(lista);
 
-    for(int i = 1; i < id; i++)
+    for (int i = 1; i < id; i++)
     {
         lista = lista->siguiente;
     }
 
     producto mostrar = lista->dato;
 
-    dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
-    dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
+    dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
 
-    centrarTexto("E-COMMERCE - PRODUCTOS",2);
+    centrarTexto("E-COMMERCE - PRODUCTOS", 2);
 
-    gotoxy(70,2);
+    gotoxy(70, 2);
     printf("ID: %i", id);
 
-    gotoxy(8,5);
+    gotoxy(8, 5);
     printf("Nombre: ");
     printf("%s", mostrar.nombre);
-    gotoxy(8,7);
+    gotoxy(8, 7);
     printf("Descripcion: ");
-    //printDescripcionProducto(mostrar.descripcion);
-    gotoxy(8,12);
+    // printDescripcionProducto(mostrar.descripcion);
+    gotoxy(8, 12);
     printf("Precio: ");
-    printf("%$%.2f",mostrar.precioVenta);
-    gotoxy(8,14);
+    printf("%$%.2f", mostrar.precioVenta);
+    gotoxy(8, 14);
     printf("Categoria: ");
     printCategoriaProducto(mostrar);
-    gotoxy(8,16);
+    gotoxy(8, 16);
     printf("Cantidad disponible: ");
     printf("%i", mostrar.cantidad);
 
-    gotoxy(7,20);
+    gotoxy(7, 20);
     printf("Deseas agregar este producto a tu carrito?");
-    dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
     int capturarOpcion = seleccionarSiNo(1);
     int cantidad;
 
-    if(capturarOpcion == 1)
+    if (capturarOpcion == 1)
     {
         do
         {
             limpiarConsola();
-            gotoxy(7,20);
+            gotoxy(7, 20);
             printf("Cuantas unidades deseas agregar?");
-            gotoxy(7,22);
+            gotoxy(7, 22);
             fflush(stdin);
             scanf("%i", &cantidad);
 
-            if(cantidad > mostrar.cantidad)
+            if (cantidad > mostrar.cantidad)
             {
                 limpiarConsola();
-                gotoxy(7,20);
+                gotoxy(7, 20);
                 printf("No hay suficientes unidades disponibles . . .");
                 sleep(2);
             }
-        }
-        while(cantidad > mostrar.cantidad);
+        } while (cantidad > mostrar.cantidad);
 
-        /// FUNCION QUE AÑADE A CARRITO Y MODIFICA EL STOCK DEL PRODUCTO
+        /// FUNCION QUE Aï¿½ADE A CARRITO Y MODIFICA EL STOCK DEL PRODUCTO
         limpiarConsola();
-        gotoxy(7,20);
+        gotoxy(7, 20);
         printf("Producto agregado con exito!");
         sleep(2);
     }
@@ -539,30 +529,29 @@ void mostrarUnProductoUsuario(int idUsuario, int id)
     return 0;
 }
 
-
 void printDescripcionProducto(producto mostrar)
 {
     int caracteres = strlen(mostrar.descripcion);
 
-    for(int i = 0; i < caracteres; i++)
+    for (int i = 0; i < caracteres; i++)
     {
-        printf("%c",mostrar.descripcion[i]);
-        if(i == 57)
+        printf("%c", mostrar.descripcion[i]);
+        if (i == 57)
         {
             printf("\n");
-            gotoxy(8,8);
+            gotoxy(8, 8);
         }
 
-        if(i == 127)
+        if (i == 127)
         {
             printf("\n");
-            gotoxy(8,9);
+            gotoxy(8, 9);
         }
 
-        if(i == 197)
+        if (i == 197)
         {
             printf("\n");
-            gotoxy(8,10);
+            gotoxy(8, 10);
         }
     }
 }
@@ -570,7 +559,7 @@ void printDescripcionProducto(producto mostrar)
 void printCategoriaProducto(producto mostrar)
 {
     int opcion = mostrar.categoria;
-    switch(opcion)
+    switch (opcion)
     {
     case 1:
         printf("Smartphones");
@@ -592,4 +581,3 @@ void printCategoriaProducto(producto mostrar)
         break;
     }
 }
-

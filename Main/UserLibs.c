@@ -5,11 +5,11 @@
 #include <time.h>
 #include <stdbool.h>
 #include "UserLibs.h"
-#define ArchivoUsuarios "ArchivoUsuario.dat"
+#define archivoUsuarios "ArchivoUsuario.dat"
 
 void AltaUsuario()
 {
-    FILE *buffer = fopen(ArchivoUsuarios, "ab");
+    FILE *buffer = fopen(archivoUsuarios, "ab");
     usuario Aux;
     char User[30];
 
@@ -30,8 +30,10 @@ void AltaUsuario()
                 Aux.estadoCliente = 1;
                 Aux.saldo = 0;
                 Aux.admin = 0;
+                printf("\n Ingrese el saldo: $ ");
+                scanf("%f", &Aux.saldo);
                 fwrite(&Aux, sizeof(usuario), 1, buffer);
-                printf("\nAlta de cliente exitosa\n");
+                mostrarCliente(Aux);
 
                 fclose(buffer);
             }
@@ -39,7 +41,7 @@ void AltaUsuario()
             {
                 printf("\nEl Cliente ya existe. Intente de nuevo..\n");
             }
-
+            system("pause");
         } while (flag == 0);
     }
     else
@@ -51,7 +53,7 @@ void AltaUsuario()
 int verificarPorUserName(char User[])
 {
 
-    FILE *buffer = fopen(ArchivoUsuarios, "rb");
+    FILE *buffer = fopen(archivoUsuarios, "rb");
     usuario Aux;
     int flag = 0;
 
@@ -88,7 +90,7 @@ usuario pedirDatos(char user[])
 
 int contadorRegistros()
 {
-    FILE *buffer = fopen(ArchivoUsuarios, "rb");
+    FILE *buffer = fopen(archivoUsuarios, "rb");
     int cant = 0;
     usuario Aux;
 
@@ -111,9 +113,10 @@ int contadorRegistros()
 void mostrarCliente(usuario A)
 {
     printf("\n---------------------------------------\n");
-    printf("\nNombre:");
+    printf("\n Usuario:");
     fflush(stdin);
     puts(A.username);
+    printf("\n Contrasenia: %s ", A.password);
     printf("\nSaldo: %f  \n", A.saldo);
     printf("\nID Cliente: %i  \n", A.idCliente);
     printf("\n---------------------------------------\n");
@@ -122,14 +125,14 @@ void mostrarCliente(usuario A)
 void showArchiveClientes()
 {
     system("cls");
-    FILE *buffer = fopen(ArchivoUsuarios, "rb");
+    FILE *buffer = fopen(archivoUsuarios, "rb");
     usuario Aux;
     if (buffer != NULL)
     {
 
         while (fread(&Aux, sizeof(usuario), 1, buffer) > 0)
         {
-            if (Aux.admin == 0)
+            if (Aux.admin == 0 && Aux.estadoCliente == 1)
             {
                 mostrarCliente(Aux);
             }
@@ -145,7 +148,7 @@ void showArchiveClientes()
 
 void AltaAdmin()
 {
-    FILE *buffer = fopen(ArchivoUsuarios, "ab");
+    FILE *buffer = fopen(archivoUsuarios, "ab");
     usuario Aux;
 
     if (buffer != NULL)
@@ -179,18 +182,17 @@ void mostrarAdmin(usuario A)
     printf("\n---------------------------------------\n");
 }
 
-void BajaCliente(char nombreUsuario[])
+void BajaCliente(usuario A)
 {
-    FILE *buffer = fopen(ArchivoUsuarios, "r+b");
+    FILE *buffer = fopen(archivoUsuarios, "r+b");
     char control = 's';
     usuario Aux;
     usuario aux2;
     int flag = 0;
 
-    if (verificarPorUserName(nombreUsuario) == 1)
+    if (verificarPorUserName(A.username) == 1)
     {
-        Aux = BuscarUnClientePorUserName(nombreUsuario);
-        mostrarCliente(Aux);
+        Aux = BuscarUnClientePorUserName(A.username);
         printf("\nEsta seguro que desea dar de baja el cliente?: s/n \n");
         fflush(stdin);
         scanf("%c", &control);
@@ -199,7 +201,7 @@ void BajaCliente(char nombreUsuario[])
 
             while (fread(&aux2, sizeof(usuario), 1, buffer) > 0 && flag == 0)
             {
-                if (strcmpi(aux2.username, nombreUsuario) == 0)
+                if (strcmpi(aux2.username, A.username) == 0)
                 {
                     if (aux2.estadoCliente == 0)
                     {
@@ -220,13 +222,13 @@ void BajaCliente(char nombreUsuario[])
     }
     else
     {
-        printf("\nNo se encontro un cliente con el DNI ingresado.\n");
+        printf("\nHa ingresado un nombre de usuario incorrecto.\n");
     }
 }
 
 usuario BuscarUnClientePorUserName(char nombreUsuario[])
 {
-    FILE *buffer = fopen(ArchivoUsuarios, "rb");
+    FILE *buffer = fopen(archivoUsuarios, "rb");
     usuario Aux;
 
     int flag = verificarPorUserName(nombreUsuario);
@@ -247,7 +249,7 @@ usuario BuscarUnClientePorUserName(char nombreUsuario[])
 
 void modificarUnCliente(usuario A)
 {
-    FILE *buffer = fopen(ArchivoUsuarios, "r+b");
+    FILE *buffer = fopen(archivoUsuarios, "r+b");
     usuario aux2;
     int flag = 0;
 
@@ -297,15 +299,12 @@ usuario modificarDatosCliente(usuario A)
         gets(A.password);
     }
 
-    printf("\nDatos modificados del cliente:\n");
-    mostrarCliente(A);
-
     return A;
 }
 
 usuario BuscarUnClientePorID(int IdUsuario)
 {
-    FILE *buffer = fopen(ArchivoUsuarios, "rb");
+    FILE *buffer = fopen(archivoUsuarios, "rb");
     usuario Aux;
     int flag = VerificarPorID(IdUsuario);
 
@@ -324,7 +323,7 @@ usuario BuscarUnClientePorID(int IdUsuario)
 
 int VerificarPorID(int IdCliente)
 {
-    FILE *buffer = fopen(ArchivoUsuarios, "rb");
+    FILE *buffer = fopen(archivoUsuarios, "rb");
     usuario Aux;
     int flag = 0;
     while ((fread(&Aux, sizeof(usuario), 1, buffer) > 0) && flag == 0)
@@ -406,7 +405,7 @@ void modificarEstadoClienteMenu()
 
 void modificarEstadoCliente(usuario A)
 {
-    FILE *buffer = fopen(ArchivoUsuarios, "r+b");
+    FILE *buffer = fopen(archivoUsuarios, "r+b");
     usuario aux2;
     int flag = 0;
 
@@ -420,15 +419,13 @@ void modificarEstadoCliente(usuario A)
         {
             if (strcmpi(aux2.username, A.username) == 0)
             {
-                A = modificarEstadoContable(A);
                 fseek(buffer, sizeof(usuario) * (-1), SEEK_CUR);
+                A = modificarEstadoContable(A);
                 fwrite(&A, sizeof(usuario), 1, buffer);
-                fclose(buffer);
-                printf("\nCliente modificado:\n");
-                mostrarCliente(A);
                 flag = 1;
             }
         }
+        fclose(buffer);
     }
 }
 
@@ -454,10 +451,8 @@ usuario modificarEstadoContable(usuario A)
     scanf("%c", &option);
     if (option == 's')
     {
-        A.estadoCliente = 0;
+        BajaCliente(A);
     }
-    printf("\nDatos modificados del cliente:\n");
-    // mostrarCliente(A);
 
     return A;
 }

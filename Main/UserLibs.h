@@ -2,12 +2,29 @@
 /// ACA VAN LAS ESTRUCTURAS Y PROTOTIPADOS
 
 /// ESTRUCTURAS
-
 typedef struct
 {
-    int idCliente;
-    int producto;
+    char nombre[30];
+    char descripcion[100];
+    char categoria[3];
+    float precioVenta;
+    float precioCosto;
     int cantidad;
+    int flagStock; // 0 en stock // 1 fuera de stock
+} producto;
+
+typedef struct{
+
+    producto dato;
+    struct nodoProductoD * anterior;
+    struct nodoProductoD * siguiente;
+
+}nodoProductoD;
+typedef struct
+{
+    producto dato;
+    int cantidad;
+    float subtotal;
 } subVenta;
 
 typedef struct
@@ -22,14 +39,6 @@ typedef struct
     int estadoCliente; // 0 baja // 1 alta
     int idCliente;
 } usuario;
-
-/*typedef struct
-{
-    char nombre[30];
-    char descripcion[100];
-    int cantidad;
-    int flagStock; // 0 en stock // 1 fuera de stock
-} producto;*/
 
 typedef struct
 {
@@ -57,7 +66,7 @@ void mostrarCliente(usuario Aux);
 void showArchiveClientes();
 void AltaAdmin();
 void mostrarAdmin();
-void BajaCliente(char nombreUsuario[]);
+void BajaCliente(usuario A);
 usuario BuscarUnClientePorUserName(char nombreUsuario[]);
 usuario modificarDatosCliente(usuario A);
 void modificarUnCliente(usuario A);

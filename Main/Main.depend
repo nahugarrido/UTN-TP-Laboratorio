@@ -295,7 +295,8 @@
 	"sistema.h"
 	"menuProductos.h"
 
-1667332597 c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.h
+1668278811 c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.h
+	"UserLibs.h"
 
 1668118345 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuariosadmin.c
 	<stdio.h>
@@ -305,7 +306,7 @@
 	"menuUsuariosAdmin.h"
 	"UserLibs.h"
 
-1667332597 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.c
+1668278601 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -314,9 +315,9 @@
 	<stdbool.h>
 	"productos.h"
 
-1668118430 c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.h
+1668278864 c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.h
 
-1668117205 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.c
+1668279616 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
