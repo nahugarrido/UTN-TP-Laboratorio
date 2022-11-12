@@ -5,6 +5,7 @@
 #include <time.h>
 #include <stdbool.h>
 #define ArchProductos "Stock.Dat"
+#include "estructuras.h"
 #include "productos.h"
 
 #define KEY_UP 72 +256

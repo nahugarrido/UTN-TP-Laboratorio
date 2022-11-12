@@ -9,13 +9,12 @@
 #include "menuUsuariosAdmin.h"
 #include "productos.h"
 #include "UserLibs.h"
-
-
+#include "loginAlgoritmo.h"
 
 int main()
 {
     /// ESTILO DE MENU (GENERICO PARA TODOS LOS MENUS)
-    desactivarMaximizar();
+    //desactivarMaximizar();
     system("mode con: cols=80 lines=25"); // SE DEFINE LAS DIMENSIONES DE LA VENTANA DEL PROGRAMA A 80 COLUMNAS Y 25 FILAS
     system("COLOR 0A");                   // SE DA UN COLOR DE FONDO Y COLOR A LAS LETRAS /// E0 // 5F // B0 // 0A
     //int id;
@@ -27,12 +26,18 @@ int main()
 
         int opcion, opcion2;
 
-        system("cls");
-        printf("Ingresa 1 o 2: ");
+        nodoArbolUsuario* arbol;
 
-        scanf("%i", &opcion2);
+        arbol = inicArbol();
+        arbol = leerArchivo(arbol);
 
-        if (opcion2 == 1)
+        int flagAdmin = buscarPorIdUsuario(arbol, id);
+
+        /// TESTEAR ADMIN
+        //flagAdmin = 1;
+
+        /// 0 no es admin /// 1 es admin
+        if (flagAdmin == 0)
         {
             do
             {
@@ -41,7 +46,7 @@ int main()
             }
             while( opcion != 0 && opcion != 7);
         }
-        else if (opcion2 == 2)
+        else if (flagAdmin == 1)
         {
             do
             {

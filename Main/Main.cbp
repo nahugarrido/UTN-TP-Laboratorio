@@ -35,6 +35,18 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="UserLibs.h" />
+		<Unit filename="carritoCompras.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="carritoCompras.h" />
+		<Unit filename="estructuras.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="estructuras.h" />
+		<Unit filename="loginAlgoritmo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="loginAlgoritmo.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

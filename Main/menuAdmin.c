@@ -5,6 +5,7 @@
 #define KEY_DOWN 80 +256
 #define KEY_ENTER 13
 #define KEY_ESC 27
+#include "estructuras.h"
 #include "sistema.h"
 #include "menuAdmin.h"
 #include "menuUsuariosAdmin.h"

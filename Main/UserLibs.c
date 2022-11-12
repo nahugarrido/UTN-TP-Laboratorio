@@ -4,7 +4,9 @@
 #include <ctype.h>
 #include <time.h>
 #include <stdbool.h>
+#include "estructuras.h"
 #include "UserLibs.h"
+#include "carritoCompras.h"
 #define ArchivoUsuarios "ArchivoUsuario.dat"
 
 void AltaUsuario()

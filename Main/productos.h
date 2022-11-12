@@ -1,5 +1,5 @@
 #pragma once
-/// ESTRUCTURA ///
+/// ESTRUCTURAS PRODUCTOS
 typedef struct
 {
     char nombre[30];
@@ -17,6 +17,7 @@ typedef struct
     struct nodoProductoD* siguiente;
     struct nodoProductoD* anterior;
 } nodoProductoD;
+
 
 /// PROTOTIPADOS
 void AltaProducto();

@@ -1,8 +1,7 @@
 #pragma once
 /// ACA VAN LAS ESTRUCTURAS Y PROTOTIPADOS
 
-/// ESTRUCTURAS
-
+/// ESTRUCTURAS CARRITO
 typedef struct
 {
     int idCliente;
@@ -12,41 +11,41 @@ typedef struct
 
 typedef struct
 {
-    char username[30];     //
-    char password[30];     //
-    subVenta compras[100]; /// Fila
-    subVenta carrito[50];
-    int validosCarrito;
-    float saldo;
-    int admin;         // 0 no es admin  // 1 es admin
-    int estadoCliente; // 0 baja // 1 alta
-    int idCliente;
-} usuario;
-
-/*typedef struct
-{
-    char nombre[30];
-    char descripcion[100];
-    int cantidad;
-    int flagStock; // 0 en stock // 1 fuera de stock
-} producto;*/
-
-typedef struct
-{
     char pais[50];
     char provincia[50];
     char ciudad[50];
     char direccion[50];
 } destino;
 
+typedef struct {
+    subVenta dato;
+    struct nodoListaDSubVenta* sig;
+    struct nodoListaDSubVenta* ant;
+}nodoListaDSubVenta;
 
-//typedef struct
-//{
-//    subVenta arreglo[50];
-//    destino despachar;
-//    int id;
-//    int flagEstado; // 0 baja  // 1 alta
-//} venta;
+
+typedef struct {
+subVenta arreglo[50];
+destino despachar;
+float total;
+int idVenta;
+int idCliente;
+int estadoEnvio; // 0 no despachado // 1 despachado
+int estadoVenta; // 0 normal // 1 cancelada
+} venta;
+
+/// ESTRUCTURAS USER LIBS
+typedef struct
+{
+    char username[30];     //
+    char password[30];     //
+    venta compras[100]; /// Fila
+    nodoListaDSubVenta carrito;
+    float saldo;
+    int admin;         // 0 no es admin  // 1 es admin
+    int estadoCliente; // 0 baja // 1 alta
+    int idCliente;
+} usuario;
 
 /// FUNCIONES
 void AltaUsuario();

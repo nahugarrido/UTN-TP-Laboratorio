@@ -7,9 +7,10 @@
 #define KEY_ESC 27
 #define KEY_LEFT 75 +256
 #define KEY_RIGHT 77 +256
+#include "estructuras.h"
 #include "sistema.h"
-#include "menuUsuario.h"
 #include "productos.h"
+#include "menuUsuario.h"
 
 /// ACA VAN TODOS LOS DEFINE, FUNCIONES Y SE DEBE CONECTAR A SU LIBRERIA.H (#include "ejemplo.h")
 
