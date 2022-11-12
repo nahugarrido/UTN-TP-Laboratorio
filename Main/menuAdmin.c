@@ -135,7 +135,7 @@ void switchAdmin(int id, int opcion)
             opcion = menuProductos2(id,1);
             switchProductos(id,opcion);
         }
-        while( opcion != 0 && opcion != 6);
+        while( opcion != 0 && opcion != 5);
         break;
     case 5:
         do

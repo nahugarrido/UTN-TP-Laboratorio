@@ -7,6 +7,7 @@
 #define KEY_ESC 27
 #include "sistema.h"
 #include "menuUsuariosAdmin.h"
+#include "UserLibs.h"
 
 /// ACA VAN TODOS LOS DEFINE, FUNCIONES Y SE DEBE CONECTAR A SU LIBRERIA.H (#include "ejemplo.h")
 
@@ -115,14 +116,20 @@ void switchUsuariosAdmin(int id, int opcion)
     switch(opcion)
     {
     case 1:
+           showArchiveClientes();
         break;
     case 2:
+            verInformacionUsuarioID();
         break;
     case 3:
+            AltaUsuario();
         break;
     case 4:
+            modificarClienteMenu();
         break;
     case 5:
+
+        modificarEstadoClienteMenu();
         break;
     case 6:
         return 0;

@@ -80,7 +80,7 @@ int menuProductos2(int id, int cursor) /// cursor es donde esta parado el >>>> ,
     }
 
 
-    return menuEnvios(id, cursor);
+    return menuProductos2(id, cursor);
 }
 
 /// MOSTRAR OPCIONES ADMIN
