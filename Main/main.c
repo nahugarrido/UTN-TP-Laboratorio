@@ -14,7 +14,6 @@
 
 int main()
 {
-    //// PROBANDO GIT !! ////
     /// ESTILO DE MENU (GENERICO PARA TODOS LOS MENUS)
     desactivarMaximizar();
     system("mode con: cols=80 lines=25"); // SE DEFINE LAS DIMENSIONES DE LA VENTANA DEL PROGRAMA A 80 COLUMNAS Y 25 FILAS
@@ -40,7 +39,7 @@ int main()
                 opcion = menuUsuario(id,1);
                 switchUsuario(id,opcion);
             }
-            while( opcion != 0 && opcion != 6);   /// bucle infinito de momento
+            while( opcion != 0 && opcion != 7);
         }
         else if (opcion2 == 2)
         {
@@ -49,7 +48,7 @@ int main()
                 opcion = menuAdmin(id,1);
                 switchAdmin(id,opcion);
             }
-            while( opcion != 0 && opcion != 6);   /// bucle infinito de momento
+            while( opcion != 0 && opcion != 6);
         }
 
     }

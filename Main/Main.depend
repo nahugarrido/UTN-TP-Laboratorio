@@ -33,7 +33,7 @@
 
 1666379660 c:\users\garri\desktop\utn\utn segundo cuatrimestre (primer año)\trabajo integrador laboratorio\main\menuusuario.h
 
-1666745279 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuadmin.c
+1668215815 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuadmin.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -43,11 +43,11 @@
 	"menuEnvios.h"
 	"menuProductos.h"
 
-1666893148 c:\users\garri\desktop\trabajo integrador laboratorio\main\sistema.h
+1667335080 c:\users\garri\desktop\trabajo integrador laboratorio\main\sistema.h
 
-1666378663 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuadmin.h
+1667335080 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuadmin.h
 
-1666891592 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.c
+1668199510 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -57,19 +57,24 @@
 
 1666750085 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.h
 
-1667332336 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\sistema.c
+1668203664 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\sistema.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"sistema.h"
 
-1667332414 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\main.c
+1668199982 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"sistema.h"
 	"menuUsuario.h"
 	"menuAdmin.h"
+	"menuEnvios.h"
+	"menuProductos.h"
+	"menuUsuariosAdmin.h"
+	"productos.h"
+	"UserLibs.h"
 
 1666654075 source:c:\users\nico\desktop\utn-tp-laboratorio\main\main.c
 	<stdio.h>
@@ -244,12 +249,13 @@
 
 1666745270 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuproductos.h
 
-1666745497 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuariosadmin.c
+1668198337 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuariosadmin.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"sistema.h"
 	"menuUsuariosAdmin.h"
+	"UserLibs.h"
 
 1666743519 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuariosadmin.h
 
@@ -325,4 +331,15 @@
 	<time.h>
 	<stdbool.h>
 	"UserLibs.h"
+
+1668198337 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\userlibs.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<time.h>
+	<stdbool.h>
+	"UserLibs.h"
+
+1668200618 c:\users\garri\desktop\trabajo integrador laboratorio\main\userlibs.h
 

@@ -31,7 +31,7 @@ typedef struct
 {
     char username[30];     //
     char password[30];     //
-    subVenta compras[100]; /// lista doble
+    subVenta compras[100]; /// Fila
     subVenta carrito[50];
     int validosCarrito;
     float saldo;
@@ -48,16 +48,16 @@ typedef struct
     char direccion[50];
 } destino;
 
-typedef struct
-{
-    subVenta arreglo[50];
-    destino despachar;
-    int id;
-    int flagEstado; // 0 baja  // 1 alta
-} venta;
+
+//typedef struct
+//{
+//    subVenta arreglo[50];
+//    destino despachar;
+//    int id;
+//    int flagEstado; // 0 baja  // 1 alta
+//} venta;
 
 /// FUNCIONES
-
 void AltaUsuario();
 int verificarPorUserName(char User[]);
 usuario pedirDatos();
