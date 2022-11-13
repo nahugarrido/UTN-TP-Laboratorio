@@ -28,14 +28,8 @@ typedef struct
 typedef struct
 {
     subVenta articulo;
-<<<<<<< HEAD
     struct nodoVenta *siguiente;
     struct nodoVenta *anterior;
-=======
-     struct nodoVenta *siguiente;
-     struct nodoVenta *anterior;
->>>>>>> d7249cd0e8f0c82f82dcf9a3ff020e468a4068e2
-
 } nodoVenta;
 
 nodoVenta *agregarAlFinalDobleVenta(nodoVenta *listaDobleAutos, nodoVenta *nuevoNodo);

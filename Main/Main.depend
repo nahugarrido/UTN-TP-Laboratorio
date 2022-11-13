@@ -66,7 +66,7 @@
 	"estructuras.h"
 	"sistema.h"
 
-1668291265 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\main.c
+1668297762 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -282,7 +282,7 @@
 
 1667332597 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuproductos.h
 
-1668295200 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.c
+1668296561 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -292,7 +292,7 @@
 	"estructuras.h"
 	"productos.h"
 
-1668296372 c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.h
+1668296820 c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.h
 
 1667332597 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuenvios.c
 	<stdio.h>
@@ -308,7 +308,8 @@
 	"sistema.h"
 	"menuProductos.h"
 
-1667332597 c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.h
+1668278811 c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.h
+	"UserLibs.h"
 
 1668118345 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuariosadmin.c
 	<stdio.h>
@@ -318,7 +319,7 @@
 	"menuUsuariosAdmin.h"
 	"UserLibs.h"
 
-1667332597 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.c
+1668278601 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -327,9 +328,9 @@
 	<stdbool.h>
 	"productos.h"
 
-1668118430 c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.h
+1668278864 c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.h
 
-1668117205 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.c
+1668279616 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -338,7 +339,7 @@
 	<stdbool.h>
 	"UserLibs.h"
 
-1668295968 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\userlibs.c
+1668297410 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\userlibs.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -346,10 +347,12 @@
 	<time.h>
 	<stdbool.h>
 	"estructuras.h"
-	"UserLibs.h"
+	"productos.h"
 	"carritoCompras.h"
+	"UserLibs.h"
 
-1668296337 c:\users\garri\desktop\trabajo integrador laboratorio\main\userlibs.h
+1668297688 c:\users\garri\desktop\trabajo integrador laboratorio\main\userlibs.h
+	"carritoCompras.h"
 
 1668294054 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\carritocompras.c
 	<stdio.h>
@@ -359,7 +362,8 @@
 	"UserLibs.h"
 	"carritoCompras.h"
 
-1668295084 c:\users\garri\desktop\trabajo integrador laboratorio\main\carritocompras.h
+1668297458 c:\users\garri\desktop\trabajo integrador laboratorio\main\carritocompras.h
+	"productos.h"
 
 1668296197 c:\users\garri\desktop\trabajo integrador laboratorio\main\loginalgoritmo.h
 

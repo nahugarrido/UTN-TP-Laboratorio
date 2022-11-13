@@ -1,13 +1,18 @@
 #pragma once
+#include "carritoCompras.h"
 /// ACA VAN LAS ESTRUCTURAS Y PROTOTIPADOS
-
-/// ESTRUCTURAS CARRITO
 typedef struct
 {
+    char username[30];     //
+    char password[30];     //
+    subVenta compras[100]; /// Fila
+    subVenta carrito[50];
+    int validosCarrito;
+    float saldo;
+    int admin;         // 0 no es admin  // 1 es admin
+    int estadoCliente; // 0 baja // 1 alta
     int idCliente;
-    int producto;
-    int cantidad;
-} subVenta;
+} usuario;
 
 typedef struct
 {
@@ -34,18 +39,18 @@ int estadoEnvio; // 0 no despachado // 1 despachado
 int estadoVenta; // 0 normal // 1 cancelada
 } venta;
 
-/// ESTRUCTURAS USER LIBS
-typedef struct
-{
-    char username[30];     //
-    char password[30];     //
-    venta compras[100]; /// Fila
-    nodoListaDSubVenta carrito;
-    float saldo;
-    int admin;         // 0 no es admin  // 1 es admin
-    int estadoCliente; // 0 baja // 1 alta
-    int idCliente;
-} usuario;
+///// ESTRUCTURAS USER LIBS
+//typedef struct
+//{
+//    char username[30];     //
+//    char password[30];     //
+//    venta compras[100]; /// Fila
+//    nodoListaDSubVenta carrito;
+//    float saldo;
+//    int admin;         // 0 no es admin  // 1 es admin
+//    int estadoCliente; // 0 baja // 1 alta
+//    int idCliente;
+//} usuario;
 
 /// FUNCIONES
 void AltaUsuario();
@@ -56,7 +61,7 @@ void mostrarCliente(usuario Aux);
 void showArchiveClientes();
 void AltaAdmin();
 void mostrarAdmin();
-void BajaCliente(char nombreUsuario[]);
+void BajaCliente(usuario A);
 usuario BuscarUnClientePorUserName(char nombreUsuario[]);
 usuario modificarDatosCliente(usuario A);
 void modificarUnCliente(usuario A);

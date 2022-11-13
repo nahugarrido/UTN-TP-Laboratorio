@@ -33,7 +33,7 @@ int main()
 
         int flagAdmin = buscarPorIdUsuario(arbol, id);
 
-        /// TESTEAR ADMIN
+        /// TESTEAR ADMIN /// CON ESTO SE PUEDE ACCEDER AL MENU DE ADMIN
         //flagAdmin = 1;
 
         /// 0 no es admin /// 1 es admin

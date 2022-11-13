@@ -26,9 +26,11 @@ void showCategorias();
 
 int main()
 {
+    for (int i=0; i<10; i++)
+    {
 
-    // AltaProducto();
-
+        AltaProducto();
+    }
     // showArchive();
     // descontarStock("SAMSUNG j8", "1.1");
     showArchive();

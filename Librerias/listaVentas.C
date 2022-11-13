@@ -8,7 +8,6 @@
 
 nodoVenta *inicListaDobleVenta()
 {
-
     return NULL;
 }
 

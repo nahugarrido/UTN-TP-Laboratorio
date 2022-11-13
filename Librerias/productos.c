@@ -14,6 +14,16 @@
 #define KEY_LEFT 75 +256
 #define KEY_RIGHT 77 +256
 
+int main()
+{
+
+    showArchive();
+
+
+
+return 0;
+
+}
 
 /// CARGAR UN PRODUCTO A LOS ARCHIVOS.
 void AltaProducto()
