@@ -17,7 +17,7 @@ int menuUsuariosAdmin(int id, int cursor) /// cursor es donde esta parado el >>>
 
     system("cls");
 
-    opciones arreglo[] = {"Ver usuarios", "Ver informacion usuario id", "Crear usuario", "Modificar  datos usuario", "Modificar estado de un usuario", "Salir"};
+    opciones arreglo[] = {"Ver usuarios", "Ver informacion usuario id", "Crear usuario", "Modificar datos de acceso de un usuario", "Modificar estado y saldo de un usuario", "Salir"};
     int cantidadOpciones = 6;
 
     dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
@@ -116,7 +116,16 @@ void switchUsuariosAdmin(int id, int opcion)
     switch(opcion)
     {
     case 1:
-           showArchiveClientes();
+        do
+        {
+        mostrar = mostrarUsuarios(id,1);
+
+        if(mostrar != 0)
+        {
+             mostrarUnUsuario(mostrar);
+        }
+        } while(mostrar != 0);
+        //showArchiveClientes();
         break;
     case 2:
             verInformacionUsuarioID();

@@ -22,7 +22,7 @@ int main()
     do
     {
         int id = NULL;
-        id = login(1);
+        //id = login(1);
 
         int opcion, opcion2;
 

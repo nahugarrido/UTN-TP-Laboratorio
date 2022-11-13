@@ -14,6 +14,19 @@ typedef struct
     int idCliente;
 } usuario;
 
+///// ESTRUCTURAS USER LIBS
+//typedef struct
+//{
+//    char username[30];     //
+//    char password[30];     //
+//    venta compras[100]; /// Fila
+//    nodoListaDSubVenta carrito;
+//    float saldo;
+//    int admin;         // 0 no es admin  // 1 es admin
+//    int estadoCliente; // 0 baja // 1 alta
+//    int idCliente;
+//} usuario;
+
 typedef struct
 {
     char pais[50];
@@ -39,18 +52,14 @@ int estadoEnvio; // 0 no despachado // 1 despachado
 int estadoVenta; // 0 normal // 1 cancelada
 } venta;
 
-///// ESTRUCTURAS USER LIBS
-//typedef struct
-//{
-//    char username[30];     //
-//    char password[30];     //
-//    venta compras[100]; /// Fila
-//    nodoListaDSubVenta carrito;
-//    float saldo;
-//    int admin;         // 0 no es admin  // 1 es admin
-//    int estadoCliente; // 0 baja // 1 alta
-//    int idCliente;
-//} usuario;
+/// ESTRUCTURAS MENU USUARIO
+typedef struct
+{
+    usuario dato;
+    struct nodoProductoD *siguiente;
+    struct nodoProductoD *anterior;
+} nodoUsuarioD;
+
 
 /// FUNCIONES
 void AltaUsuario();
@@ -73,3 +82,16 @@ void modificarClienteMenu();
 usuario modificarEstadoContable(usuario A);
 void modificarEstadoCliente(usuario A);
 void modificarEstadoClienteMenu();
+
+/// FUNCIONES MENU USUARIOS
+int mostrarUsuarios(int id, int cursor);
+int obtenerIdUsuarioList(nodoUsuarioD *lista, int cursor);
+nodoUsuarioD *despersistirListaDobleusuarios(nodoUsuarioD *lista);
+void mostrarusuarioCorto(usuario aux);
+nodoUsuarioD *inicListaDobleusuario();
+nodoUsuarioD *crearNodoDobleusuario(usuario A);
+nodoUsuarioD *buscarUltimoDobleusuario(nodoUsuarioD *lista);
+nodoUsuarioD *agregarAlFinalDobleusuario(nodoUsuarioD *lista, nodoUsuarioD *nuevoNodo);
+int contarOpcionesusuarios(nodoUsuarioD *lista);
+void mostrarOpcionesUsuarios(nodoUsuarioD *lista, int cursor);
+int capturarTecla3();
