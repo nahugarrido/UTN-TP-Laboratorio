@@ -66,7 +66,7 @@
 	"estructuras.h"
 	"sistema.h"
 
-1668324284 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\main.c
+1668329550 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -244,7 +244,7 @@
 
 1666731320 c:\users\garri\desktop\trabajo integrador laboratorio\librerias\userslib.h
 
-1668321371 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuproductos.c
+1668331033 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuproductos.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -283,7 +283,7 @@
 
 1667332597 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuproductos.h
 
-1668296561 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.c
+1668331694 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -293,7 +293,7 @@
 	"estructuras.h"
 	"productos.h"
 
-1668296820 c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.h
+1668330951 c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.h
 
 1667332597 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuenvios.c
 	<stdio.h>

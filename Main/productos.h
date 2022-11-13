@@ -41,3 +41,6 @@ void mostrarOpcionesProductos(nodoProductoD *lista, int cursor);
 void mostrarUnProductoUsuario(int idUsuario, int id);
 void printDescripcionProducto(producto mostrar);
 void printCategoriaProducto(producto mostrar);
+/// MOSTRAR STOCK
+int mostrarStock(int id, int cursor);
+void mostrarOpcionesStock(nodoProductoD *lista, int cursor);

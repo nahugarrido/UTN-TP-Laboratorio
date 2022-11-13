@@ -118,6 +118,16 @@ void switchProductos(int id, int opcion)
     switch(opcion)
     {
     case 1:
+        do
+        {
+        mostrar = mostrarStock(id,1);
+        if(mostrar != 0)
+        {
+             mostrarUnProductoUsuario(id, mostrar);
+            /// (mostrar producto pregunta si quiere añadirlo al carrito, de no querer vuelve al menu de productos ed querer pregunta cantidad y se agrega.
+            /// funcion de mostrar el producto y añadir a carrito
+        }
+        } while(mostrar != 0);
         break;
     case 2:
         buscarProductoFuncion();

@@ -582,3 +582,170 @@ void printCategoriaProducto(producto mostrar)
         break;
     }
 }
+
+/// MOSTRAR STOCK
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+int mostrarStock(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
+{
+
+    system("cls");
+    nodoProductoD *lista = inicListaDobleProducto();
+    lista = despersistirListaDobleProductos(lista);
+
+    dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
+
+    centrarTexto("E-COMMERCE - STOCK", 2);
+
+    gotoxy(70, 2);
+    printf("ID: %i", id);
+
+    /// TABLA HEADERS DE E-COMMERCE STOCK
+    gotoxy(9,5);
+    printf("PRODUCTO");
+    gotoxy(27,5);
+    printf("CANTIDAD");
+    gotoxy(41,5);
+    printf("PRECIO.COMPRA");
+    gotoxy(60,5);
+    printf("PRECIO.VENTA");
+
+    /// MUESTRA LAS OPCIONES
+    int cantidadOpciones = contarOpcionesProductos(lista);
+    // printf("\ncantidadOpciones: %i", cantidadOpciones);
+    // system("pause");
+
+    mostrarOpcionesStock(lista, cursor);
+
+    gotoxy(7, 21);
+    printf("Para salir presionar ESC");
+    dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    ocultarCursor();
+
+    int opcion = capturarTecla2();
+
+    gotoxy(0, 0);
+    // printf("cursor: %i", cursor); //// PARA VER EL CURSOR  --------------------------------------------------------------------------->
+    // system("pause");
+
+    /// SONIDO
+    if (opcion == KEY_ENTER)
+    {
+        Beep(400, 80);
+    }
+    else if (opcion == KEY_ESC)
+    {
+        Beep(800, 80);
+    }
+    else
+    {
+        Beep(600, 80);
+    }
+
+    if (opcion == KEY_ESC)
+    {
+        return 0;
+    }
+
+    if (opcion == KEY_ENTER)
+    {
+        return 0;
+    }
+
+    if (opcion == KEY_UP)
+    {
+        if (cursor - 1 > 0)
+        {
+            cursor -= 1;
+        }
+    }
+
+    if (opcion == KEY_DOWN)
+    {
+        if (cursor + 1 <= cantidadOpciones)
+        {
+            cursor += 1;
+        }
+    }
+
+    if (opcion == KEY_LEFT)
+    {
+        if (cursor - 6 > 0)
+        {
+            cursor -= 6;
+        }
+    }
+
+    if (opcion == KEY_RIGHT)
+    {
+        if (cursor + 6 <= cantidadOpciones)
+        {
+            cursor += 6;
+        }
+    }
+
+    return mostrarStock(id, cursor);
+}
+
+void mostrarOpcionesStock(nodoProductoD *lista, int cursor)
+{
+    nodoProductoD *anterior;
+    int posicionY;
+    int posicionX;
+    int contPaginas = ceil(((float)cursor/6));
+
+    int i=  1 + ((contPaginas-1)*6);
+
+    int cantidadxColumna = 6;
+
+    int cantColumnas = 0;
+
+    /// esto ya deberia funcionar para navegar en el menu en todas las direcciones de no funcionar
+    /// hay que revisar en mostrar productos los if a ver si deberiamos poner +1 -1 en condiciones = <=
+
+    int tope = i + 5;
+
+    for(int i = 0; i < ((contPaginas-1)*6); i++)
+    {
+        lista = lista->siguiente;
+    }
+
+    while((lista != NULL)  && (i <= tope))
+    {
+        posicionY = 14 + 3 + i*2;
+
+        if((i-1) % 6 == 0 && i != 0)
+        {
+            cantColumnas++;
+        }
+
+        posicionX = 2;
+
+        if((cantColumnas % 2 != 0) )
+        {
+            posicionY -= (contPaginas * 12);
+        }
+
+        gotoxy(posicionX,posicionY);
+
+        if(i == cursor)
+        {
+            printf(" >>>> ");
+        }
+        else
+        {
+            printf("       ");
+        }
+
+        printf("%-21s %-15i %-15.0f %.0f", lista->dato.nombre, lista->dato.cantidad, lista->dato.precioCosto, lista->dato.precioVenta);
+
+        //        gotoxy(0,0);
+        //        //printf("cantColumnas: %i i = %i",cantColumnas, i);
+        //        printf("posicionY: %i",posicion);
+        //        system("pause");
+
+        i++;
+        anterior = lista;
+        lista = lista->siguiente;
+    }
+}
