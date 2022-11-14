@@ -49,6 +49,8 @@ void AltaUsuario()
                 Aux.estadoCliente = 1;
                 Aux.saldo = 0;
                 Aux.admin = 0;
+                Aux.validosCarrito = 0; /// AGREGO LINEAS DE LOS VALIDOS
+                Aux.validosCompras = 0;
                 gotoxy(7,9);
                 printf("Ingrese el saldo: $ ");
                 scanf("%f", &Aux.saldo);
@@ -932,3 +934,416 @@ void mostrarUnUsuario(int mostrar)
     gotoxy(7, 21);
     system("pause");
 }
+
+
+void saldoDisponible(int id)
+{
+    usuario aux = BuscarUnClientePorID(id);
+    gotoxy(9, 21);
+    printf("                                                     ");
+    gotoxy(9, 21);
+    printf("Su saldo disponible es de: $%.0f", aux.saldo);
+    sleep(3);
+}
+
+void mostrarDatosEnvio(int id)
+{
+    usuario aux = BuscarUnClientePorID(id);
+
+    destino ultimoEnvio = aux.compras[aux.validosCompras-1].despachar;
+
+    if(aux.validosCompras == 0)
+    {
+        gotoxy(9, 21);
+        printf("                                                            ");
+        gotoxy(9, 21);
+        printf("Todavia no tienes una direccion de envio!");
+        sleep(3);
+    }
+    else
+    {
+        gotoxy(9, 21);
+        printf("                                                            ");
+        gotoxy(9, 21);
+        printf("%s, %s, %s, %s.", ultimoEnvio.pais, ultimoEnvio.provincia,ultimoEnvio.ciudad, ultimoEnvio.direccion);
+        sleep(3);
+
+    }
+}
+
+/// FUNCIONES LISTA SIMPLE PARA PILAS subVenta
+nodoVentaS* inicLista()
+{
+    return NULL;
+}
+
+nodoVentaS* crear(venta dato)
+{
+    nodoVentaS* temp = (nodoVentaS*) malloc(sizeof(nodoVentaS));
+    temp->dato = dato;
+    temp->siguiente = NULL;
+
+    return temp;
+}
+
+nodoVentaS* agregarPrincipio(nodoVentaS* lista, nodoVentaS* nuevonodoVentaS)
+{
+
+    if(lista == NULL)
+    {
+        lista = nuevonodoVentaS;
+    }
+    else
+    {
+        nuevonodoVentaS->siguiente = lista;
+        lista = nuevonodoVentaS;
+    }
+
+    return lista;
+}
+
+nodoVentaS * buscarUltimo(nodoVentaS * lista)
+{
+    nodoVentaS * seg = lista;
+    if(seg != NULL)
+        while(seg->siguiente != NULL)
+        {
+            seg = seg->siguiente;
+        }
+    return seg;
+}
+
+nodoVentaS * agregar(nodoVentaS * lista, nodoVentaS * nuevonodoVentaS)
+{
+    if(lista == NULL)
+    {
+        lista = nuevonodoVentaS;
+    }
+    else
+    {
+        nodoVentaS * ultimo = buscarUltimo(lista);
+        ultimo->siguiente = nuevonodoVentaS;
+    }
+    return lista;
+}
+
+void mostrarLista(nodoVentaS* lista)
+{
+    while(lista->siguiente != NULL)
+    {
+        printf("ID VENTA: [%i]  ", lista->dato.idVenta);
+        lista = lista->siguiente;
+    }
+
+    if(lista->siguiente == NULL)
+    {
+        printf("[%i]  ", lista->dato.idVenta);
+        printf("END");
+    }
+
+}
+
+/// PILAS
+void inicPila(Pila *p)
+{
+    p->lista = inicLista();
+}
+
+void apilar(Pila* p,venta dato)
+{
+    nodoVentaS* nuevo = crear(dato);
+
+    p->lista = agregarPrincipio(p->lista,nuevo);
+}
+
+venta desapilar(Pila *p)
+{
+    nodoVentaS* anterior =  p->lista;
+    p->lista = p->lista->siguiente;
+
+    return anterior->dato;
+}
+
+venta tope(Pila *p)
+{
+    return p->lista->dato;
+}
+
+int pilavacia(Pila *p)
+{
+    return p->lista == NULL;
+}
+
+void mostrar(Pila *p)
+{
+    printf("\n----------------------------------------------------------------------------\n\n");
+    mostrarLista(p->lista);
+    printf("\n\n----------------------------------------------------------------------------\n");
+}
+
+
+
+/// FUNCIONES LISTAS DOBLES VENTA
+nodoVentaD *inicListaDobleVenta()
+{
+
+    return NULL;
+}
+
+nodoVentaD *crearNodoDobleVenta(venta A)
+{
+
+    nodoVentaD *aux = (nodoVentaD *)malloc(sizeof(nodoVentaD));
+
+    aux->dato = A;
+
+    aux->siguiente = NULL;
+    aux->anterior = NULL;
+
+    return aux;
+}
+
+nodoVentaD *buscarUltimoDobleVenta(nodoVentaD *lista)
+{
+    nodoVentaD *ultimo;
+
+    if (lista == NULL)
+    {
+
+        ultimo = NULL;
+    }
+    else
+    {
+        if (lista->siguiente == NULL)
+        {
+            ultimo = lista;
+        }
+        else
+        {
+            ultimo = buscarUltimoDobleVenta(lista->siguiente);
+        }
+    }
+
+    return ultimo;
+}
+
+nodoVentaD *agregarAlFinalDobleVenta(nodoVentaD *lista, nodoVentaD *nuevoNodo)
+{
+
+    if (lista == NULL)
+    {
+        lista = nuevoNodo;
+    }
+    else
+    {
+        nodoVentaD *ultimo = buscarUltimoDobleVenta(lista);
+        ultimo->siguiente = nuevoNodo;
+        nuevoNodo->anterior = ultimo;
+    }
+
+    return lista;
+}
+
+int contarOpcionesVentas(nodoVentaD *lista)
+{
+    int contador = 0;
+
+    if (lista == NULL)
+    {
+        printf("lista vacia");
+    }
+
+    while (lista != NULL)
+    {
+        contador++;
+        lista = lista->siguiente;
+    }
+
+    return contador;
+}
+
+/// MOSTRAR HISTORIAL DE VENTAS
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+int historialComprasId(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
+{
+
+    system("cls");
+    usuario aux = BuscarUnClientePorID(id);
+    Pila PILITA;
+    inicPila(&PILITA);
+    venta aux3;
+
+    for(int i = 0; i < aux.validosCompras; i++)
+    {
+        apilar(&PILITA,aux.compras[i]);
+    }
+
+    nodoVentaD *lista = inicListaDobleVenta();
+
+    while(!pilavacia(&PILITA))
+    {
+        aux3 = desapilar(&PILITA);
+        nodoVentaD* aux2 = crearNodoDobleVenta(aux3);
+        lista = agregarAlFinalDobleVenta(lista,aux2);
+    }
+
+
+    dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
+
+    centrarTexto("E-COMMERCE - HISTORIAL DE COMPRAS", 2);
+
+    gotoxy(70, 2);
+    printf("ID: %i", id);
+
+    /// TABLA HEADERS DE E-COMMERCE STOCK
+    gotoxy(9,5);
+    printf("ID VENTA");
+    gotoxy(27,5);
+    printf("TOTAL");
+    gotoxy(41,5);
+    printf("DIRECCION ENVIO");
+    gotoxy(60,5);
+    printf("ESTADO ENVIO");
+
+    /// MUESTRA LAS OPCIONES
+    gotoxy(9,7);
+    int cantidadOpciones = contarOpcionesVentas(lista);
+    // printf("\ncantidadOpciones: %i", cantidadOpciones);
+    // system("pause");
+
+    mostrarOpcionesVenta(lista, cursor);
+
+    gotoxy(7, 21);
+    printf("Para salir presionar ESC");
+    dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    ocultarCursor();
+
+    int opcion = capturarTecla2();
+
+    gotoxy(0, 0);
+    // printf("cursor: %i", cursor); //// PARA VER EL CURSOR  --------------------------------------------------------------------------->
+    // system("pause");
+
+    /// SONIDO
+    if (opcion == KEY_ENTER)
+    {
+        Beep(400, 80);
+    }
+    else if (opcion == KEY_ESC)
+    {
+        Beep(800, 80);
+    }
+    else
+    {
+        Beep(600, 80);
+    }
+
+    if (opcion == KEY_ESC)
+    {
+        return 0;
+    }
+
+    if (opcion == KEY_ENTER)
+    {
+        return 0;
+    }
+
+    if (opcion == KEY_UP)
+    {
+        if (cursor - 1 > 0)
+        {
+            cursor -= 1;
+        }
+    }
+
+    if (opcion == KEY_DOWN)
+    {
+        if (cursor + 1 <= cantidadOpciones)
+        {
+            cursor += 1;
+        }
+    }
+
+    if (opcion == KEY_LEFT)
+    {
+        if (cursor - 6 > 0)
+        {
+            cursor -= 6;
+        }
+    }
+
+    if (opcion == KEY_RIGHT)
+    {
+        if (cursor + 6 <= cantidadOpciones)
+        {
+            cursor += 6;
+        }
+    }
+
+    return historialComprasId(id, cursor);
+}
+
+void mostrarOpcionesVenta(nodoVentaD *lista, int cursor)
+{
+    nodoVentaD *anterior;
+    int posicionY;
+    int posicionX;
+    int contPaginas = ceil(((float)cursor/6));
+
+    int i=  1 + ((contPaginas-1)*6);
+
+    int cantidadxColumna = 6;
+
+    int cantColumnas = 0;
+
+    /// esto ya deberia funcionar para navegar en el menu en todas las direcciones de no funcionar
+    /// hay que revisar en mostrar productos los if a ver si deberiamos poner +1 -1 en condiciones = <=
+
+    int tope = i + 5;
+
+    for(int i = 0; i < ((contPaginas-1)*6); i++)
+    {
+        lista = lista->siguiente;
+    }
+
+    while((lista != NULL)  && (i <= tope))
+    {
+        posicionY = 14 + 3 + i*2;
+
+        if((i-1) % 6 == 0 && i != 0)
+        {
+            cantColumnas++;
+        }
+
+        posicionX = 2;
+
+        if((cantColumnas % 2 != 0) )
+        {
+            posicionY -= (contPaginas * 12);
+        }
+
+        gotoxy(posicionX,posicionY);
+
+        if(i == cursor)
+        {
+            printf(" >>>> ");
+        }
+        else
+        {
+            printf("       ");
+        }
+
+        printf("%-21i %-15i %-15.0f %.0f", lista->dato.idVenta, lista->dato.estadoEnvio, lista->dato.total, lista->dato.despachar.direccion);
+
+        //        gotoxy(0,0);
+        //        //printf("cantColumnas: %i i = %i",cantColumnas, i);
+        //        printf("posicionY: %i",posicion);
+        //        system("pause");
+
+        i++;
+        anterior = lista;
+        lista = lista->siguiente;
+    }
+}
+

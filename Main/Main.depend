@@ -48,7 +48,7 @@
 
 1667335080 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuadmin.h
 
-1668295474 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.c
+1668396365 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -66,7 +66,7 @@
 	"estructuras.h"
 	"sistema.h"
 
-1668329550 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\main.c
+1668371753 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -340,7 +340,7 @@
 	<stdbool.h>
 	"UserLibs.h"
 
-1668328757 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\userlibs.c
+1668396443 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\userlibs.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -351,7 +351,7 @@
 	"carritoCompras.h"
 	"UserLibs.h"
 
-1668324738 c:\users\garri\desktop\trabajo integrador laboratorio\main\userlibs.h
+1668396178 c:\users\garri\desktop\trabajo integrador laboratorio\main\userlibs.h
 	"carritoCompras.h"
 
 1668294054 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\carritocompras.c

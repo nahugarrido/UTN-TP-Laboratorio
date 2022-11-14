@@ -141,12 +141,24 @@ void switchUsuario(int id, int opcion)
     case 3:
         /// MIS DATOS DE ENVIO
         // esta funcion printea los datos de envio del usuario en la consola que aparece debajo en el menu usuario
+        mostrarDatosEnvio(id);
         break;
     case 4:
         /// SALDO DISPONIBLE
         // esta funcion printea el saldo del usuario en la consola que aparece debajo en el menu usuario
+        saldoDisponible(id);
         break;
     case 5:
+        do
+        {
+        mostrar = historialComprasId(id,1);
+        if(mostrar != 0)
+        {
+             break;
+            /// (mostrar producto pregunta si quiere añadirlo al carrito, de no querer vuelve al menu de productos ed querer pregunta cantidad y se agrega.
+            /// funcion de mostrar el producto y añadir a carrito
+        }
+        } while(mostrar != 0);
         break;
     case 6:
         break;
