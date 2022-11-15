@@ -48,7 +48,7 @@
 
 1667335080 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuadmin.h
 
-1668396365 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.c
+1668479608 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -56,6 +56,7 @@
 	"sistema.h"
 	"productos.h"
 	"menuUsuario.h"
+	"carritoCompras.h"
 
 1666750085 c:\users\garri\desktop\trabajo integrador laboratorio\main\menuusuario.h
 
@@ -66,7 +67,7 @@
 	"estructuras.h"
 	"sistema.h"
 
-1668473440 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\main.c
+1668479672 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -249,7 +250,7 @@
 
 1666731320 c:\users\garri\desktop\trabajo integrador laboratorio\librerias\userslib.h
 
-1668331033 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuproductos.c
+1668479608 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\menuproductos.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -289,7 +290,7 @@
 1668468922 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuproductos.h
 	"productos.h"
 
-1668331694 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.c
+1668479608 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -362,10 +363,10 @@
 	"carritoCompras.h"
 	"UserLibs.h"
 
-1668396178 c:\users\garri\desktop\trabajo integrador laboratorio\main\userlibs.h
-	"carritoCompras.h"
+1668479608 c:\users\garri\desktop\trabajo integrador laboratorio\main\userlibs.h
+	"productos.h"
 
-1668294054 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\carritocompras.c
+1668481604 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\carritocompras.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -373,8 +374,14 @@
 	"UserLibs.h"
 	"carritoCompras.h"
 
-1668297458 c:\users\garri\desktop\trabajo integrador laboratorio\main\carritocompras.h
+1668479608 c:\users\garri\desktop\trabajo integrador laboratorio\main\carritocompras.h
 	"productos.h"
+	"UserLibs.h"
+	"sistema.h"
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<math.h>
 
 1668296197 c:\users\garri\desktop\trabajo integrador laboratorio\main\loginalgoritmo.h
 

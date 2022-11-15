@@ -24,8 +24,8 @@ void agregarAlCarrito(int idCliente, int cantidadProductos, producto Dato)
 
     producto deseado = ObtenerProducto(Dato);
 
-
     float subtotal = (deseado.precioVenta * cantidadProductos);
+
 
     if (bufferUsuarios)
     {
@@ -38,8 +38,10 @@ void agregarAlCarrito(int idCliente, int cantidadProductos, producto Dato)
                 Aux.carrito[Aux.validosCarrito].dato = Dato;
                 Aux.carrito[Aux.validosCarrito].cantidad = cantidadProductos;
                 Aux.carrito[Aux.validosCarrito].subtotal = subtotal;
+//                gotoxy(10,14);
+//                printf("AUX USUARIO: %s VALIDOS CARRITO: %i\n", Aux.username, Aux.validosCarrito);
+//                printf("DATOS DEL AUX: PRODUCTO: %s CANTIDAD: %i SUBTOTAL: %f", Aux.carrito[Aux.validosCarrito].dato.nombre,Aux.carrito[Aux.validosCarrito].cantidad, Aux.carrito[Aux.validosCarrito].subtotal);
                 Aux.validosCarrito = (Aux.validosCarrito + 1);
-                printf("\nSUBTOTAL: %f",Aux.carrito[Aux.validosCarrito].subtotal);
                 fwrite(&Aux, sizeof(usuario), 1, bufferUsuarios);
                 fclose(bufferUsuarios);
             }
@@ -63,9 +65,9 @@ producto ObtenerProducto(producto dato)
             {
 
                 flagProductos = 1;
+                fclose(bufferStock);
             }
         }
-        fclose(bufferStock);
     }
     return temporal;
 }
@@ -78,7 +80,7 @@ usuario BuscarUsuario(int idCliente)
 
     usuario Deseado;
 
-    FILE *bufferUsuarios = fopen("Usuarios.dat", "rb");
+    FILE *bufferUsuarios = fopen(ArchivoUsuarios, "rb");
 
     if (bufferUsuarios != NULL)
     {
@@ -130,7 +132,7 @@ void showArray(usuario A)
 
 nodoListaDSubVenta *despersistirListaDSubVenta(nodoListaDSubVenta *lista)
 {
-    FILE *ptr = fopen("Usuarios.dat", "rb");
+    FILE *ptr = fopen(ArchivoUsuarios, "rb");
 
     usuario aux;
 
@@ -408,8 +410,7 @@ void mostrarOpcionesCarrito(nodoListaDSubVenta *lista, int cursor)
         /// LA FUNCION QUE CREA LA LISTA NO ESTA IMPLEMENTADA
         /// SI NO LLEGA AFUNCIONAR PUEDE QUE HAYA UN PROBLEMA EN ESTE PRINTF
         /// NO TE PREOCUPES SI APARECEN TORCIDOS, LO SOLUCIONO DESPUES
-        printf("%s   %f   %i   %f", lista->dato.dato.nombre, lista->dato.dato.precioVenta, lista->dato.cantidad, lista->dato.subtotal);
-
+        printf("%-21s   %-15.0f   %-15i   %.0f", lista->dato.dato.nombre, lista->dato.dato.precioVenta, lista->dato.cantidad, lista->dato.subtotal);
         //        gotoxy(0,0);
         //        //printf("cantColumnas: %i i = %i",cantColumnas, i);
         //        printf("posicionY: %i",posicion);
@@ -435,7 +436,8 @@ int capturarTeclaCarrito()
             tecla = 256 + getch();
         }
 
-    } while ((tecla != KEY_UP) && (tecla != KEY_DOWN) && (tecla != KEY_ESC) && (tecla != KEY_ENTER) && (tecla != KEY_LEFT) && (tecla != KEY_RIGHT));
+    }
+    while ((tecla != KEY_UP) && (tecla != KEY_DOWN) && (tecla != KEY_ESC) && (tecla != KEY_ENTER) && (tecla != KEY_LEFT) && (tecla != KEY_RIGHT));
 
     switch (tecla)
     {

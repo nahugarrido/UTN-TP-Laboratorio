@@ -9,6 +9,7 @@ typedef struct
     producto dato;
     int cantidad;
     float subtotal;
+    int flag;
 } subVenta;
 
 typedef struct
