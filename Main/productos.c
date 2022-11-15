@@ -510,9 +510,11 @@ void mostrarUnProductoUsuario(int idUsuario, int id)
             gotoxy(7, 22);
             fflush(stdin);
             scanf("%i", &cantidad);
+            agregarAlCarrito(idUsuario,cantidad,lista->dato);
 
             if (cantidad > mostrar.cantidad)
             {
+
                 limpiarConsola();
                 gotoxy(7, 20);
                 printf("No hay suficientes unidades disponibles . . .");
@@ -601,13 +603,13 @@ int mostrarStock(int id, int cursor) /// cursor es donde esta parado el >>>> , o
     printf("ID: %i", id);
 
     /// TABLA HEADERS DE E-COMMERCE STOCK
-    gotoxy(9,5);
+    gotoxy(9, 5);
     printf("PRODUCTO");
-    gotoxy(27,5);
+    gotoxy(27, 5);
     printf("CANTIDAD");
-    gotoxy(41,5);
+    gotoxy(41, 5);
     printf("PRECIO.COMPRA");
-    gotoxy(60,5);
+    gotoxy(60, 5);
     printf("PRECIO.VENTA");
 
     /// MUESTRA LAS OPCIONES
@@ -692,9 +694,9 @@ void mostrarOpcionesStock(nodoProductoD *lista, int cursor)
     nodoProductoD *anterior;
     int posicionY;
     int posicionX;
-    int contPaginas = ceil(((float)cursor/6));
+    int contPaginas = ceil(((float)cursor / 6));
 
-    int i=  1 + ((contPaginas-1)*6);
+    int i = 1 + ((contPaginas - 1) * 6);
 
     int cantidadxColumna = 6;
 
@@ -705,30 +707,30 @@ void mostrarOpcionesStock(nodoProductoD *lista, int cursor)
 
     int tope = i + 5;
 
-    for(int i = 0; i < ((contPaginas-1)*6); i++)
+    for (int i = 0; i < ((contPaginas - 1) * 6); i++)
     {
         lista = lista->siguiente;
     }
 
-    while((lista != NULL)  && (i <= tope))
+    while ((lista != NULL) && (i <= tope))
     {
-        posicionY = 14 + 3 + i*2;
+        posicionY = 14 + 3 + i * 2;
 
-        if((i-1) % 6 == 0 && i != 0)
+        if ((i - 1) % 6 == 0 && i != 0)
         {
             cantColumnas++;
         }
 
         posicionX = 2;
 
-        if((cantColumnas % 2 != 0) )
+        if ((cantColumnas % 2 != 0))
         {
             posicionY -= (contPaginas * 12);
         }
 
-        gotoxy(posicionX,posicionY);
+        gotoxy(posicionX, posicionY);
 
-        if(i == cursor)
+        if (i == cursor)
         {
             printf(" >>>> ");
         }

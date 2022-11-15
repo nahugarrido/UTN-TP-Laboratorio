@@ -116,7 +116,7 @@
 
 1666732969 D
 
-1667529845 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\main.c
+1668468922 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -128,6 +128,7 @@
 	"menuUsuariosAdmin.h"
 	"productos.h"
 	"UserLibs.h"
+	"loginAlgoritmo.h"
 
 1666378589 source:c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuadmin.c
 
@@ -143,16 +144,17 @@
 	<windows.h>
 	"sistema.h"
 
-1667333489 c:\users\jeremias\desktop\utn-tp-laboratorio\main\sistema.h
+1668468922 c:\users\jeremias\desktop\utn-tp-laboratorio\main\sistema.h
 
-1667332597 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuario.h
+1668468922 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuario.h
 
-1667333454 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuadmin.h
+1668468922 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuadmin.h
 
-1667332597 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuadmin.c
+1668468922 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuadmin.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
+	"estructuras.h"
 	"sistema.h"
 	"menuAdmin.h"
 	"menuUsuariosAdmin.h"
@@ -195,18 +197,21 @@
 
 1666731320 source:c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuusuario.c
 
-1667332597 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuario.c
+1668478028 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuario.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
+	"estructuras.h"
 	"sistema.h"
-	"menuUsuario.h"
 	"productos.h"
+	"menuUsuario.h"
+	"carritoCompras.h"
 
-1667332597 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\sistema.c
+1668477661 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\sistema.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
+	"estructuras.h"
 	"sistema.h"
 
 1666379660 c:\users\garri\desktop\trabajo integrador laboratorio\librerias\menuusuario.h
@@ -277,11 +282,12 @@
 
 1666743054 s.h"
 
-1667332597 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuariosadmin.h
+1668468922 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuariosadmin.h
 
-1667332597 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuenvios.h
+1668468922 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuenvios.h
 
-1667332597 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuproductos.h
+1668468922 c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuproductos.h
+	"productos.h"
 
 1668331694 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.c
 	<stdio.h>
@@ -295,24 +301,25 @@
 
 1668330951 c:\users\garri\desktop\trabajo integrador laboratorio\main\productos.h
 
-1667332597 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuenvios.c
+1668468922 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuenvios.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
+	"estructuras.h"
 	"sistema.h"
 	"menuEnvios.h"
 
-1667332597 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuproductos.c
+1668468922 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuproductos.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
+	"estructuras.h"
 	"sistema.h"
 	"menuProductos.h"
 
-1668278811 c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.h
-	"UserLibs.h"
+1668468922 c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.h
 
-1668118345 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuariosadmin.c
+1668468922 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuariosadmin.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -320,24 +327,28 @@
 	"menuUsuariosAdmin.h"
 	"UserLibs.h"
 
-1668278601 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.c
+1668478773 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	<time.h>
 	<stdbool.h>
+	"estructuras.h"
 	"productos.h"
 
-1668278864 c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.h
+1668473959 c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.h
+	"productos.h"
 
-1668279616 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.c
+1668468922 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	<time.h>
 	<stdbool.h>
+	"estructuras.h"
+	"carritoCompras.h"
 	"UserLibs.h"
 
 1668396443 source:c:\users\garri\desktop\trabajo integrador laboratorio\main\userlibs.c
@@ -394,13 +405,13 @@
 
 1668314461 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\estructuras.h
 
-1668314461 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\userlibs.h
+1668474102 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\userlibs.h
 	"carritoCompras.h"
 
 1668314461 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\carritocompras.h
 	"productos.h"
 
-1668314461 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\productos.h
+1668474102 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\productos.h
 
 1668314461 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\estructuras.c
 	<stdio.h>
@@ -421,7 +432,7 @@
 
 1668314461 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\loginalgoritmo.h
 
-1668315523 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\main.c
+1668474209 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -446,7 +457,7 @@
 
 1668314461 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuusuariosadmin.h
 
-1668314461 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuadmin.c
+1668474102 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuadmin.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -465,7 +476,7 @@
 	"sistema.h"
 	"menuEnvios.h"
 
-1668314461 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuusuario.c
+1668474102 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuusuario.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -474,7 +485,7 @@
 	"productos.h"
 	"menuUsuario.h"
 
-1668314461 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuusuariosadmin.c
+1668474102 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuusuariosadmin.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -482,7 +493,7 @@
 	"menuUsuariosAdmin.h"
 	"UserLibs.h"
 
-1668314461 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\productos.c
+1668474102 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\productos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -499,7 +510,7 @@
 	"estructuras.h"
 	"sistema.h"
 
-1668314461 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\userlibs.c
+1668474102 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\userlibs.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -507,15 +518,50 @@
 	<time.h>
 	<stdbool.h>
 	"estructuras.h"
-	"productos.h"
 	"carritoCompras.h"
 	"UserLibs.h"
 
-1668315354 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuproductos.c
+1668474102 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuproductos.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"estructuras.h"
 	"sistema.h"
 	"menuProductos.h"
+
+1668479202 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\carritocompras.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"estructuras.h"
+	"UserLibs.h"
+	"carritoCompras.h"
+
+1668468922 c:\users\jeremias\desktop\utn-tp-laboratorio\main\estructuras.h
+
+1668477552 c:\users\jeremias\desktop\utn-tp-laboratorio\main\carritocompras.h
+	"productos.h"
+	"UserLibs.h"
+	"sistema.h"
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<math.h>
+
+1668468922 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\estructuras.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+
+1668468922 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\loginalgoritmo.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"estructuras.h"
+	"UserLibs.h"
+	"loginAlgoritmo.h"
+
+1668468922 c:\users\jeremias\desktop\utn-tp-laboratorio\main\loginalgoritmo.h
 
