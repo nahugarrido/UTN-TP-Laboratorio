@@ -36,6 +36,38 @@ typedef struct
     struct nodoListaDSubVenta* siguiente;
     struct nodoListaDSubVenta* anterior;
 } nodoListaDSubVenta;
+typedef struct
+{
+    char pais[50];
+    char provincia[50];
+    char ciudad[50];
+    char direccion[50];
+} destino;
+
+typedef struct
+{
+    subVenta arreglo[50];
+    destino despachar;
+    float total;
+    int idVenta;
+    int idCliente;
+    int estadoEnvio; // 0 no despachado // 1 despachado
+    int estadoVenta; // 0 normal // 1 cancelada
+} venta;
+
+typedef struct
+{
+    char username[30]; //
+    char password[30]; //
+    venta compras[30]; /// Fila
+    subVenta carrito[50];
+    int validosCarrito;
+    int validosCompras;
+    float saldo;
+    int admin;         // 0 no es admin  // 1 es admin
+    int estadoCliente; // 0 baja // 1 alta
+    int idCliente;
+} usuario;
 
 /// ESTRUCTURAS
 typedef struct
@@ -56,11 +88,11 @@ void suma();
 /// PROTOTIPADO DE LISTAS
 nodoListaDSubVenta *agregarAlFinalDSubVenta(nodoListaDSubVenta *lista, nodoListaDSubVenta *nuevoNodo);
 nodoListaDSubVenta *buscarUltimoDSubVenta(nodoListaDSubVenta *lista);
-nodoListaDSubVenta *crearNodoDoblesubVenta(subVenta A);
+nodoListaDSubVenta *crearNodoDSubVenta(subVenta A);
 nodoListaDSubVenta *inicListaDoblesubVenta();
+nodoListaDSubVenta *obtenerSubVenta(usuario A, nodoListaDSubVenta *lista);
 nodoListaDSubVenta *borrarnodoListaDSubVenta(nodoListaDSubVenta *lista, int idPedido);
 void showListsubVenta(nodoListaDSubVenta *lista);
-nodoListaDSubVenta* obtenerListaDSubVentas(nodoListaDSubVenta* lista);
 void mostrarsubVentaCorto(subVenta nombre);
 int mostrarsubVentas(int id, int cursor);
 void mostrarOpcionesCarrito(nodoListaDSubVenta* lista, int cursor);
@@ -87,15 +119,48 @@ int main()
     system("cls");
     return 0;
 }
+///
+nodoListaDSubVenta *despersistirListaDSubVenta(nodoListaDSubVenta *lista)
+{
+    FILE *ptr = fopen("Usuarios.dat", "rb");
 
+    usuario aux;
 
+    nodoListaDSubVenta *aux2;
+
+    if (ptr != NULL)
+    {
+        while (fread(&aux, sizeof(usuario), 1, ptr) > 0)
+        {
+            lista = obtenerSubVenta(aux, lista);
+        }
+        fclose(ptr);
+    }
+    return lista;
+}
+
+nodoListaDSubVenta *obtenerSubVenta(usuario A, nodoListaDSubVenta *lista)
+{
+    int i = 0;
+    subVenta aux;
+    nodoListaDSubVenta *nuevo;
+
+    for (int i = 0; i < A.validosCarrito; i++)
+    {
+        nuevo = crearNodoDSubVenta(A.carrito[i]);
+        lista = agregarAlFinalDSubVenta(lista, nuevo);
+    }
+
+    return lista;
+}
+///
 /// PASAR A LIBRERIA
 int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
 {
 
     system("cls");
     nodoListaDSubVenta *lista = inicListaDoblesubVenta();
-    lista = obtenerListaDSubVentas(lista);
+    lista = despersistirListaDSubVenta(lista);
 
     dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
@@ -452,23 +517,15 @@ void reset()
 }
 
 
-/// FUNCIONES LISTAS DOBLES
-//nodoListaDSubVenta *agregarAlFinalDSubVenta(nodoListaDSubVenta *lista, nodoListaDSubVenta *nuevoNodo);
-//nodoListaDSubVenta *buscarUltimoDSubVenta(nodoListaDSubVenta *lista);
-//nodoListaDSubVenta *crearNodoDoblesubVenta(subVenta A);
-//nodoListaDSubVenta *inicListaDoblesubVenta();
-//nodoListaDSubVenta *borrarnodoListaDSubVenta(nodoListaDSubVenta *lista, int idPedido);
-//void showListsubVenta(nodoListaDSubVenta *lista)
-//nodoListaDSubVenta* obtenerListaDSubVentas(nodoListaDSubVenta* lista);
-//void mostrarsubVentaCorto(subVenta nombre);
-
-//// FUNCIONES LISTA /////
-nodoListaDSubVenta* obtenerListaDSubVentas(nodoListaDSubVenta* lista, int id)
-{
-    FILE* ptr = fopen("ArchivoUsuario.dat","rb");
-     /// ACA HABRIA QUE BUSCAR EL USUARIO POR SU ID EN EL ARCHIVO, TRAER ESE USUARIO, y convertir su arreglo de subventas en lista
-
-}
+// FUNCIONES LISTAS DOBLES
+nodoListaDSubVenta *agregarAlFinalDSubVenta(nodoListaDSubVenta *lista, nodoListaDSubVenta *nuevoNodo);
+nodoListaDSubVenta *buscarUltimoDSubVenta(nodoListaDSubVenta *lista);
+nodoListaDSubVenta *crearNodoDSubVenta(subVenta A);
+nodoListaDSubVenta *inicListaDoblesubVenta();
+nodoListaDSubVenta *borrarnodoListaDSubVenta(nodoListaDSubVenta *lista, int idPedido);
+void showListsubVenta(nodoListaDSubVenta *lista);
+nodoListaDSubVenta* obtenerListaDSubVentas(nodoListaDSubVenta* lista);
+void mostrarsubVentaCorto(subVenta nombre);
 
 void mostrarsubVentaCorto(subVenta aux)
 {
@@ -481,7 +538,7 @@ nodoListaDSubVenta *inicListaDoblesubVenta()
     return NULL;
 }
 
-nodoListaDSubVenta *crearNodoDoblesubVenta(subVenta A)
+nodoListaDSubVenta *crearNodoDSubVenta(subVenta A)
 {
 
     nodoListaDSubVenta* aux = (nodoListaDSubVenta*) malloc(sizeof(nodoListaDSubVenta));
