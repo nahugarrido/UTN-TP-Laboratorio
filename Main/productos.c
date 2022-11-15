@@ -467,19 +467,29 @@ int mostrarProductos(int id, int cursor, int nroCategoria) /// cursor es donde e
     return mostrarProductos(id, cursor, nroCategoria);
 }
 
-void mostrarUnProductoUsuario(int idUsuario, int id)
+void mostrarUnProductoUsuario(int idUsuario, int id, int nroCategoria)
 {
     system("cls");
 
-    nodoProductoD *lista = inicListaDobleProducto();
-    lista = despersistirListaDobleProductos(lista);
+    nodoCategoria *lista = inicCategoria();
+    lista = cargarListaDeListas(lista);
 
-    for (int i = 1; i < id; i++)
+    /// BUSCO LA CATEGORIA QUE ME INTERESA
+    while(lista != NULL && (lista->Categoria.nroCategoria != nroCategoria))
     {
-        lista = lista->siguiente;
+        if(lista->Categoria.nroCategoria != nroCategoria)
+        {
+            lista = lista->siguiente;
+        }
     }
 
-    producto mostrar = lista->dato;
+    /// FUNCION QUE BUSCA EN LA SUB LISTA
+    for (int i = 1; i < id; i++)
+    {
+        lista->lista = lista->lista->siguiente;
+    }
+
+    producto mostrar = lista->lista->dato;
 
     dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
@@ -526,7 +536,7 @@ void mostrarUnProductoUsuario(int idUsuario, int id)
 //            printf("idUsuario: %i, cantidad: %i, producto: %s \n", idUsuario, cantidad, lista->dato.nombre);
 //            system("pause");
 
-            agregarAlCarrito(idUsuario,cantidad,lista->dato);
+            agregarAlCarrito(idUsuario,cantidad,lista->lista->dato);
 
             if (cantidad > mostrar.cantidad)
             {

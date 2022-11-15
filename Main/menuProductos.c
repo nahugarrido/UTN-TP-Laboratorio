@@ -141,7 +141,7 @@ void switchProductos(int id, int opcion)
                     mostrar = mostrarStock(id,1,lista->Categoria.nroCategoria);
                     if(mostrar != 0)
                     {
-                        mostrarUnProductoUsuario(id, mostrar);
+                        mostrarUnProductoUsuario(id, mostrar, lista->Categoria.nroCategoria);
                         /// (mostrar producto pregunta si quiere añadirlo al carrito, de no querer vuelve al menu de productos ed querer pregunta cantidad y se agrega.
                         /// funcion de mostrar el producto y añadir a carrito
                     }

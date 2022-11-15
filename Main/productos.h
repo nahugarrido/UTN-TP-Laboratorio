@@ -53,7 +53,7 @@ nodoProductoD *despersistirListaDobleProductos(nodoProductoD *lista);
 void mostrarProductoCorto(producto nombre);
 int mostrarProductos(int id, int cursor, int nroCategoria);
 void mostrarOpcionesProductos(nodoProductoD *lista, int cursor);
-void mostrarUnProductoUsuario(int idUsuario, int id);
+void mostrarUnProductoUsuario(int idUsuario, int id, int nroCategoria);
 void printDescripcionProducto(producto mostrar);
 void printCategoriaProducto(producto mostrar);
 /// MOSTRAR STOCK
