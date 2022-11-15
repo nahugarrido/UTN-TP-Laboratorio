@@ -23,6 +23,7 @@ int main()
     {
         int id = NULL;
         //id = login(1);
+        /// TESTEAR SIN PASAR POR EL LOGIN
         id = 1;
 
         int opcion, opcion2;
@@ -36,7 +37,6 @@ int main()
 
         /// TESTEAR ADMIN /// CON ESTO SE PUEDE ACCEDER AL MENU DE ADMIN
         flagAdmin = 1;
-
         /// 0 no es admin /// 1 es admin
         if(flagAdmin == 0)
         {
