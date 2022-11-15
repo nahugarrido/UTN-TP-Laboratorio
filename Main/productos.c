@@ -44,10 +44,10 @@ producto cargarProducto()
     printf("Ingrese una descripcion: (240 caracteres) \n");
     fflush(stdin);
     gets(nuevo.descripcion);
-    printf("Ingrese una categoria: \n");
-    showCategorias();
-    fflush(stdin);
-    gets(nuevo.categoria);
+//    printf("Ingrese una categoria: \n");
+//    showCategorias();
+//    fflush(stdin);
+//    gets(nuevo.categoria);
     printf("Ingrese el precio venta: \n");
     fflush(stdin);
     scanf("%f", &nuevo.precioVenta);
@@ -74,19 +74,19 @@ void descontarStock(char aDescontar[100], char categoria[], int cantidad)
 
         while (fread(&Aux, sizeof(producto), 1, buffer) > 0 && flag == 0)
         {
-            if (strcmpi(Aux.categoria, categoria) == 0)
-            {
-
-                if (0 == strcmpi(Aux.nombre, aDescontar))
-                {
-                    fseek(buffer, sizeof(producto) * (-1), SEEK_CUR);
-                    Aux.cantidad = (Aux.cantidad - cantidad);
-                    mostrarProducto(Aux);
-                    fwrite(&Aux, sizeof(producto), 1, buffer);
-                    flag = 1;
-                    fclose(buffer);
-                }
-            }
+//            if (strcmpi(Aux.categoria, categoria) == 0)
+//            {
+//
+//                if (0 == strcmpi(Aux.nombre, aDescontar))
+//                {
+//                    fseek(buffer, sizeof(producto) * (-1), SEEK_CUR);
+//                    Aux.cantidad = (Aux.cantidad - cantidad);
+//                    mostrarProducto(Aux);
+//                    fwrite(&Aux, sizeof(producto), 1, buffer);
+//                    flag = 1;
+//                    fclose(buffer);
+//                }
+//            }
         }
     }
 }
@@ -488,8 +488,8 @@ void mostrarUnProductoUsuario(int idUsuario, int id)
     printf("Precio: ");
     printf("%$%.2f", mostrar.precioVenta);
     gotoxy(8, 14);
-    printf("Categoria: ");
-    printCategoriaProducto(mostrar);
+//    printf("Categoria: ");
+//    printCategoriaProducto(mostrar);
     gotoxy(8, 16);
     printf("Cantidad disponible: ");
     printf("%i", mostrar.cantidad);
@@ -559,31 +559,31 @@ void printDescripcionProducto(producto mostrar)
     }
 }
 
-void printCategoriaProducto(producto mostrar)
-{
-    int opcion = mostrar.categoria;
-    switch (opcion)
-    {
-    case 1:
-        printf("Smartphones");
-        break;
-    case 2:
-        printf("Tv smarts");
-        break;
-    case 3:
-        printf("Notebooks");
-        break;
-    case 4:
-        printf("Componentes de pc");
-        break;
-    case 5:
-        printf("Auriculares");
-        break;
-    default:
-        return 0;
-        break;
-    }
-}
+//void printCategoriaProducto(producto mostrar)
+//{
+//    int opcion = mostrar.categoria;
+//    switch (opcion)
+//    {
+//    case 1:
+//        printf("Smartphones");
+//        break;
+//    case 2:
+//        printf("Tv smarts");
+//        break;
+//    case 3:
+//        printf("Notebooks");
+//        break;
+//    case 4:
+//        printf("Componentes de pc");
+//        break;
+//    case 5:
+//        printf("Auriculares");
+//        break;
+//    default:
+//        return 0;
+//        break;
+//    }
+//}
 
 /// MOSTRAR STOCK
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

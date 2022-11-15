@@ -275,8 +275,8 @@ producto cargarProductoAdmin()
     darFormatoHoja();
     gotoxy(3,8);showCategoriasAdmin();
     gotoxy(3,11);printf("Ingrese una categoria: \n");
-    fflush(stdin);
-    gotoxy(3,12);gets(nuevo.categoria);
+//    fflush(stdin);
+//    gotoxy(3,12);gets(nuevo.categoria);
     gotoxy(3,5);borrarPantallaCorto();
     gotoxy(3,5);printf("Ingrese una descripcion: (280 caracteres) \n");
     fflush(stdin);
@@ -386,7 +386,7 @@ void mostrarProductoCargado(producto nuevo)
     gotoxy(3,5);borrarPantallaCorto();
     gotoxy(3,5);printf("PRODUCTO NUEVO\n");
     gotoxy(3,6);printf("Producto: %s\n",nuevo.nombre);
-    gotoxy(3,7);printf("Categoria: %s \n",nuevo.categoria);
+//    gotoxy(3,7);printf("Categoria: %s \n",nuevo.categoria);
     gotoxy(3,8);printf("Descripcion: %s \n",nuevo.descripcion);
     gotoxy(3,9);printf("Precio de venta: %c%.2f \n",36,nuevo.precioVenta);
     gotoxy(3,10);printf("Precio de compra: %c%.2f \n",36,nuevo.precioCosto);

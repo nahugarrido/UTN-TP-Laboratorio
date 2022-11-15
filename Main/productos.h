@@ -5,7 +5,6 @@ typedef struct
 {
     char nombre[30];
     char descripcion[100];
-    char categoria[3];
     float precioVenta;
     float precioCosto;
     int cantidad;
@@ -14,11 +13,26 @@ typedef struct
 
 typedef struct
 {
+    int idCategoria;
+    char nombreCategoria[25];
+} categoria;
+
+
+typedef struct
+{
     producto dato;
     struct nodoProductoD *siguiente;
     struct nodoProductoD *anterior;
 } nodoProductoD;
 
+typedef struct
+{
+    categoria Categoria;
+    nodoProductoD* lista;
+    struct nodoCategorias *siguiente;
+    struct nodoCategorias *anterior;
+
+} nodoCategorias;
 
 /// PROTOTIPADOS
 void AltaProducto();
