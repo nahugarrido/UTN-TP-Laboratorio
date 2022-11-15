@@ -7,7 +7,6 @@
 #define KEY_ESC 27
 #define KEY_LEFT 75 +256
 #define KEY_RIGHT 77 +256
-#include "estructuras.h"
 #include "sistema.h"
 
 /// DESACTIVAR MAXIMIZAR

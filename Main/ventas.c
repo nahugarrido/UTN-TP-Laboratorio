@@ -6,13 +6,14 @@
 #define ArchProductos "Stock.dat"
 #include "ventas.h"
 
-
 void descontarSaldoAuxiliar(int idUsuario, float gasto)
 {
 
-    FILE *bufferUsuario = fopen(ArchivoUsuarios, "r+b");
     usuario aux;
+
     usuario deseado = BuscarUsuario(idUsuario);
+
+    FILE *bufferUsuario = fopen(ArchivoUsuarios, "r+b");
 
     if (bufferUsuario)
     {
@@ -20,7 +21,6 @@ void descontarSaldoAuxiliar(int idUsuario, float gasto)
         {
             if (deseado.idCliente == aux.idCliente)
             {
-
                 fseek(bufferUsuario, sizeof(usuario) * (-1), SEEK_CUR);
                 aux.saldo = (aux.saldo - gasto);
                 fwrite(&aux, sizeof(usuario), 1, bufferUsuario);
@@ -43,14 +43,13 @@ int verificarSaldo(float saldo, float gasto)
 
 void generarCompra(int idUsuario, float gasto)
 {
-    usuario deseado = BuscarUsuario(idUsuario);
 
-    do
+    usuario deseado = BuscarUsuario(idUsuario);
+    while (verificarSaldo(deseado.saldo, gasto) == 0)
     {
         gotoxy(7, 21);
         printf("Saldo insuficiente, elimine un producto de su carrito. \n");
-
-    } while (verificarSaldo(deseado.saldo, gasto) == 0);
+    }
 
     if (verificarSaldo(deseado.saldo, gasto) == 1)
     {
@@ -70,9 +69,9 @@ void compraConfirmada(int id, float gasto)
 
     descontarLoDelCarrito(deseado); /// se descuenta el stock del archivo productos.
 
-    int idVenta = generarIdVenta();
+    // int idVenta = generarIdVenta();
 
-    persistirCompraEnUsuarioyVentas(id, idVenta); /// pasa la subventa a venta. pide datos de envio/// guarda en el archivo usuario. reinicia los validos de subVentas.
+    // persistirCompraEnUsuarioyVentas(id, idVenta); /// pasa la subventa a venta. pide datos de envio/// guarda en el archivo usuario. reinicia los validos de subVentas.
 }
 
 void persistirCompraEnUsuarioyVentas(int idUsuario, int idVenta)
@@ -126,9 +125,13 @@ void persistirCompraEnUsuarioyVentas(int idUsuario, int idVenta)
 
 void descontarLoDelCarrito(usuario A)
 {
+
     for (int i = 0; i < A.validosCarrito; i++)
     {
-        descontarStock(A.carrito[i].dato.nombre, A.carrito[i].cantidad);
+        system("cls");
+        printf("A DESCONTAR: %s", A.carrito[i].dato.nombre);
+        system("pause");
+        // descontarStock(A.carrito[i].dato.nombre, A.carrito[i].cantidad);
     }
 }
 
@@ -138,7 +141,9 @@ void descontarStock(char aDescontar[], int cantidad)
 {
 
     FILE *buffer = fopen(ArchProductos, "r+b");
+
     producto Aux;
+
     int flag = 0;
     if (buffer != NULL)
     {

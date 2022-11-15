@@ -40,10 +40,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="carritoCompras.h" />
-		<Unit filename="estructuras.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="estructuras.h" />
 		<Unit filename="loginAlgoritmo.c">
 			<Option compilerVar="CC" />
 		</Unit>
