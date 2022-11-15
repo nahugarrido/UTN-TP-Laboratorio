@@ -25,6 +25,8 @@ void descontarSaldoAuxiliar(int idUsuario, float gasto)
                 aux.saldo = (aux.saldo - gasto);
                 fwrite(&aux, sizeof(usuario), 1, bufferUsuario);
                 system("cls");
+                printf("SE MODIFICOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
+                system("pause");
             }
             fclose(bufferUsuario);
         }
