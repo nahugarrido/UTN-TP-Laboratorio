@@ -251,6 +251,7 @@ int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>>
     printf("TOTAL A PAGAR: ");
 
     /// MUESTRA LAS OPCIONES
+    gotoxy(9,7);
     int cantidadOpciones = contarOpcionessubVentas(lista);
     // printf("\ncantidadOpciones: %i", cantidadOpciones);
     // system("pause");

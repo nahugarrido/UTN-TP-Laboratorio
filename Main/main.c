@@ -14,7 +14,7 @@
 int main()
 {
     /// ESTILO DE MENU (GENERICO PARA TODOS LOS MENUS)
-    //desactivarMaximizar();
+    desactivarMaximizar();
     system("mode con: cols=80 lines=25"); // SE DEFINE LAS DIMENSIONES DE LA VENTANA DEL PROGRAMA A 80 COLUMNAS Y 25 FILAS
     system("COLOR 0A");                   // SE DA UN COLOR DE FONDO Y COLOR A LAS LETRAS /// E0 // 5F // B0 // 0A
     //int id;
@@ -23,7 +23,7 @@ int main()
     {
         int id = NULL;
         //id = login(1);
-        id = 0;
+        id = 1;
 
         int opcion, opcion2;
 
@@ -35,7 +35,7 @@ int main()
         int flagAdmin = buscarPorIdUsuario(arbol, id);
 
         /// TESTEAR ADMIN /// CON ESTO SE PUEDE ACCEDER AL MENU DE ADMIN
-        flagAdmin = 1;
+        flagAdmin = 0;
 
         /// 0 no es admin /// 1 es admin
         if(flagAdmin == 0)

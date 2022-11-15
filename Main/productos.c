@@ -365,12 +365,21 @@ int capturarTecla2()
     return opcion;
 }
 
-int mostrarProductos(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
+int mostrarProductos(int id, int cursor, int nroCategoria) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
 {
 
     system("cls");
-    nodoProductoD *lista = inicListaDobleProducto();
-    lista = despersistirListaDobleProductos(lista);
+    nodoCategoria *lista = inicCategoria();
+    lista = cargarListaDeListas(lista);
+
+    /// BUSCO LA CATEGORIA QUE ME INTERESA
+    while(lista != NULL)
+    {
+        if(lista->Categoria.nroCategoria != nroCategoria)
+        {
+            lista = lista->siguiente;
+        }
+    }
 
     dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
@@ -381,11 +390,12 @@ int mostrarProductos(int id, int cursor) /// cursor es donde esta parado el >>>>
     printf("ID: %i", id);
 
     /// MUESTRA LAS OPCIONES
-    int cantidadOpciones = contarOpcionesProductos(lista);
+    gotoxy(9,7);
+    int cantidadOpciones = contarOpcionesProductos(lista->lista);
     // printf("\ncantidadOpciones: %i", cantidadOpciones);
     // system("pause");
 
-    mostrarOpcionesProductos(lista, cursor);
+    mostrarOpcionesProductos(lista->lista, cursor);
 
     gotoxy(7, 21);
     printf("Para salir presionar ESC");
@@ -454,7 +464,7 @@ int mostrarProductos(int id, int cursor) /// cursor es donde esta parado el >>>>
         }
     }
 
-    return mostrarProductos(id, cursor);
+    return mostrarProductos(id, cursor, nroCategoria);
 }
 
 void mostrarUnProductoUsuario(int idUsuario, int id)
@@ -483,7 +493,7 @@ void mostrarUnProductoUsuario(int idUsuario, int id)
     printf("%s", mostrar.nombre);
     gotoxy(8, 7);
     printf("Descripcion: ");
-    // printDescripcionProducto(mostrar.descripcion);
+    printDescripcionProducto(mostrar);
     gotoxy(8, 12);
     printf("Precio: ");
     printf("%$%.2f", mostrar.precioVenta);
@@ -539,19 +549,19 @@ void printDescripcionProducto(producto mostrar)
     for (int i = 0; i < caracteres; i++)
     {
         printf("%c", mostrar.descripcion[i]);
-        if (i == 57)
+        if (i == 42)
         {
             printf("\n");
             gotoxy(8, 8);
         }
 
-        if (i == 127)
+        if (i == 84)
         {
             printf("\n");
             gotoxy(8, 9);
         }
 
-        if (i == 197)
+        if (i == 126)
         {
             printf("\n");
             gotoxy(8, 10);
@@ -613,6 +623,7 @@ int mostrarStock(int id, int cursor) /// cursor es donde esta parado el >>>> , o
     printf("PRECIO.VENTA");
 
     /// MUESTRA LAS OPCIONES
+    gotoxy(9,7);
     int cantidadOpciones = contarOpcionesProductos(lista);
     // printf("\ncantidadOpciones: %i", cantidadOpciones);
     // system("pause");
@@ -751,3 +762,294 @@ void mostrarOpcionesStock(nodoProductoD *lista, int cursor)
         lista = lista->siguiente;
     }
 }
+
+
+/// MOSTRAR CATEGORIAS PRODUCTOS
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// LISTAS DE LISTAS
+nodoCategoria *inicCategoria()
+{
+    return NULL;
+}
+
+nodoCategoria *crearnodoCategoria(categoria A)
+{
+    nodoCategoria *Aux = (nodoCategoria *)malloc(sizeof(nodoCategoria));
+
+    Aux->Categoria = A;
+    Aux->lista = inicLista();
+    Aux->siguiente = NULL;
+    Aux->anterior = NULL;
+    return Aux;
+}
+
+nodoCategoria *agregarAlPrincipioCategoria(nodoCategoria *lista, nodoCategoria *nuevo)
+{
+    nuevo->siguiente = lista;
+    if (lista != NULL)
+    {
+        lista->anterior = nuevo;
+    }
+
+    return nuevo;
+}
+
+nodoCategoria *alta(nodoCategoria *listaCategorias, nodoProductoD *nuevo, int nroCategoria)
+{
+    nodoCategoria *categoriaEncontrada = buscarCategoria(listaCategorias, nroCategoria);
+    if (categoriaEncontrada == NULL)
+    {
+        categoria c = crearCategoria(nuevo);
+        nodoCategoria *nuevacategoria = crearnodoCategoria(c);
+        listaCategorias = agregarAlPrincipioCategoria(listaCategorias, nuevacategoria);
+        listaCategorias->lista = agregarAlFinalDobleProducto(listaCategorias->lista, nuevo);
+    }
+    else
+    {
+        categoriaEncontrada->lista = agregarAlFinalDobleProducto(categoriaEncontrada->lista, nuevo);
+    }
+
+    return listaCategorias;
+}
+
+nodoCategoria *buscarCategoria(nodoCategoria *lista, int nroCategoria)
+{
+    nodoCategoria *seg = lista;
+    nodoCategoria *encontrada = NULL;
+    int flag = 0;
+
+    while (seg != NULL && flag == 0)
+    {
+        if (seg->Categoria.nroCategoria == nroCategoria)
+        {
+            encontrada = seg;
+            flag = 1;
+        }
+        seg = seg->siguiente;
+    }
+
+    return encontrada;
+}
+
+categoria crearCategoria(nodoProductoD* nuevo)
+{
+
+    categoria C;
+    C.nroCategoria = nuevo->dato.nroCategoria;
+    strcpy(C.nombreCategoria,nuevo->dato.nombreCategoria);
+
+    return C;
+}
+
+/// MENU DE CATEGORIAS
+/////////////////////////////////////////////////////////////////////////////////////////
+int contarOpcionesCategoria(nodoCategoria *lista)
+{
+    int contador = 0;
+
+    if (lista == NULL)
+    {
+        gotoxy(7,7);
+        printf("lista vacia");
+    }
+
+    while (lista != NULL)
+    {
+        contador++;
+        lista = lista->siguiente;
+    }
+
+    return contador;
+}
+
+/// MOSTRAR OPCIONES
+void mostrarOpcionesCategoria(nodoCategoria *lista, int cursor)
+{
+    nodoCategoria *anterior;
+    int posicionY;
+    int posicionX;
+    int contPaginas = ceil(((float)cursor / 14));
+
+    int i = 1 + ((contPaginas - 1) * 14);
+
+    int cantidadxColumna = 7;
+
+    int cantColumnas = 0;
+
+    /// esto ya deberia funcionar para navegar en el menu en todas las direcciones de no funcionar
+    /// hay que revisar en mostrar productos los if a ver si deberiamos poner +1 -1 en condiciones = <=
+
+    int tope = i + 13;
+
+    for (int i = 0; i < ((contPaginas - 1) * 14); i++)
+    {
+        lista = lista->siguiente;
+    }
+
+    while ((lista != NULL) && (i <= tope))
+    {
+        posicionY = 28 + 3 + i * 2;
+
+        if ((i - 1) % 7 == 0 && i != 0)
+        {
+            cantColumnas++;
+        }
+
+        if (cantColumnas % 2 == 0)
+        {
+            posicionX = 45;
+        }
+
+        if (cantColumnas % 2 != 0)
+        {
+            posicionX = 2;
+        }
+
+        if ((cantColumnas % 2 != 0))
+        {
+            posicionY -= (contPaginas * 28);
+        }
+
+        if (cantColumnas % 2 == 0)
+        {
+            posicionY -= (7 * cantColumnas) + (contPaginas * 28);
+        }
+
+        gotoxy(posicionX, posicionY);
+
+        if (i == cursor)
+        {
+            printf(" >>>> ");
+        }
+        else
+        {
+            printf("       ");
+        }
+
+        printf("%s", lista->Categoria.nombreCategoria);
+
+        //        gotoxy(0,0);
+        //        //printf("cantColumnas: %i i = %i",cantColumnas, i);
+        //        printf("posicionY: %i",posicion);
+        //        system("pause");
+
+        i++;
+        anterior = lista;
+        lista = lista->siguiente;
+    }
+}
+
+
+int mostrarCategorias(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
+{
+
+    system("cls");
+    nodoCategoria *lista = inicListaDobleProducto();
+
+    lista = cargarListaDeListas(lista);
+
+    dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
+
+    centrarTexto("E-COMMERCE - PRODUCTOS CATEGORIAS", 2);
+
+    gotoxy(70, 2);
+    printf("ID: %i", id);
+
+    /// MUESTRA LAS OPCIONES
+    int cantidadOpciones = contarOpcionesCategoria(lista);
+    // printf("\ncantidadOpciones: %i", cantidadOpciones);
+    // system("pause");
+
+    mostrarOpcionesCategoria(lista, cursor);
+
+    gotoxy(7, 21);
+    printf("Para salir presionar ESC");
+    dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    ocultarCursor();
+
+    int opcion = capturarTecla2();
+
+    gotoxy(0, 0);
+    // printf("cursor: %i", cursor); //// PARA VER EL CURSOR  --------------------------------------------------------------------------->
+    // system("pause");
+
+    /// SONIDO
+    if (opcion == KEY_ENTER)
+    {
+        Beep(400, 80);
+    }
+    else if (opcion == KEY_ESC)
+    {
+        Beep(800, 80);
+    }
+    else
+    {
+        Beep(600, 80);
+    }
+
+    if (opcion == KEY_ESC)
+    {
+        return 0;
+    }
+
+    if (opcion == KEY_ENTER)
+    {
+        return cursor;
+    }
+
+    if (opcion == KEY_UP)
+    {
+        if (cursor - 1 > 0)
+        {
+            cursor -= 1;
+        }
+    }
+
+    if (opcion == KEY_DOWN)
+    {
+        if (cursor + 1 <= cantidadOpciones)
+        {
+            cursor += 1;
+        }
+    }
+
+    if (opcion == KEY_LEFT)
+    {
+        if (cursor - 7 > 0)
+        {
+            cursor -= 7;
+        }
+    }
+
+    if (opcion == KEY_RIGHT)
+    {
+        if (cursor + 7 <= cantidadOpciones)
+        {
+            cursor += 7;
+        }
+    }
+
+    return mostrarCategorias(id, cursor);
+}
+
+
+nodoCategoria* cargarListaDeListas(nodoCategoria* lista)
+{
+    FILE* fp = fopen(ArchProductos,"rb");
+    producto registro;
+    nodoProductoD* aux;
+    if (fp)
+    {
+        while (fread(&registro,sizeof(producto),1,fp) > 0)
+        {
+            aux = crearNodoDobleProducto(registro);
+            alta(lista,aux,registro.nroCategoria);
+        }
+        fclose(fp);
+    }
+    return lista;
+}
+
+
+
