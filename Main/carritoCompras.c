@@ -26,7 +26,8 @@ void agregarAlCarrito(int idCliente, int cantidadProductos, producto Dato)
 
     float subtotal = (deseado.precioVenta * cantidadProductos);
 
-
+//    printf("\nAux username: %s     Temporal username: %s\n", Aux.username, temporal.username);
+//    system("pause");
     if (bufferUsuarios)
     {
         while (fread(&Aux, sizeof(usuario), 1, bufferUsuarios) > 0)
@@ -251,6 +252,7 @@ int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>>
     printf("TOTAL A PAGAR: ");
 
     /// MUESTRA LAS OPCIONES
+    gotoxy(9,7);
     int cantidadOpciones = contarOpcionessubVentas(lista);
     // printf("\ncantidadOpciones: %i", cantidadOpciones);
     // system("pause");

@@ -115,6 +115,7 @@ void switchUsuario(int id, int opcion)
 {
     int mostrar = 1;
     int categoria = 0;
+    int cursor = 1;
 
     switch(opcion)
     {
@@ -122,34 +123,56 @@ void switchUsuario(int id, int opcion)
         /// CARRITO DE COMPRAS
         // muestra el carrito de compras si se quiere confirmar la compra se presiona SHIFT, si se quiere salir se presiona ESC,
         // si se quiere remover una subVenta se presiona enter, preguntara si esta seguro de querer eliminarlo.
-         do
+        do
         {
-          mostrar=mostrarsubVentas(id,1);
-          system("pause");
-        if(mostrar != 0)
-        {
-             mostrarUnProductoUsuario(id, mostrar);
-            /// (mostrar producto pregunta si quiere añadirlo al carrito, de no querer vuelve al menu de productos ed querer pregunta cantidad y se agrega.
-            /// funcion de mostrar el producto y añadir a carrito
+            mostrar=mostrarsubVentas(id,1);
+            if(mostrar != 0)
+            {
+                //mostrarUnProductoUsuario(id, mostrar);
+                /// (mostrar producto pregunta si quiere añadirlo al carrito, de no querer vuelve al menu de productos ed querer pregunta cantidad y se agrega.
+                /// funcion de mostrar el producto y añadir a carrito
+            }
         }
-        } while(mostrar != 0);
+        while(mostrar != 0);
 
         break;
     case 2:
         /// VER PRODUCTOS
-
         // categoria = mostrarCategoriasProductos()
         // tendriamos que pasar categoria por parametro en mostrar productos
+
+        /// ACA HAGO EL DO WHILE DE CATEGORIAS
         do
         {
-        mostrar = mostrarProductos(id,1);
-        if(mostrar != 0)
-        {
-             mostrarUnProductoUsuario(id, mostrar);
-            /// (mostrar producto pregunta si quiere añadirlo al carrito, de no querer vuelve al menu de productos ed querer pregunta cantidad y se agrega.
-            /// funcion de mostrar el producto y añadir a carrito
+            nodoCategoria *lista = inicListaDobleProducto();
+            lista = cargarListaDeListas(lista);
+
+            categoria = mostrarCategorias(id,cursor);
+
+            if(categoria != 0 && lista != NULL)
+            {
+                for(int i = 1; i < categoria; i++)
+                {
+                    lista = lista->siguiente;
+                }
+                /// ACA SE HACE EL DO WHILE DE PRODUCTOS QUE ANTES SE HACIA SOLO
+                do
+                {
+                    mostrar = mostrarProductos(id,1,lista->Categoria.nroCategoria);
+                    if(mostrar != 0)
+                    {
+                        mostrarUnProductoUsuario(id, mostrar,lista->Categoria.nroCategoria);
+                        /// (mostrar producto pregunta si quiere añadirlo al carrito, de no querer vuelve al menu de productos ed querer pregunta cantidad y se agrega.
+                        /// funcion de mostrar el producto y añadir a carrito
+                    }
+                }
+                while(mostrar != 0);
+                cursor = categoria;
+            }
+
         }
-        } while(mostrar != 0);
+        while(categoria != 0);
+
         break;
     case 3:
         /// MIS DATOS DE ENVIO
@@ -164,14 +187,15 @@ void switchUsuario(int id, int opcion)
     case 5:
         do
         {
-        mostrar = historialComprasId(id,1);
-        if(mostrar != 0)
-        {
-             break;
-            /// (mostrar producto pregunta si quiere añadirlo al carrito, de no querer vuelve al menu de productos ed querer pregunta cantidad y se agrega.
-            /// funcion de mostrar el producto y añadir a carrito
+            mostrar = historialComprasId(id,1);
+            if(mostrar != 0)
+            {
+                break;
+                /// (mostrar producto pregunta si quiere añadirlo al carrito, de no querer vuelve al menu de productos ed querer pregunta cantidad y se agrega.
+                /// funcion de mostrar el producto y añadir a carrito
+            }
         }
-        } while(mostrar != 0);
+        while(mostrar != 0);
         break;
     case 6:
         break;
