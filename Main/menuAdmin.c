@@ -144,7 +144,7 @@ void switchAdmin(int id, int opcion)
             opcion = menuEnvios(id,1);
             switchEnvios(id,opcion);
         }
-        while( opcion != 0 && opcion != 6);
+        while( opcion != 0 && opcion != 4);
         break;
     case 6:
         return 0;

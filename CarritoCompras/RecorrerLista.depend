@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1666376783 source:c:\users\garri\desktop\utn\utn segundo cuatrimestre (primer año)\trabajo integrador laboratorio\recorrerlista\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1667634689 source:c:\users\garri\desktop\trabajo integrador laboratorio\recorrerlista\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<math.h>
+
+1666654075 source:c:\users\nico\desktop\utn-tp-laboratorio\recorrerlista\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<math.h>
+
+1668317520 source:c:\users\garri\desktop\trabajo integrador laboratorio\carritocompras\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<math.h>
+

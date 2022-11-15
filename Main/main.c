@@ -22,7 +22,8 @@ int main()
     do
     {
         int id = NULL;
-        id = login(1);
+        //id = login(1);
+        id = 1;
 
         int opcion, opcion2;
 
@@ -37,7 +38,7 @@ int main()
         flagAdmin = 1;
 
         /// 0 no es admin /// 1 es admin
-        if (flagAdmin == 0)
+        if(flagAdmin == 0)
         {
             do
             {
