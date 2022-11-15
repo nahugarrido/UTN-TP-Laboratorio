@@ -8,6 +8,7 @@
 #include "UserLibs.h"
 #include "carritoCompras.h"
 #define  ArchivoUsuarios "ArchivoUsuario.dat"
+#include "ventas.h"
 
 /// ACA VAN TODOS LOS DEFINE, FUNCIONES Y SE DEBE CONECTAR A SU LIBRERIA.H (#include "ejemplo.h")
 
@@ -261,14 +262,12 @@ int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>>
     gotoxy(65, 21);
     /// ACA SE DEBERIA PRINTEAR LA SUMA TOTAL DEL CARRITO
     printf("$9999,99");
-
+    char option;
     gotoxy(7, 21);
     printf("Para confirmar la compra presionar 'S'"); /// 115 codigo ascii s minuscula // 83 mayuscula
     dibujarCuadro(1, 19, 78, 23);                     // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
     ocultarCursor();
-
     int opcion = capturarTeclaCarrito();
-
     gotoxy(0, 0);
     printf("cursor: %i", cursor); //// PARA VER EL CURSOR  --------------------------------------------------------------------------->
     // system("pause");
@@ -301,9 +300,8 @@ int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>>
 
     if ((opcion == KEY_S) || (opcion == KEY_s))
     {
-        /// ACA VA FUNCION DE COMPRAR
+        generarCompra(id,888); /// en el numero iria el total de gasto de la factura.
     }
-
     if (opcion == KEY_UP)
     {
         if (cursor - 1 > 0)
@@ -438,7 +436,7 @@ int capturarTeclaCarrito()
         }
 
     }
-    while ((tecla != KEY_UP) && (tecla != KEY_DOWN) && (tecla != KEY_ESC) && (tecla != KEY_ENTER) && (tecla != KEY_LEFT) && (tecla != KEY_RIGHT));
+    while ((tecla != KEY_UP) && (tecla != KEY_DOWN) && (tecla != KEY_ESC) && (tecla != KEY_ENTER) && (tecla != KEY_LEFT) && (tecla != KEY_RIGHT) && (tecla !=KEY_S) && (tecla!=KEY_s));
 
     switch (tecla)
     {
@@ -459,6 +457,12 @@ int capturarTeclaCarrito()
         break;
     case KEY_RIGHT:
         opcion = KEY_RIGHT;
+        break;
+    case KEY_S:
+        opcion = KEY_S;
+        break;
+    case KEY_s:
+        opcion = KEY_s;
         break;
     default:
         printf("\nDEFAULT!");

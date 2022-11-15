@@ -40,10 +40,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="carritoCompras.h" />
-		<Unit filename="estructuras.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="estructuras.h" />
 		<Unit filename="loginAlgoritmo.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -79,6 +75,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="sistema.h" />
+		<Unit filename="ventas.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ventas.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
