@@ -18,12 +18,12 @@ void descontarSaldoAuxiliar(int idUsuario, float gasto)
         {
             if (deseado.idCliente == aux.idCliente)
             {
-                system("cls");
                 fseek(bufferUsuario, sizeof(usuario) * (-1), SEEK_CUR);
                 aux.saldo = (aux.saldo - gasto);
                 fwrite(&aux, sizeof(usuario), 1, bufferUsuario);
-                fclose(bufferUsuario);
+                system("cls");
             }
+            fclose(bufferUsuario);
         }
     }
 }
@@ -65,7 +65,7 @@ void compraConfirmada(int id, float gasto)
 
     descontarSaldoAuxiliar(id, gasto); /// se descuenta el saldo del usuario.
 
-    descontarLoDelCarrito(deseado); /// se descuenta el stock del archivo productos.
+    //descontarLoDelCarrito(deseado); /// se descuenta el stock del archivo productos.
 
     // int idVenta = generarIdVenta();
 
