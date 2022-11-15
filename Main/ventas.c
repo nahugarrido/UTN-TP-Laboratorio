@@ -9,9 +9,12 @@
 void descontarSaldoAuxiliar(int idUsuario, float gasto)
 {
 
-    FILE *bufferUsuario = fopen(ArchivoUsuarios, "r+b");
     usuario aux;
+
     usuario deseado = BuscarUsuario(idUsuario);
+
+    FILE *bufferUsuario = fopen(ArchivoUsuarios, "r+b");
+
     if (bufferUsuario)
     {
         while (fread(&aux, sizeof(usuario), 1, bufferUsuario) > 0)

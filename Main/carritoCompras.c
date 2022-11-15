@@ -82,7 +82,6 @@ usuario BuscarUsuario(int idCliente)
     usuario Deseado;
 
     FILE *bufferUsuarios = fopen(ArchivoUsuarios, "rb");
-
     if (bufferUsuarios != NULL)
     {
         while ((fread(&Aux, sizeof(usuario), 1, bufferUsuarios) > 0) && flagUsuarios == 0)

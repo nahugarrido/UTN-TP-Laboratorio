@@ -118,8 +118,18 @@ void switchAdmin(int id, int opcion)
     switch(opcion)
     {
     case 1:
+        do
+        {
+            mostrar = historialComprasTodas(id,1);
+            if(mostrar != 0)
+            {
+                break;
+            }
+        }
+        while(mostrar != 0);
         break;
     case 2:
+        cancelarVenta();
         break;
     case 3:
         do
