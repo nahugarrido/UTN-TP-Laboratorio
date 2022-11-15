@@ -2,9 +2,34 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="carritoCompras.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="UserLibs.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6099" topLine="241" />
+			<Cursor1 position="28089" topLine="1194" />
+		</Cursor>
+	</File>
+	<File name="productos.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="16727" topLine="724" />
+		</Cursor>
+	</File>
+	<File name="productos.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1778" topLine="34" />
+		</Cursor>
+	</File>
+	<File name="menuUsuario.c" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4287" topLine="146" />
+		</Cursor>
+	</File>
+	<File name="carritoCompras.c" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="631" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="menuUsuario.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="319" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="UserLibs.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -12,44 +37,19 @@
 			<Cursor1 position="3122" topLine="112" />
 		</Cursor>
 	</File>
-	<File name="menuProductos.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2844" topLine="114" />
-		</Cursor>
-	</File>
-	<File name="UserLibs.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="28089" topLine="1194" />
-		</Cursor>
-	</File>
-	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="296" topLine="27" />
-		</Cursor>
-	</File>
-	<File name="productos.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="22291" topLine="993" />
-		</Cursor>
-	</File>
 	<File name="carritoCompras.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="353" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="menuUsuario.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="menuProductos.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="319" topLine="0" />
+			<Cursor1 position="2537" topLine="113" />
 		</Cursor>
 	</File>
-	<File name="menuUsuario.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3585" topLine="137" />
-		</Cursor>
-	</File>
-	<File name="productos.h" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1187" topLine="31" />
+			<Cursor1 position="1028" topLine="18" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

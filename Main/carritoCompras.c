@@ -26,7 +26,8 @@ void agregarAlCarrito(int idCliente, int cantidadProductos, producto Dato)
 
     float subtotal = (deseado.precioVenta * cantidadProductos);
 
-
+//    printf("\nAux username: %s     Temporal username: %s\n", Aux.username, temporal.username);
+//    system("pause");
     if (bufferUsuarios)
     {
         while (fread(&Aux, sizeof(usuario), 1, bufferUsuarios) > 0)

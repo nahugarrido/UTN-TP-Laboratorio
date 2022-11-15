@@ -57,7 +57,7 @@ void mostrarUnProductoUsuario(int idUsuario, int id);
 void printDescripcionProducto(producto mostrar);
 void printCategoriaProducto(producto mostrar);
 /// MOSTRAR STOCK
-int mostrarStock(int id, int cursor);
+int mostrarStock(int id, int cursor, int nroCategoria);
 void mostrarOpcionesStock(nodoProductoD *lista, int cursor);
 /// TDA ESTRUCTURAS COMPUESTAS CATEGORIAS
 nodoCategoria *inicCategoria();

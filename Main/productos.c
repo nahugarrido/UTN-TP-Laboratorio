@@ -373,7 +373,7 @@ int mostrarProductos(int id, int cursor, int nroCategoria) /// cursor es donde e
     lista = cargarListaDeListas(lista);
 
     /// BUSCO LA CATEGORIA QUE ME INTERESA
-    while(lista != NULL)
+    while(lista != NULL && (lista->Categoria.nroCategoria != nroCategoria))
     {
         if(lista->Categoria.nroCategoria != nroCategoria)
         {
@@ -470,6 +470,7 @@ int mostrarProductos(int id, int cursor, int nroCategoria) /// cursor es donde e
 void mostrarUnProductoUsuario(int idUsuario, int id)
 {
     system("cls");
+
     nodoProductoD *lista = inicListaDobleProducto();
     lista = despersistirListaDobleProductos(lista);
 
@@ -520,6 +521,11 @@ void mostrarUnProductoUsuario(int idUsuario, int id)
             gotoxy(7, 22);
             fflush(stdin);
             scanf("%i", &cantidad);
+
+//            system("cls");
+//            printf("idUsuario: %i, cantidad: %i, producto: %s \n", idUsuario, cantidad, lista->dato.nombre);
+//            system("pause");
+
             agregarAlCarrito(idUsuario,cantidad,lista->dato);
 
             if (cantidad > mostrar.cantidad)
@@ -597,12 +603,21 @@ void printDescripcionProducto(producto mostrar)
 
 /// MOSTRAR STOCK
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int mostrarStock(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
+int mostrarStock(int id, int cursor, int nroCategoria) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
 {
 
     system("cls");
-    nodoProductoD *lista = inicListaDobleProducto();
-    lista = despersistirListaDobleProductos(lista);
+    nodoCategoria *lista = inicCategoria();
+    lista = cargarListaDeListas(lista);
+
+    /// BUSCO LA CATEGORIA QUE ME INTERESA
+    while(lista != NULL && (lista->Categoria.nroCategoria != nroCategoria))
+    {
+        if(lista->Categoria.nroCategoria != nroCategoria)
+        {
+            lista = lista->siguiente;
+        }
+    }
 
     dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
@@ -624,11 +639,11 @@ int mostrarStock(int id, int cursor) /// cursor es donde esta parado el >>>> , o
 
     /// MUESTRA LAS OPCIONES
     gotoxy(9,7);
-    int cantidadOpciones = contarOpcionesProductos(lista);
+    int cantidadOpciones = contarOpcionesProductos(lista->lista);
     // printf("\ncantidadOpciones: %i", cantidadOpciones);
     // system("pause");
 
-    mostrarOpcionesStock(lista, cursor);
+    mostrarOpcionesStock(lista->lista, cursor);
 
     gotoxy(7, 21);
     printf("Para salir presionar ESC");
@@ -697,7 +712,7 @@ int mostrarStock(int id, int cursor) /// cursor es donde esta parado el >>>> , o
         }
     }
 
-    return mostrarStock(id, cursor);
+    return mostrarStock(id, cursor, nroCategoria);
 }
 
 void mostrarOpcionesStock(nodoProductoD *lista, int cursor)
@@ -1044,7 +1059,7 @@ nodoCategoria* cargarListaDeListas(nodoCategoria* lista)
         while (fread(&registro,sizeof(producto),1,fp) > 0)
         {
             aux = crearNodoDobleProducto(registro);
-            alta(lista,aux,registro.nroCategoria);
+            lista = alta(lista,aux,registro.nroCategoria);
         }
         fclose(fp);
     }

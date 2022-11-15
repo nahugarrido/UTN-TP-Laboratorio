@@ -115,11 +115,7 @@ void switchUsuario(int id, int opcion)
 {
     int mostrar = 1;
     int categoria = 0;
-
-    nodoCategoria *lista = inicListaDobleProducto();
-    lista = cargarListaDeListas(lista);
-
-
+    int cursor = 1;
 
     switch(opcion)
     {
@@ -130,7 +126,6 @@ void switchUsuario(int id, int opcion)
         do
         {
             mostrar=mostrarsubVentas(id,1);
-            system("pause");
             if(mostrar != 0)
             {
                 mostrarUnProductoUsuario(id, mostrar);
@@ -149,7 +144,10 @@ void switchUsuario(int id, int opcion)
         /// ACA HAGO EL DO WHILE DE CATEGORIAS
         do
         {
-            categoria = mostrarCategorias(id,1);
+            nodoCategoria *lista = inicListaDobleProducto();
+            lista = cargarListaDeListas(lista);
+
+            categoria = mostrarCategorias(id,cursor);
 
             if(categoria != 0 && lista != NULL)
             {
@@ -157,7 +155,6 @@ void switchUsuario(int id, int opcion)
                 {
                     lista = lista->siguiente;
                 }
-
                 /// ACA SE HACE EL DO WHILE DE PRODUCTOS QUE ANTES SE HACIA SOLO
                 do
                 {
@@ -170,6 +167,7 @@ void switchUsuario(int id, int opcion)
                     }
                 }
                 while(mostrar != 0);
+                cursor = categoria;
             }
 
         }
