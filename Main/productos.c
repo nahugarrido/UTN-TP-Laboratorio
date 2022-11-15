@@ -5,7 +5,6 @@
 #include <time.h>
 #include <stdbool.h>
 #define ArchProductos "Stock.Dat"
-#include "estructuras.h"
 #include "productos.h"
 
 #define KEY_UP 72 + 256
@@ -60,35 +59,6 @@ producto cargarProducto()
     nuevo.flagStock = 0;
 
     return nuevo;
-}
-
-/// Para descontar stock
-void descontarStock(char aDescontar[100], char categoria[], int cantidad)
-{
-
-    FILE *buffer = fopen(ArchProductos, "r+b");
-    producto Aux;
-    int flag = 0;
-    if (buffer != NULL)
-    {
-
-        while (fread(&Aux, sizeof(producto), 1, buffer) > 0 && flag == 0)
-        {
-//            if (strcmpi(Aux.categoria, categoria) == 0)
-//            {
-//
-//                if (0 == strcmpi(Aux.nombre, aDescontar))
-//                {
-//                    fseek(buffer, sizeof(producto) * (-1), SEEK_CUR);
-//                    Aux.cantidad = (Aux.cantidad - cantidad);
-//                    mostrarProducto(Aux);
-//                    fwrite(&Aux, sizeof(producto), 1, buffer);
-//                    flag = 1;
-//                    fclose(buffer);
-//                }
-//            }
-        }
-    }
 }
 
 /// MOSTRAR EL ARCHIVO

@@ -40,7 +40,6 @@ void AltaProducto();
 producto cargarProducto();
 void mostrarProducto(producto A);
 void showArchive();
-void descontarStock(char aDescontar[100], char categoria[3], int cantidad);
 void showCategorias();
 /// PROTOTIPADOS LISTAS
 nodoProductoD *agregarAlFinalDobleProducto(nodoProductoD *lista, nodoProductoD *nuevoNodo);

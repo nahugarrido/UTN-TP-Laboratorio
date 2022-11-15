@@ -6,7 +6,6 @@
 #define KEY_ENTER 13
 #define KEY_ESC 27
 #include "sistema.h"
-#include "estructuras.h"
 #include "UserLibs.h"
 #include "loginAlgoritmo.h"
 #define ArchivoUsuarios "ArchivoUsuario.dat"
