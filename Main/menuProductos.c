@@ -179,7 +179,7 @@ void buscarProducto(nodoProductoD* listaProductos,char productoBuscado[])
         {
             seg = seg->siguiente;
         }
-            if(strcmpi(seg->dato.nombre, productoBuscado) >= 0)
+            if(strcmpi(seg->dato.nombre, productoBuscado) == 0)
             {
                 gotoxy(3,6);
                 sleep(1);
@@ -188,6 +188,11 @@ void buscarProducto(nodoProductoD* listaProductos,char productoBuscado[])
                 sleep(2);
                 mostrarProductoAdmin(produAux);
                 seg = seg->siguiente;
+            }
+            else
+            {
+                gotoxy(3,6);
+                printf("Producto no encontrado\n");
             }
     }
     else{
