@@ -180,6 +180,11 @@ void buscarProductoFuncion()
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
 
     centrarTexto("E-COMMERCE - BUSCAR PRODUCTOS",2);
+
+    dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    gotoxy(9,21);
+    printf("Mensaje de consola ...");
+
     int id = 3;
     gotoxy(70,2);
     nodoProductoD* listaProductos;
@@ -215,7 +220,7 @@ void buscarProducto(nodoProductoD* listaProductos,char productoBuscado[])
         }
         if(strcmpi(seg->dato.nombre, productoBuscado) == 0)
         {
-            gotoxy(3,6);
+            gotoxy(3,7);
             sleep(1);
             printf("Producto encontrado\n");
             produAux = seg->dato;
@@ -225,7 +230,7 @@ void buscarProducto(nodoProductoD* listaProductos,char productoBuscado[])
         }
         else
         {
-            gotoxy(3,6);
+            gotoxy(3,7);
             printf("Producto no encontrado\n");
         }
     }
@@ -234,23 +239,37 @@ void buscarProducto(nodoProductoD* listaProductos,char productoBuscado[])
         gotoxy(3,8);
         printf("No se encontro el producto buscado!\n");
     }
-    gotoxy(20,20);
-    system("pause");
+    gotoxy(7,21);
+    printf("Para salir presionar ESC");
+
+
+    int opcion = capturarTecla2();
+
+
+    if(opcion == KEY_ESC)
+    {
+        Beep(800,80);
+    }
+
+    if (opcion == KEY_ESC)
+    {
+        return 0;
+    }
 }
 
 void mostrarProductoAdmin(producto produ) //FUNCION MOSTRAR LISTA CARGADA
 {
-    gotoxy(3,8);
-    printf("NOMBRE: %s \n", produ.nombre);
     gotoxy(3,9);
-    printf("DESCRIPCION: %s \n", produ.descripcion);
+    printf("NOMBRE: %s \n", produ.nombre);
     gotoxy(3,10);
-    printf("PRECIO VENTA: %c%.2f \n",36, produ.precioVenta);
+    printf("DESCRIPCION: %s \n", produ.descripcion);
     gotoxy(3,11);
-    printf("PRECIO COSTO: %c%.2f \n",36, produ.precioCosto);
+    printf("PRECIO VENTA: %c%.2f \n",36, produ.precioVenta);
     gotoxy(3,12);
-    printf("CANTIDAD: %d \n", produ.cantidad);
+    printf("PRECIO COSTO: %c%.2f \n",36, produ.precioCosto);
     gotoxy(3,13);
+    printf("CANTIDAD: %d \n", produ.cantidad);
+    gotoxy(3,14);
     //printf("STOCK: %i  ( 0 en stock // 1 fuera de stock ) \n", produ.flagStock);
     printf("\n");
 }
@@ -265,14 +284,16 @@ void cargarProductoNuevoFuncion()
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
 
     centrarTexto("E-COMMERCE - AGREGAR PRODUCTOS",2);
+    dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+
+//    gotoxy(9,21);
+//    printf("Mensaje de consola ...");
+
     gotoxy(70,2);
     gotoxy(3,5);
     agregarProductoAdmin();
-    int opcion = capturarTeclaSiNo();
-    if(opcion == KEY_ESC)
-    {
-        return 0;
-    }
+
+    sleep(1);
     return 0;
 }
 //
@@ -316,6 +337,7 @@ producto cargarProductoAdmin()
     gets(nuevo.nombreCategoria);
     gotoxy(3,13);
     printf("Ingrese el nro de la categoria: \n");
+    gotoxy(3,14);
     scanf("%i", &nuevo.nroCategoria);
     gotoxy(3,5);
     borrarPantallaCorto();
@@ -350,14 +372,32 @@ void agregarProductoAdmin()
 {
     FILE *buffer = fopen("Stock.dat", "ab");
     producto Aux;
+    char respuestaC;
 
-    printf("Desea agregar un producto a la lista?\n");
-    //gotoxy(30,7);
+    printf("Desea agregar un producto a la lista?(s/n) ");
+//    fflush(stdin);
+//    scanf("%c", &respuestaC);
+
     int respuesta;
+
+//    if(respuestaC == 's' || respuestaC == 'S')
+//    {
+//        respuesta = 1;
+//    }
+//
+//    if(respuestaC == 'n' || respuestaC == 'N')
+//    {
+//        respuesta = 2;
+//    }
+
     gotoxy(3,8);
     respuesta = seleccionarSiNoMenuProducto(1);
+    //respuesta = seleccionarSiNo(1);
+
     borrarPantallaLargo();
+
     darFormatoHoja();
+
     if(respuesta == 1)
     {
         if (buffer != NULL)
@@ -382,14 +422,12 @@ void darFormatoHoja()
 {
     dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
-    dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
-    dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
     centrarTexto("E-COMMERCE - AGREGAR PRODUCTOS",2);
     gotoxy(70,2);
     gotoxy(3,5);
-    dibujarCuadro(1,21,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
-    gotoxy(33,22);
-    printf("MENU PRODUCTOS");
+    dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    gotoxy(9,21);
+    printf("Cancelando operacion ...");
 
 }
 
@@ -421,12 +459,12 @@ void borrarPantallaLargo()
     printf("                                                                         ");
     gotoxy(3,17);
     printf("                                                                         ");
-    gotoxy(3,18);
-    printf("                                                                         ");
-    gotoxy(3,19);
-    printf("                                                                         ");
-    gotoxy(3,20);
-    printf("                                                                         ");
+    gotoxy(1,18);
+    printf("                                                                              ");
+    gotoxy(1,19);
+    printf("                                                                              ");
+    gotoxy(1,20);
+    printf("                                                                              ");
     gotoxy(3,21);
     printf("                                                                         ");
     gotoxy(3,22);
@@ -457,6 +495,18 @@ void borrarPantallaCorto()
     printf("                                                                         ");
     gotoxy(3,15);
     printf("                                                                         ");
+    /////
+    gotoxy(3,16);
+    printf("                                                                         ");
+    gotoxy(3,17);
+    printf("                                                                         ");
+    gotoxy(1,18);
+    printf("                                                                              ");
+    gotoxy(1,19);
+    printf("                                                                              ");
+    gotoxy(1,20);
+    printf("                                                                              ");
+
 }
 
 void mostrarProductoCargado(producto nuevo)
@@ -531,7 +581,7 @@ int seleccionarSiNoMenuProducto(int cursor) /// 1 ES SI 2 ES NO
 
 void mostrarSiNoMenuProducto(int cursor)
 {
-    gotoxy(28,20);
+    gotoxy(4,8);
     if(cursor == 1)
     {
         printf(">>>   ");
