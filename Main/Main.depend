@@ -387,23 +387,29 @@
 
 1668296365 c:\users\garri\desktop\trabajo integrador laboratorio\main\estructuras.h
 
-1668314461 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\carritocompras.c
+1668564660 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\carritocompras.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
-	"estructuras.h"
 	"UserLibs.h"
 	"carritoCompras.h"
+	"ventas.h"
 
 1668314461 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\estructuras.h
 
-1668474102 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\userlibs.h
-	"carritoCompras.h"
-
-1668314461 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\carritocompras.h
+1668564660 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\userlibs.h
 	"productos.h"
 
-1668474102 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\productos.h
+1668564660 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\carritocompras.h
+	"productos.h"
+	"UserLibs.h"
+	"sistema.h"
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<math.h>
+
+1668564660 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\productos.h
 
 1668314461 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\estructuras.c
 	<stdio.h>
@@ -413,18 +419,17 @@
 
 1668314461 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\sistema.h
 
-1668314461 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\loginalgoritmo.c
+1668564660 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\loginalgoritmo.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"sistema.h"
-	"estructuras.h"
 	"UserLibs.h"
 	"loginAlgoritmo.h"
 
 1668314461 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\loginalgoritmo.h
 
-1668474209 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\main.c
+1668565469 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -438,44 +443,42 @@
 	"UserLibs.h"
 	"loginAlgoritmo.h"
 
-1668314461 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuusuario.h
+1668564660 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuusuario.h
 
 1668314461 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuadmin.h
 
 1668314461 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuenvios.h
 
-1668316601 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuproductos.h
+1668565130 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuproductos.h
 	"productos.h"
 
 1668314461 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuusuariosadmin.h
 
-1668474102 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuadmin.c
+1668564660 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuadmin.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
-	"estructuras.h"
 	"sistema.h"
 	"menuAdmin.h"
 	"menuUsuariosAdmin.h"
 	"menuEnvios.h"
 	"menuProductos.h"
 
-1668314461 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuenvios.c
+1668564660 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuenvios.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
-	"estructuras.h"
 	"sistema.h"
 	"menuEnvios.h"
 
-1668474102 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuusuario.c
+1668564660 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuusuario.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
-	"estructuras.h"
 	"sistema.h"
 	"productos.h"
 	"menuUsuario.h"
+	"carritoCompras.h"
 
 1668474102 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuusuariosadmin.c
 	<stdio.h>
@@ -485,39 +488,35 @@
 	"menuUsuariosAdmin.h"
 	"UserLibs.h"
 
-1668474102 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\productos.c
+1668564660 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\productos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	<time.h>
 	<stdbool.h>
-	"estructuras.h"
 	"productos.h"
 
-1668314461 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\sistema.c
+1668564660 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\sistema.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
-	"estructuras.h"
 	"sistema.h"
 
-1668474102 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\userlibs.c
+1668564660 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\userlibs.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	<time.h>
 	<stdbool.h>
-	"estructuras.h"
 	"carritoCompras.h"
 	"UserLibs.h"
 
-1668474102 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuproductos.c
+1668568280 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\menuproductos.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
-	"estructuras.h"
 	"sistema.h"
 	"menuProductos.h"
 
@@ -715,6 +714,19 @@
 	"UserLibs.h"
 
 1668559630 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\ventas.c
+	"productos.h"
+	"UserLibs.h"
+	"carritoCompras.h"
+	"ventas.h"
+
+1668564660 c:\users\nico\desktop\utn\utn-tp-laboratorio\main\ventas.h
+	<stdio.h>
+	<stdlib.h>
+	"productos.h"
+	"UserLibs.h"
+	"carritoCompras.h"
+
+1668564660 source:c:\users\nico\desktop\utn\utn-tp-laboratorio\main\ventas.c
 	"productos.h"
 	"UserLibs.h"
 	"carritoCompras.h"
