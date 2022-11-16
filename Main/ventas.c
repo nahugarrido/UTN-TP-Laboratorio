@@ -24,9 +24,6 @@ void descontarSaldoAuxiliar(int idUsuario, float gasto)
                 fseek(bufferUsuario, sizeof(usuario) * (-1), SEEK_CUR);
                 aux.saldo = (aux.saldo - gasto);
                 fwrite(&aux, sizeof(usuario), 1, bufferUsuario);
-                system("cls");
-                printf("SE MODIFICOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
-                system("pause");
             }
             fclose(bufferUsuario);
         }
@@ -68,13 +65,13 @@ void compraConfirmada(int id, float gasto)
 
     usuario deseado = BuscarUsuario(id);
 
-    descontarSaldoAuxiliar(id, gasto); /// se descuenta el saldo del usuario.
-
+    descontarSaldoAuxiliar(deseado.idCliente, gasto); /// se descuenta el saldo del usuario.
     //descontarLoDelCarrito(deseado); /// se descuenta el stock del archivo productos.
+    int idVenta = generarIdVenta();
+    system("cls");
+    persistirCompraEnUsuarioyVentas(id, idVenta); /// pasa la subventa a venta. pide datos de envio/// guarda en el archivo usuario. reinicia los validos de subVentas.
+    system("pause");
 
-    // int idVenta = generarIdVenta();
-
-    // persistirCompraEnUsuarioyVentas(id, idVenta); /// pasa la subventa a venta. pide datos de envio/// guarda en el archivo usuario. reinicia los validos de subVentas.
 }
 
 void persistirCompraEnUsuarioyVentas(int idUsuario, int idVenta)
@@ -128,14 +125,15 @@ void persistirCompraEnUsuarioyVentas(int idUsuario, int idVenta)
 
 void descontarLoDelCarrito(usuario A)
 {
-
-    for (int i = 0; i < A.validosCarrito; i++)
+         system("cls");
+          printf("HOLA\n");
+          system("pause");
+    /*for (int i = 0; i < A.validosCarrito; i++)
     {
-        system("cls");
-        printf("A DESCONTAR: %s", A.carrito[i].dato.nombre);
-        system("pause");
+
+
         // descontarStock(A.carrito[i].dato.nombre, A.carrito[i].cantidad);
-    }
+    }*/
 }
 
 /// PRODUCTOS
@@ -158,7 +156,7 @@ void descontarStock(char aDescontar[], int cantidad)
             {
                 fseek(buffer, sizeof(producto) * (-1), SEEK_CUR);
                 Aux.cantidad = (Aux.cantidad - cantidad);
-                mostrarProducto(Aux);
+                //mostrarProducto(Aux);
                 fwrite(&Aux, sizeof(producto), 1, buffer);
                 flag = 1;
                 fclose(buffer);
