@@ -140,5 +140,9 @@ int historialComprasId(usuario aux, int cursor);
 /// MOSTRAR HISTORIAL TODAS LAS COMPRAS
 int historialComprasTodas(int id, int cursor);
 void mostrarOpcionesVentaTodas(nodoVentaD *lista, int cursor);
-void cancelarVenta();
-void cancelarCompra(int id);
+void cancelarVentaMenu(int idUsuario);
+void cancelarCompraMenu(int idUsuario);
+void cancelarVenta(int idUsuario, int idVenta);
+void cancelarVentaEnArray(usuario A, int idVenta);
+void cancelarVentaEnArchivoUsuarios(int idUsuario);
+void cancelarVentaEnArchivoVentas(int idVenta);

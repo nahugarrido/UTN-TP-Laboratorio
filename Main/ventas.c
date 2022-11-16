@@ -46,8 +46,9 @@ void compraConfirmada(usuario deseado, float gasto)
     /// se descuenta el saldo del usuario.
     descontarSaldoAuxiliar(deseado, gasto);
     int idVenta = generarIdVenta();
+    ;
     /// pasa la subventa a venta. pide datos de envio/// guarda en el archivo usuario. reinicia los validos de subVentas.
-    //descontarLoDelCarrito(deseado);
+    // descontarLoDelCarrito(deseado);
     persistirCompraEnUsuarioyVentas(deseado, idVenta);
 }
 
@@ -108,7 +109,6 @@ void persistirCompraEnUsuarioyVentas(usuario deseado, int idVenta)
                 aux.compras[aux.validosCompras].despachar = pedirDatosEnvio(aux.compras[aux.validosCompras].despachar);
                 cursor = aux.compras[aux.validosCompras];
                 aux.validosCompras += 1;
-
                 fwrite(&aux, sizeof(usuario), 1, bufferUsuarios);
                 fwrite(&cursor, sizeof(venta), 1, bufferVentas);
                 fclose(bufferUsuarios);
@@ -146,11 +146,11 @@ void descontarStock(char aDescontar[], int cantidad)
             if (0 == strcmpi(Aux.nombre, aDescontar))
             {
                 fseek(buffer, sizeof(producto) * (-1), SEEK_CUR);
-//                Aux.cantidad = (Aux.cantidad - cantidad);
+                //                Aux.cantidad = (Aux.cantidad - cantidad);
                 Aux.cantidad -= cantidad;
                 fwrite(&Aux, sizeof(producto), 1, buffer);
-                gotoxy(10,10);
-                printf("Producto a descontar: %s cantidad: %i",Aux.nombre, Aux.cantidad);
+                gotoxy(10, 10);
+                printf("Producto a descontar: %s cantidad: %i", Aux.nombre, Aux.cantidad);
                 flag = 1;
                 fclose(buffer);
             }
@@ -266,7 +266,7 @@ venta buscarUnaVentaEnArray(usuario A, int idVenta)
     int flag = 0;
     venta encontrada;
 
-    while (i < A.validosCarrito)
+    while (i < A.validosCarrito && flag == 0)
     {
         if (A.compras[i].idVenta == idVenta)
         {
