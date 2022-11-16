@@ -7,7 +7,7 @@
 #define KEY_ESC 27
 #include "UserLibs.h"
 #include "carritoCompras.h"
-#define  ArchivoUsuarios "ArchivoUsuario.dat"
+#define ArchivoUsuarios "ArchivoUsuario.dat"
 #include "ventas.h"
 
 /// ACA VAN TODOS LOS DEFINE, FUNCIONES Y SE DEBE CONECTAR A SU LIBRERIA.H (#include "ejemplo.h")
@@ -26,8 +26,8 @@ void agregarAlCarrito(int idCliente, int cantidadProductos, producto Dato)
 
     float subtotal = (deseado.precioVenta * cantidadProductos);
 
-//    printf("\nAux username: %s     Temporal username: %s\n", Aux.username, temporal.username);
-//    system("pause");
+    //    printf("\nAux username: %s     Temporal username: %s\n", Aux.username, temporal.username);
+    //    system("pause");
     if (bufferUsuarios)
     {
         while (fread(&Aux, sizeof(usuario), 1, bufferUsuarios) > 0)
@@ -39,9 +39,9 @@ void agregarAlCarrito(int idCliente, int cantidadProductos, producto Dato)
                 Aux.carrito[Aux.validosCarrito].dato = Dato;
                 Aux.carrito[Aux.validosCarrito].cantidad = cantidadProductos;
                 Aux.carrito[Aux.validosCarrito].subtotal = subtotal;
-//                gotoxy(10,14);
-//                printf("AUX USUARIO: %s VALIDOS CARRITO: %i\n", Aux.username, Aux.validosCarrito);
-//                printf("DATOS DEL AUX: PRODUCTO: %s CANTIDAD: %i SUBTOTAL: %f", Aux.carrito[Aux.validosCarrito].dato.nombre,Aux.carrito[Aux.validosCarrito].cantidad, Aux.carrito[Aux.validosCarrito].subtotal);
+                //                gotoxy(10,14);
+                //                printf("AUX USUARIO: %s VALIDOS CARRITO: %i\n", Aux.username, Aux.validosCarrito);
+                //                printf("DATOS DEL AUX: PRODUCTO: %s CANTIDAD: %i SUBTOTAL: %f", Aux.carrito[Aux.validosCarrito].dato.nombre,Aux.carrito[Aux.validosCarrito].cantidad, Aux.carrito[Aux.validosCarrito].subtotal);
                 Aux.validosCarrito = (Aux.validosCarrito + 1);
                 fwrite(&Aux, sizeof(usuario), 1, bufferUsuarios);
                 fclose(bufferUsuarios);
@@ -158,7 +158,7 @@ nodoListaDSubVenta *obtenerSubVenta(usuario A, nodoListaDSubVenta *lista)
 
     for (int i = 0; i < A.validosCarrito; i++)
     {
-        if(A.carrito[i].flag == 0)
+        if (A.carrito[i].flag == 0)
         {
             nuevo = crearNodoDSubVenta(A.carrito[i]);
             lista = agregarAlFinalDSubVenta(lista, nuevo);
@@ -249,12 +249,12 @@ int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>>
     printf("CANTIDAD");
     gotoxy(68, 4);
     printf("SUBTOTAL");
-
+    float subtotal = calcularSubTotal(id);
     gotoxy(62, 20);
-    printf("TOTAL A PAGAR: ");
+    printf("TOTAL A PAGAR:");
 
     /// MUESTRA LAS OPCIONES
-    gotoxy(9,7);
+    gotoxy(9, 7);
     int cantidadOpciones = contarOpcionessubVentas(lista);
     // printf("\ncantidadOpciones: %i", cantidadOpciones);
     // system("pause");
@@ -263,7 +263,7 @@ int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>>
 
     gotoxy(65, 21);
     /// ACA SE DEBERIA PRINTEAR LA SUMA TOTAL DEL CARRITO
-    printf("$9999,99");
+    printf("$%.0f", subtotal);
     char option;
     gotoxy(7, 21);
     printf("Para confirmar la compra presionar 'S'"); /// 115 codigo ascii s minuscula // 83 mayuscula
@@ -302,7 +302,7 @@ int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>>
 
     if ((opcion == KEY_S) || (opcion == KEY_s))
     {
-        generarCompra(id,888); /// en el numero iria el total de gasto de la factura.
+        generarCompra(id, subtotal); /// en el numero iria el total de gasto de la factura.
     }
 
     if (opcion == KEY_UP)
@@ -340,7 +340,6 @@ int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>>
     return mostrarsubVentas(id, cursor);
 }
 
-
 int contarOpcionessubVentas(nodoListaDSubVenta *lista)
 {
     int contador = 0;
@@ -352,9 +351,9 @@ int contarOpcionessubVentas(nodoListaDSubVenta *lista)
 
     while (lista != NULL)
     {
-        if(lista->dato.flag == 0)
+        if (lista->dato.flag == 0)
         {
-        contador++;
+            contador++;
         }
 
         lista = lista->sig;
@@ -442,8 +441,7 @@ int capturarTeclaCarrito()
             tecla = 256 + getch();
         }
 
-    }
-    while ((tecla != KEY_UP) && (tecla != KEY_DOWN) && (tecla != KEY_ESC) && (tecla != KEY_ENTER) && (tecla != KEY_LEFT) && (tecla != KEY_RIGHT) && (tecla !=KEY_S) && (tecla!=KEY_s));
+    } while ((tecla != KEY_UP) && (tecla != KEY_DOWN) && (tecla != KEY_ESC) && (tecla != KEY_ENTER) && (tecla != KEY_LEFT) && (tecla != KEY_RIGHT) && (tecla != KEY_S) && (tecla != KEY_s));
 
     switch (tecla)
     {
@@ -478,4 +476,20 @@ int capturarTeclaCarrito()
     }
 
     return opcion;
+}
+
+/// SUBVENTA ///
+
+float calcularSubTotal(int idUsuario)
+{
+    usuario A = BuscarUnClientePorID(idUsuario);
+
+    float subtotal;
+
+    for (int i = 0; i < A.validosCarrito; i++)
+    {
+        subtotal += (A.carrito[i].cantidad * A.carrito[i].subtotal);
+    }
+
+    return subtotal;
 }
