@@ -623,7 +623,7 @@
 
 1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\loginalgoritmo.h
 
-1668559552 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\main.c
+1668562043 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -704,7 +704,7 @@
 	<windows.h>
 	"sistema.h"
 
-1668559573 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\userlibs.c
+1668573225 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\userlibs.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

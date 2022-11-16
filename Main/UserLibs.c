@@ -1181,6 +1181,7 @@ int historialComprasId(int id, int cursor) /// cursor es donde esta parado el >>
 {
 
     system("cls");
+    /// CON PILAS PERO EXPLOTA A LA QUINTA RECURSION (?
     usuario aux = BuscarUnClientePorID(id);
     Pila PILITA;
     inicPila(&PILITA);
@@ -1197,8 +1198,20 @@ int historialComprasId(int id, int cursor) /// cursor es donde esta parado el >>
     {
         aux3 = desapilar(&PILITA);
         nodoVentaD* aux2 = crearNodoDobleVenta(aux3);
+        printf("%i   ", aux2->dato.idVenta);
         lista = agregarAlFinalDobleVenta(lista,aux2);
     }
+
+
+//    usuario aux = BuscarUnClientePorID(id);
+//    nodoVentaD *lista = inicListaDobleVenta();
+//    nodoVentaD* aux2 = NULL;
+//
+//    for(int i = 0; i < aux.validosCompras; i++)
+//    {
+//        aux2 = crearNodoDobleVenta(aux.compras[i]);
+//        lista = agregarAlFinalDobleVenta(lista,aux2);
+//    }
 
 
     dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
@@ -1222,8 +1235,6 @@ int historialComprasId(int id, int cursor) /// cursor es donde esta parado el >>
     /// MUESTRA LAS OPCIONES
     gotoxy(9,7);
     int cantidadOpciones = contarOpcionesVentas(lista);
-    // printf("\ncantidadOpciones: %i", cantidadOpciones);
-    // system("pause");
 
     mostrarOpcionesVenta(lista, cursor);
 
