@@ -146,3 +146,5 @@ void cancelarVenta(int idUsuario, int idVenta);
 void cancelarVentaEnArray(usuario A, int idVenta);
 void cancelarVentaEnArchivoUsuarios(int idUsuario);
 void cancelarVentaEnArchivoVentas(int idVenta);
+float calcularSubTotal(int idUsuario);
+

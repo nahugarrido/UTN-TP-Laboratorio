@@ -37,7 +37,6 @@ int main()
         /// TESTEAR ADMIN /// CON ESTO SE PUEDE ACCEDER AL MENU DE ADMIN SIN PASAR POR EL LOGIN 1 ES ADMIN
         //flagAdmin = 0;
 
-        /// 0 no es admin /// 1 es admin
         if(flagAdmin == 0)
         {
             do

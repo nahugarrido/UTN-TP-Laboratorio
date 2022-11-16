@@ -1650,8 +1650,27 @@ void cancelarVenta(int idUsuario, int idVenta) /// este idusuario que se pasa po
                 fclose(buffer);
             }
         }
+
+         system("cls");
+         system("pause");
     }
 
+    if (bufferVentas != NULL)
+    {
+
+        while (fread(&temporal, sizeof(venta), 1, bufferVentas) > 0)
+        {
+
+            if (temporal.idVenta == idVenta)
+            {
+
+                fseek(bufferVentas, sizeof(venta) * (-1), SEEK_CUR);
+                temporal.estadoVenta = 1;
+                fwrite(&temporal, sizeof(venta), 1, bufferVentas);
+                fclose(bufferVentas);
+            }
+        }
+    }
 }
 
 void cancelarVentaEnArray(usuario A, int idVenta)
@@ -1662,8 +1681,11 @@ void cancelarVentaEnArray(usuario A, int idVenta)
     {
         if (A.compras[i].idVenta == idVenta)
         {
+            system("cls");
             A.compras[i].estadoVenta = 1;
+            printf("\n IDVENTA: %i  | ESTADO:  %i ",A.compras[i].idVenta,A.compras[i].estadoVenta);
             flag = 1;
+            system("PAUSE");
         }
         i++;
     }
