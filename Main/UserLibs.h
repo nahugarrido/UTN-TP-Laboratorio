@@ -136,7 +136,7 @@ nodoVentaD *buscarUltimoDobleVenta(nodoVentaD *lista);
 nodoVentaD *agregarAlFinalDobleVenta(nodoVentaD *lista, nodoVentaD *nuevoNodo);
 int contarOpcionesVentas(nodoVentaD *lista);
 /// MOSTRAR HISTORIAL DE VENTAS
-int historialComprasId(usuario aux, int cursor);
+int historialComprasId(int id, int cursor);
 /// MOSTRAR HISTORIAL TODAS LAS COMPRAS
 int historialComprasTodas(int id, int cursor);
 void mostrarOpcionesVentaTodas(nodoVentaD *lista, int cursor);

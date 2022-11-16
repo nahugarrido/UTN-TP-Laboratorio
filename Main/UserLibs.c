@@ -126,7 +126,7 @@ int contadorRegistros()
     {
         while (fread(&Aux, sizeof(usuario), 1, buffer) > 0)
         {
-                cant++;
+            cant++;
         }
         fclose(buffer);
     }
@@ -1157,7 +1157,7 @@ int contarOpcionesVentas(nodoVentaD *lista)
     {
         if(lista->dato.estadoVenta == 0)
         {
-        contador++;
+            contador++;
         }
 
         lista = lista->siguiente;
@@ -1168,47 +1168,42 @@ int contarOpcionesVentas(nodoVentaD *lista)
 
 /// MOSTRAR HISTORIAL DE VENTAS
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int historialComprasId(usuario aux, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
+int historialComprasId(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
 {
-/// ESTA FUNCION FALLA CON LA RECURSIVIDAD AL INVOCARSE 5 VECES
-//    gotoxy(0,0);
-//    printf("aux username: %s aux idcliente: %i, cursor: %i", aux.username, aux.idCliente, cursor);
-//    system("pause");
-
     system("cls");
-    Pila PILITA;
-    inicPila(&PILITA);
-    venta aux3;
+//    Pila PILITA;
+//    inicPila(&PILITA);
+//    venta aux3;
+//    for (int i = 0; i < aux.validosCompras; i++)
+//    {
+//        if(aux.compras[i].estadoVenta == 0)
+//        {
+//            apilar(&PILITA, aux.compras[i]);
+//        }
+//    }
+//    nodoVentaD *lista = inicListaDobleVenta();
+//    while (!pilavacia(&PILITA))
+//    {
+//        aux3 = desapilar(&PILITA);
+//        nodoVentaD *aux2 = crearNodoDobleVenta(aux3);
+//        lista = agregarAlFinalDobleVenta(lista, aux2);
+//    }
 
-    //system("pause");
-    for (int i = 0; i < aux.validosCompras; i++)
+    nodoVentaD *listaAux = inicListaDobleVenta();
+    listaAux = despersistirListaDobleVentasExitosas(listaAux);
+
+    nodoVentaD* lista = inicListaDobleVenta();
+
+    while(listaAux != NULL)
     {
-        if(aux.compras[i].estadoVenta == 0)
+        if(listaAux->dato.idCliente == id)
         {
-        //printf("idVenta: %i estado venta%i \n", aux.compras[i].idVenta, aux.compras[i].estadoVenta);
-        apilar(&PILITA, aux.compras[i]);
+            nodoVentaD* nodoAux = crearNodoDobleVenta(listaAux->dato);
+            lista = agregarAlFinalDobleVenta(lista, nodoAux);
         }
-    }
-    //system("pause");
-
-    nodoVentaD *lista = inicListaDobleVenta();
-
-    while (!pilavacia(&PILITA))
-    {
-        aux3 = desapilar(&PILITA);
-        nodoVentaD *aux2 = crearNodoDobleVenta(aux3);
-        lista = agregarAlFinalDobleVenta(lista, aux2);
+        listaAux = listaAux->siguiente;
     }
 
-    //    usuario aux = BuscarUnClientePorID(id);
-    //    nodoVentaD *lista = inicListaDobleVenta();
-    //    nodoVentaD* aux2 = NULL;
-    //
-    //    for(int i = 0; i < aux.validosCompras; i++)
-    //    {
-    //        aux2 = crearNodoDobleVenta(aux.compras[i]);
-    //        lista = agregarAlFinalDobleVenta(lista,aux2);
-    //    }
 
     dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
@@ -1216,7 +1211,7 @@ int historialComprasId(usuario aux, int cursor) /// cursor es donde esta parado 
     centrarTexto("E-COMMERCE - HISTORIAL DE COMPRAS", 2);
 
     gotoxy(70, 2);
-    printf("ID: %i", aux.idCliente);
+    printf("ID: %i", id);
 
     /// TABLA HEADERS DE E-COMMERCE STOCK
     gotoxy(9, 5);
@@ -1301,11 +1296,7 @@ int historialComprasId(usuario aux, int cursor) /// cursor es donde esta parado 
         }
     }
 
-//    gotoxy(0,1);
-//    printf("aux username: %s aux idcliente: %i, cursor: %i", aux.username, aux.idCliente, cursor);
-//    system("pause");
-
-    return historialComprasId(aux, cursor);
+    return historialComprasId(id, cursor);
 }
 
 void mostrarOpcionesVenta(nodoVentaD *lista, int cursor)
@@ -1559,11 +1550,12 @@ void cancelarVentaMenu(int idUsuario)
     centrarTexto("E-COMMERCE - CANCELAR VENTA", 2);
 
     gotoxy(7, 5);
-    printf("Introduzca el id de la venta:");
+    printf("Introduzca el id de la venta: ");
+    fflush(stdin);
     scanf("%i", &idVenta);
     cancelarVenta(idUsuario, idVenta);
-    gotoxy(7, 21);
 
+    gotoxy(7, 21);
     printf("Para salir presionar ESC");
 
     int opcion = capturarTecla2();
@@ -1600,7 +1592,8 @@ void cancelarCompraMenu(int idUsuario)
     centrarTexto("E-COMMERCE - CANCELAR COMPRA", 2);
 
     gotoxy(7, 5);
-    printf("Introduzca el id de la compra:");
+    printf("Introduzca el id de la compra: ");
+    fflush(stdin);
     scanf("%i", &idVenta);
     ///---- baja de la compra ----///
     cancelarVenta(idUsuario, idVenta);
@@ -1621,14 +1614,30 @@ void cancelarCompraMenu(int idUsuario)
     }
 }
 
-void cancelarVenta(int idUsuario, int idVenta)
+void cancelarVenta(int idUsuario, int idVenta) /// este idusuario que se pasa por parametro no se esta utilizando se esta asisgnado otro valor en el primer while
 {
-    FILE *buffer = fopen(ArchivoUsuarios, "r+b");
+
     usuario Aux;
     venta temporal;
 
     FILE *bufferVentas = fopen(archivoVentas, "r+b");
+    if (bufferVentas != NULL)
+    {
 
+        while (fread(&temporal, sizeof(venta), 1, bufferVentas) > 0)
+        {
+            if (temporal.idVenta == idVenta)
+            {
+                idUsuario = temporal.idCliente;
+                fseek(bufferVentas, sizeof(venta) * (-1), SEEK_CUR);
+                temporal.estadoVenta = 1;
+                fwrite(&temporal, sizeof(venta), 1, bufferVentas);
+                fclose(bufferVentas);
+            }
+        }
+    }
+
+    FILE *buffer = fopen(ArchivoUsuarios, "r+b");
     if (buffer != NULL)
     {
         while (fread(&Aux, sizeof(usuario), 1, buffer) > 0)
@@ -1637,31 +1646,12 @@ void cancelarVenta(int idUsuario, int idVenta)
             {
                 fseek(buffer, sizeof(usuario) * (-1), SEEK_CUR);
                 cancelarVentaEnArray(Aux, idVenta);
-                system("cls");
-                printf("ANULADA EN USUARIO! \n");
                 fwrite(&Aux, sizeof(usuario), 1, buffer);
-                system("pause");
+                fclose(buffer);
             }
         }
-        fclose(buffer);
     }
 
-    if (bufferVentas != NULL)
-    {
-
-        while (fread(&temporal, sizeof(venta), 1, bufferVentas) > 0)
-        {
-
-            if (temporal.idVenta == idVenta)
-            {
-
-                fseek(bufferVentas, sizeof(venta) * (-1), SEEK_CUR);
-                temporal.estadoVenta = 1;
-                fwrite(&temporal, sizeof(venta), 1, bufferVentas);
-            }
-        }
-        fclose(bufferVentas);
-    }
 }
 
 void cancelarVentaEnArray(usuario A, int idVenta)

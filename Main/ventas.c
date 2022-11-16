@@ -328,11 +328,15 @@ nodoVentaD *despersistirListaDobleVentasExitosas(nodoVentaD *lista)
     FILE *ptr = fopen(archivoVentas, "rb");
     venta aux;
     nodoVentaD *aux2;
-
     if (ptr != NULL)
     {
         while (fread(&aux, sizeof(venta), 1, ptr) > 0)
         {
+/// TESTEAR VENTA
+//        gotoxy(10,10);
+//        printf("%i ",aux.idVenta);
+//        gotoxy(10,11);
+//        system("pause");
             if (aux.estadoVenta == 0)
             {
                 aux2 = crearNodoDobleVenta(aux);

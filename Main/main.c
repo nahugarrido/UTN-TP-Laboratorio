@@ -22,9 +22,9 @@ int main()
     do
     {
         int id = 0;
-        //id = login(1);
+        id = login(1);
         /// TESTEAR SIN PASAR POR EL LOGIN
-        //id = 1;
+        //id = 3;
 
         int opcion;
 
@@ -34,8 +34,9 @@ int main()
 
         int flagAdmin = buscarPorIdUsuario(arbol, id);
 
-        /// TESTEAR ADMIN /// CON ESTO SE PUEDE ACCEDER AL MENU DE ADMIN
-        flagAdmin = 1;
+        /// TESTEAR ADMIN /// CON ESTO SE PUEDE ACCEDER AL MENU DE ADMIN SIN PASAR POR EL LOGIN 1 ES ADMIN
+        //flagAdmin = 0;
+
         /// 0 no es admin /// 1 es admin
         if(flagAdmin == 0)
         {

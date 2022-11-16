@@ -129,7 +129,7 @@ void switchAdmin(int id, int opcion)
         while(mostrar != 0);
         break;
     case 2:
-        cancelarVenta();
+        cancelarVentaMenu(id);
         break;
     case 3:
         do
