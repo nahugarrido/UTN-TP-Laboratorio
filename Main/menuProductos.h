@@ -22,5 +22,8 @@ void buscarProductoFuncion();
 void cargarProductoNuevoFuncion();
 int seleccionarSiNoMenuProducto(int cursor); /// 1 ES SI 2 ES NO
 void mostrarSiNoMenuProducto(int cursor);
-
-
+producto modificarCampoProducto(producto aModificar, char modificar[]);
+void modificarUnProducto();
+char ingresarCampo();
+char ingresarNombreProducto();
+void mostrarCampos();

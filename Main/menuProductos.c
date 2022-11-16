@@ -159,6 +159,7 @@ void switchProductos(int id, int opcion)
         cargarProductoNuevoFuncion();
         break;
     case 4:
+        modificarUnProducto();
         break;
     case 5:
         return 0;
@@ -605,4 +606,288 @@ void mostrarSiNoMenuProducto(int cursor)
     printf("No");
 }
 
+/// FUNCIONES MODIFICAR UN PRODUCTO
+
+void formatoHojaModificar()
+{
+    dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
+    dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
+
+    centrarTexto("E-COMMERCE - MODIFICAR PRODUCTOS",2);
+    dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    gotoxy(27,21);
+    printf("Presione ESC para salir...");
+}
+
+void formatoHojaModificarSinCuadroInferior()
+{
+    dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
+    dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
+
+    centrarTexto("E-COMMERCE - MODIFICAR PRODUCTOS",2);
+}
+
+void modificarUnProducto()
+{
+    system("cls");
+    formatoHojaModificarSinCuadroInferior();
+    gotoxy(3,5);printf("Desea modificar un producto?\n");
+    int respuesta;
+    respuesta = seleccionarSiNo(1); // 1 PREGUNTO SI DESEA MODIFICAR EL PRODUCTO.
+    system("cls");
+    char nombreProducto[20];
+    char campoAModificar[20];
+    producto aux;
+    int flag = 0;
+
+    FILE *buffer = fopen("Stock.dat", "r+b");
+
+    if ((buffer != NULL) && (respuesta == 1))
+    {
+        gotoxy(3,5);borrarPantallaCorto();
+        formatoHojaModificarSinCuadroInferior();
+        gotoxy(3,5);ingresarNombreProducto(nombreProducto);
+
+//        printf("\nPRODUCTO A MODIFICAR:%s\n",nombreProducto);
+
+        while ((fread(&aux, sizeof(producto), 1, buffer) > 0) && flag == 0) //4 LEO EL ARCHIVO
+        {
+            if (strcmpi(aux.nombre, nombreProducto) == 0) // Y BUSCO EL PRODUCTO A MODIFICAR
+            {
+                system("cls");
+                formatoHojaModificar();
+                gotoxy(3,5);mostrarProductoEncontrado(aux);
+                system("cls");
+                formatoHojaModificar();
+                gotoxy(3,5);mostrarCampos();
+                ingresarCampo(campoAModificar);
+                gotoxy(3,5);borrarPantallaCorto();
+//                gotoxy(3,5);printf("\nCAMPO A MODIFICAR:%s\n",campoAModificar);
+                gotoxy(3,5);borrarPantallaLargo();
+                aux = modificarCampoProducto(aux,campoAModificar);
+                fseek(buffer, sizeof(producto) * (-1), SEEK_CUR);
+                fwrite(&aux, sizeof(producto), 1, buffer);// 5 SOBRE ESCRIBO EL PRODUCTO DEL ARCHIVO
+                fclose(buffer);
+                gotoxy(3,5);system("cls");
+                formatoHojaModificar();
+                gotoxy(30,5);printf("Producto modificado!");
+                sleep(3);
+                gotoxy(3,5);system("cls");
+                formatoHojaModificar();
+                mostrarProductoActualizado(aux);// 6 MUESTRO EL PRODUCTO MODIFICADO
+                //gotoxy(3,16);system("pause");
+                flag = 1;
+            }
+
+        }
+        if(flag != 1)
+        {
+            system("cls");
+            formatoHojaModificar();
+            gotoxy(3,15);printf("No se encontro el producto");
+            gotoxy(3,16);system("pause");
+            gotoxy(3,15);system("cls");
+            return modificarUnProducto();
+        }
+    }
+    else
+    {
+        if(buffer == NULL)
+        {
+        printf("\nNo se pudo abrir el archivo\n");
+        return 0;
+        }
+    }
+}
+
+producto modificarCampoProducto(producto aModificar, char modificarCampo[])
+{
+    gotoxy(3,5);borrarPantallaLargo();
+    formatoHojaModificarSinCuadroInferior();
+    producto aux = aModificar;
+    int respuesta = 0;
+
+    if(strcmpi("nombre",modificarCampo)== 0)
+    {
+        system("cls");
+        formatoHojaModificarSinCuadroInferior();
+        gotoxy(3,5);printf("Desea modificar el nombre del producto?\n");
+        respuesta = seleccionarSiNo(1);
+        if(respuesta == 1)
+        {
+        gotoxy(3,5);borrarPantallaLargo();
+        gotoxy(3,5);formatoHojaModificar();
+        gotoxy(3,5);printf("Ingrese el nuevo nombre del producto\n");
+        fflush(stdin);
+        gotoxy(3,6);gets(aux.nombre);
+        }
+    }
+
+    if(strcmpi("nombrecategoria",modificarCampo)== 0)
+    {
+        system("cls");
+        formatoHojaModificarSinCuadroInferior();
+        gotoxy(3,5);printf("Desea modificar la categoria del producto?\n");
+        respuesta = seleccionarSiNo(1);
+        if(respuesta == 1)
+        {
+        gotoxy(3,5);borrarPantallaLargo();
+        gotoxy(3,5);formatoHojaModificar();
+        gotoxy(3,5);printf("Modifique la categoria\n");
+        fflush(stdin);
+        gotoxy(3,6);gets(aux.nombreCategoria);
+        }
+    }
+
+    if(strcmpi("numerocategoria",modificarCampo)== 0)
+    {
+        system("cls");
+        formatoHojaModificarSinCuadroInferior();
+        gotoxy(3,5);printf("Desea modificar el numero de la categoria del producto?\n");
+        respuesta = seleccionarSiNo(1);
+        if(respuesta == 1)
+        {
+        gotoxy(3,5);borrarPantallaLargo();
+        gotoxy(3,5);formatoHojaModificar();
+        gotoxy(3,5);showCategoriasAdmin();
+        gotoxy(3,12);printf("Modifique el numero de la categoria\n");
+        fflush(stdin);
+        gotoxy(3,13);gets(aux.nroCategoria);
+        }
+    }
+
+    if(strcmpi("descripcion",modificarCampo)== 0)
+    {
+        system("cls");
+        formatoHojaModificarSinCuadroInferior();
+        gotoxy(3,5);printf("Desea modificar la descripcion del producto?\n");
+        respuesta = seleccionarSiNo(1);
+        if(respuesta == 1)
+        {
+        gotoxy(3,5);borrarPantallaLargo();
+        gotoxy(3,5);formatoHojaModificar();
+        gotoxy(3,5);printf("Modifique la descripcion (max 280 caracteres)\n");
+        fflush(stdin);
+        gotoxy(3,6);gets(aux.descripcion);
+        }
+    }
+
+    if(strcmpi("precioVenta",modificarCampo)== 0)
+    {
+        system("cls");
+        formatoHojaModificarSinCuadroInferior();
+        gotoxy(3,5);printf("Desea modificar el precio venta del producto?\n");
+        respuesta = seleccionarSiNo(1);
+        if(respuesta == 1)
+        {
+        gotoxy(3,5);borrarPantallaLargo();
+        gotoxy(3,5);formatoHojaModificar();
+        gotoxy(3,5);printf("Modifique el precio de venta\n");
+        fflush(stdin);
+        gotoxy(3,6);scanf("%f", &aux.precioVenta);
+        }
+    }
+
+    if(strcmpi("precioCosto",modificarCampo)== 0)
+    {
+        system("cls");
+        formatoHojaModificarSinCuadroInferior();
+        gotoxy(3,5);printf("Desea modificar el costo del producto?\n");
+        respuesta = seleccionarSiNo(1);
+        if(respuesta == 1)
+        {
+        gotoxy(3,5);borrarPantallaLargo();
+        gotoxy(3,5);formatoHojaModificar();
+        gotoxy(3,5);printf("Modifique el costo del producto\n");
+        fflush(stdin);
+        gotoxy(3,6);scanf("%f", &aux.precioCosto);
+        }
+    }
+
+    if(strcmpi("cantidad",modificarCampo)== 0)
+    {
+        system("cls");
+        formatoHojaModificarSinCuadroInferior();
+        gotoxy(3,5);printf("Desea modificar el stock del producto?\n");
+        respuesta = seleccionarSiNo(1);
+        if(respuesta == 1)
+        {
+        gotoxy(3,5);borrarPantallaLargo();
+        gotoxy(3,5);formatoHojaModificar();
+        gotoxy(3,5);printf("Modifique el stock del producto\n");
+        gotoxy(3,6);scanf("%i", &aux.cantidad);
+        }
+        if(aux.cantidad == 0)
+        {
+            aux.flagStock = 1;
+        }
+    }
+
+    if((modificarCampo != "nombre") && (modificarCampo != "nombrecategoria") && (modificarCampo != "descripcion") && (modificarCampo != "precioVenta") && (modificarCampo != "precioCosto") && (modificarCampo != "cantidad")&& (modificarCampo != "nrocategoria"))
+    {
+        gotoxy(3,15);printf("\nNo se encontro tal campo\n");
+    }
+
+    return aux;
+}
+
+char ingresarCampo(char busqueda[])
+{
+    formatoHojaModificar();
+    gotoxy(3,15);printf("Ingrese campo a modificar\n");
+    gotoxy(3,16);gets(busqueda);
+
+    return busqueda;
+}
+
+char ingresarNombreProducto(char nombreProducto[])
+{
+    formatoHojaModificar();
+    gotoxy(3,5);printf("Producto a modificar\n");
+    gotoxy(3,6);gets(nombreProducto);
+
+    return nombreProducto;
+}
+
+void mostrarProductoActualizado(producto nuevo)
+{
+    gotoxy(30,5);printf("PRODUCTO ACTUALIZADO       ");
+    gotoxy(3,6);printf("Producto: %s",nuevo.nombre);
+    gotoxy(3,7);printf("Nombre categoria: %s ",nuevo.nombreCategoria);
+    gotoxy(3,8);printf("Descripcion: %s ",nuevo.descripcion);
+    gotoxy(3,9);printf("Precio de venta: %c%.2f ",36,nuevo.precioVenta);
+    gotoxy(3,10);printf("Precio de costo: %c%.2f ",36,nuevo.precioCosto);
+    gotoxy(3,11);printf("Numero de categoria: %i ",nuevo.nroCategoria);
+    gotoxy(3,12);printf("Cantidad de stock: %i ",nuevo.cantidad);
+    sleep(5);
+}
+
+void mostrarProductoEncontrado(producto nuevo)
+{
+    gotoxy(30,5);printf("PRODUCTO ENCONTRADO       ");
+    gotoxy(3,7);printf("Producto: %s",nuevo.nombre);
+    gotoxy(3,8);printf("Nombre categoria: %s ",nuevo.nombreCategoria);
+    gotoxy(3,9);printf("Descripcion: %s ",nuevo.descripcion);
+    gotoxy(3,10);printf("Precio de venta: %c%.2f ",36,nuevo.precioVenta);
+    gotoxy(3,11);printf("Precio de costo: %c%.2f ",36,nuevo.precioCosto);
+    gotoxy(3,12);printf("Numero de categoria: %i ",nuevo.nroCategoria);
+    gotoxy(3,13);printf("Cantidad de stock: %i",nuevo.cantidad);
+    sleep(5);
+}
+
+void mostrarCampos()
+{
+    gotoxy(36,5);printf("-CAMPOS-\n");
+    gotoxy(8,6);printf("-Nombre\n");
+    gotoxy(8,8);printf("-nombrecategoria\n");
+    gotoxy(8,10);printf("-numerocategoria\n");
+    gotoxy(8,12);printf("-Descripcion\n");
+    gotoxy(55,6);printf("-precioventa\n");
+    gotoxy(55,8);printf("-preciocosto\n");
+    gotoxy(55,10);printf("-Cantidad\n");
+}
 
