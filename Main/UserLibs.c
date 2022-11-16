@@ -1155,7 +1155,11 @@ int contarOpcionesVentas(nodoVentaD *lista)
 
     while (lista != NULL)
     {
+        if(lista->dato.estadoVenta == 0)
+        {
         contador++;
+        }
+
         lista = lista->siguiente;
     }
 
@@ -1176,10 +1180,16 @@ int historialComprasId(usuario aux, int cursor) /// cursor es donde esta parado 
     inicPila(&PILITA);
     venta aux3;
 
+    //system("pause");
     for (int i = 0; i < aux.validosCompras; i++)
     {
+        if(aux.compras[i].estadoVenta == 0)
+        {
+        //printf("idVenta: %i estado venta%i \n", aux.compras[i].idVenta, aux.compras[i].estadoVenta);
         apilar(&PILITA, aux.compras[i]);
+        }
     }
+    //system("pause");
 
     nodoVentaD *lista = inicListaDobleVenta();
 
@@ -1374,7 +1384,7 @@ int historialComprasTodas(int id, int cursor) /// cursor es donde esta parado el
     dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
 
-    centrarTexto("E-COMMERCE - HISTORIAL DE COMPRAS", 2);
+    centrarTexto("E-COMMERCE - HISTORIAL DE VENTAS", 2);
 
     gotoxy(70, 2);
     printf("ID: %i", id);
@@ -1553,6 +1563,7 @@ void cancelarVentaMenu(int idUsuario)
     scanf("%i", &idVenta);
     cancelarVenta(idUsuario, idVenta);
     gotoxy(7, 21);
+
     printf("Para salir presionar ESC");
 
     int opcion = capturarTecla2();
@@ -1593,6 +1604,7 @@ void cancelarCompraMenu(int idUsuario)
     scanf("%i", &idVenta);
     ///---- baja de la compra ----///
     cancelarVenta(idUsuario, idVenta);
+
     gotoxy(7, 21);
     printf("Para salir presionar ESC");
 
@@ -1666,3 +1678,4 @@ void cancelarVentaEnArray(usuario A, int idVenta)
         i++;
     }
 }
+

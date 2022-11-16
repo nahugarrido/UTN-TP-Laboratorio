@@ -158,8 +158,11 @@ nodoListaDSubVenta *obtenerSubVenta(usuario A, nodoListaDSubVenta *lista)
 
     for (int i = 0; i < A.validosCarrito; i++)
     {
-        nuevo = crearNodoDSubVenta(A.carrito[i]);
-        lista = agregarAlFinalDSubVenta(lista, nuevo);
+        if(A.carrito[i].flag == 0)
+        {
+            nuevo = crearNodoDSubVenta(A.carrito[i]);
+            lista = agregarAlFinalDSubVenta(lista, nuevo);
+        }
     }
 
     return lista;
@@ -349,7 +352,11 @@ int contarOpcionessubVentas(nodoListaDSubVenta *lista)
 
     while (lista != NULL)
     {
+        if(lista->dato.flag == 0)
+        {
         contador++;
+        }
+
         lista = lista->sig;
     }
 
