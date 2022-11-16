@@ -8,6 +8,8 @@
 #include "UserLibs.h"
 #define archivoUsuarios "ArchivoUsuario.dat"
 #define ArchivoUsuarios "ArchivoUsuario.dat"
+#define ArchProductos "Stock.dat"
+#define archivoVentas "Ventas.dat"
 #define KEY_UP 72 + 256
 #define KEY_DOWN 80 + 256
 #define KEY_ENTER 13
@@ -37,7 +39,7 @@ void AltaUsuario()
             gotoxy(7, 21);
             printf("Mensaje de consola ...");
 
-            gotoxy(7,5);
+            gotoxy(7, 5);
             printf("Ingrese Nombre de usuario: ");
             fflush(stdin);
             gets(User);
@@ -50,7 +52,7 @@ void AltaUsuario()
                 Aux.admin = 0;
                 Aux.validosCarrito = 0; /// AGREGO LINEAS DE LOS VALIDOS
                 Aux.validosCompras = 0;
-                gotoxy(7,9);
+                gotoxy(7, 9);
                 printf("Ingrese el saldo: $ ");
                 scanf("%f", &Aux.saldo);
                 fwrite(&Aux, sizeof(usuario), 1, buffer);
@@ -106,7 +108,7 @@ usuario pedirDatos(char user[])
 {
     usuario temporal;
     strcpy(temporal.username, user);
-    gotoxy(7,7);
+    gotoxy(7, 7);
     printf("Ingrese una contrasenia: ");
     fflush(stdin);
     gets(temporal.password);
@@ -147,8 +149,6 @@ void mostrarCliente(usuario A)
     printf("\nID Cliente: %i  \n", A.idCliente);
     printf("\n---------------------------------------\n");
 }
-
-
 
 void showArchiveClientes()
 {
@@ -306,16 +306,16 @@ void modificarUnCliente(usuario A)
 usuario modificarDatosCliente(usuario A)
 {
     char option;
-    gotoxy(7,7);
+    gotoxy(7, 7);
     printf("Datos actuales del cliente:");
 
-    gotoxy(7,9);
+    gotoxy(7, 9);
     printf("IdCliente: %i", A.idCliente);
-    gotoxy(7,11);
+    gotoxy(7, 11);
     printf("Usuario: %s", A.username);
-    gotoxy(7,13);
+    gotoxy(7, 13);
     printf("Password: %s", A.password);
-    gotoxy(7,15);
+    gotoxy(7, 15);
     printf("Saldo: $%.2f", A.saldo);
 
     gotoxy(7, 21);
@@ -354,7 +354,6 @@ usuario modificarDatosCliente(usuario A)
     printf("Cambios realizados con exito!");
     sleep(3);
 
-
     return A;
 }
 
@@ -363,11 +362,9 @@ usuario BuscarUnClientePorID(int IdUsuario)
     FILE *buffer = fopen(archivoUsuarios, "rb");
     usuario Aux;
 
-
-
     int flag = VerificarPorID(IdUsuario);
 
-    if(buffer != NULL)
+    if (buffer != NULL)
     {
         while ((fread(&Aux, sizeof(usuario), 1, buffer) > 0) && flag == 1)
         {
@@ -386,7 +383,7 @@ int VerificarPorID(int IdCliente)
     FILE *buffer = fopen(archivoUsuarios, "rb");
     usuario Aux;
     int flag = 0;
-    if(buffer != NULL)
+    if (buffer != NULL)
     {
         while ((fread(&Aux, sizeof(usuario), 1, buffer) > 0) && flag == 0)
         {
@@ -405,7 +402,6 @@ int VerificarPorID(int IdCliente)
 void verInformacionUsuarioID()
 {
     system("cls");
-
 
     dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
@@ -441,7 +437,6 @@ void modificarClienteMenu()
     usuario temporal;
     system("cls");
 
-
     dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
     centrarTexto("E-COMMERCE - USUARIOS", 2);
@@ -450,12 +445,11 @@ void modificarClienteMenu()
     printf("Mensaje de consola ...");
     dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
 
-    gotoxy(7,5);
+    gotoxy(7, 5);
     printf("Ingrese el nombre de usuario: ");
     fflush(stdin);
     gets(aux);
     int flag = verificarPorUserName(aux);
-
 
     if (flag == 1)
     {
@@ -468,8 +462,6 @@ void modificarClienteMenu()
         printf("Debes ingresar un usuario valido! \n");
         sleep(3);
     }
-
-
 }
 
 void modificarEstadoClienteMenu()
@@ -486,7 +478,7 @@ void modificarEstadoClienteMenu()
     printf("Mensaje de consola ...");
     dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
 
-    gotoxy(7,5);
+    gotoxy(7, 5);
     printf("Ingrese el nombre de usuario: ");
     fflush(stdin);
     gets(aux);
@@ -541,15 +533,15 @@ usuario modificarEstadoContable(usuario A)
 {
     char option;
     fflush(stdin);
-    gotoxy(7,7);
+    gotoxy(7, 7);
     printf("Datos actuales del cliente:");
-    gotoxy(7,9);
+    gotoxy(7, 9);
     printf("IdCliente: %i", A.idCliente);
-    gotoxy(7,11);
+    gotoxy(7, 11);
     printf("Usuario: %s", A.username);
-    gotoxy(7,13);
+    gotoxy(7, 13);
     printf("Password: %s", A.password);
-    gotoxy(7,15);
+    gotoxy(7, 15);
     printf("Saldo: $%.2f", A.saldo);
 
     gotoxy(7, 21);
@@ -636,7 +628,7 @@ int mostrarUsuarios(int id, int cursor) /// cursor es donde esta parado el >>>> 
 
     if (opcion == KEY_ENTER)
     {
-        int idRetorno = obtenerIdUsuarioList(lista,cursor);
+        int idRetorno = obtenerIdUsuarioList(lista, cursor);
         return idRetorno;
     }
 
@@ -685,7 +677,7 @@ nodoUsuarioD *despersistirListaDobleusuarios(nodoUsuarioD *lista)
     {
         while (fread(&aux, sizeof(usuario), 1, ptr) > 0)
         {
-            if(aux.estadoCliente == 1)
+            if (aux.estadoCliente == 1)
             {
                 aux2 = crearNodoDobleusuario(aux);
                 lista = agregarAlFinalDobleusuario(lista, aux2);
@@ -705,7 +697,7 @@ nodoUsuarioD *inicListaDobleusuario()
 nodoUsuarioD *crearNodoDobleusuario(usuario A)
 {
 
-    nodoUsuarioD *aux = (nodoUsuarioD*) malloc(sizeof(nodoUsuarioD));
+    nodoUsuarioD *aux = (nodoUsuarioD *)malloc(sizeof(nodoUsuarioD));
 
     aux->dato = A;
     aux->siguiente = NULL;
@@ -926,27 +918,24 @@ void mostrarUnUsuario(int mostrar)
     centrarTexto("E-COMMERCE - USUARIOS", 2);
     gotoxy(70, 2);
 
-    gotoxy(7,5);
+    gotoxy(7, 5);
     printf("IdCliente: %i", aux.idCliente);
-    gotoxy(7,7);
+    gotoxy(7, 7);
     printf("Usuario: %s", aux.username);
-    gotoxy(7,9);
+    gotoxy(7, 9);
     printf("Password: %s", aux.password);
-    gotoxy(7,11);
+    gotoxy(7, 11);
     printf("Saldo: $%.2f", aux.saldo);
 
-
     dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
-    gotoxy(7,21);
+    gotoxy(7, 21);
     printf("Para salir presionar ESC");
-
 
     int opcion = capturarTecla2();
 
-
-    if(opcion == KEY_ESC)
+    if (opcion == KEY_ESC)
     {
-        Beep(800,80);
+        Beep(800, 80);
     }
 
     if (opcion == KEY_ESC)
@@ -954,7 +943,6 @@ void mostrarUnUsuario(int mostrar)
         return 0;
     }
 }
-
 
 void saldoDisponible(int id)
 {
@@ -970,9 +958,9 @@ void mostrarDatosEnvio(int id)
 {
     usuario aux = BuscarUnClientePorID(id);
 
-    destino ultimoEnvio = aux.compras[aux.validosCompras-1].despachar;
+    destino ultimoEnvio = aux.compras[aux.validosCompras - 1].despachar;
 
-    if(aux.validosCompras == 0)
+    if (aux.validosCompras == 0)
     {
         gotoxy(9, 21);
         printf("                                                            ");
@@ -985,31 +973,30 @@ void mostrarDatosEnvio(int id)
         gotoxy(9, 21);
         printf("                                                            ");
         gotoxy(9, 21);
-        printf("%s, %s, %s, %s.", ultimoEnvio.pais, ultimoEnvio.provincia,ultimoEnvio.ciudad, ultimoEnvio.direccion);
+        printf("%s, %s, %s, %s.", ultimoEnvio.pais, ultimoEnvio.provincia, ultimoEnvio.ciudad, ultimoEnvio.direccion);
         sleep(3);
-
     }
 }
 
 /// FUNCIONES LISTA SIMPLE PARA PILAS subVenta
-nodoVentaS* inicLista()
+nodoVentaS *inicLista()
 {
     return NULL;
 }
 
-nodoVentaS* crear(venta dato)
+nodoVentaS *crear(venta dato)
 {
-    nodoVentaS* temp = (nodoVentaS*) malloc(sizeof(nodoVentaS));
+    nodoVentaS *temp = (nodoVentaS *)malloc(sizeof(nodoVentaS));
     temp->dato = dato;
     temp->siguiente = NULL;
 
     return temp;
 }
 
-nodoVentaS* agregarPrincipio(nodoVentaS* lista, nodoVentaS* nuevonodoVentaS)
+nodoVentaS *agregarPrincipio(nodoVentaS *lista, nodoVentaS *nuevonodoVentaS)
 {
 
-    if(lista == NULL)
+    if (lista == NULL)
     {
         lista = nuevonodoVentaS;
     }
@@ -1022,45 +1009,44 @@ nodoVentaS* agregarPrincipio(nodoVentaS* lista, nodoVentaS* nuevonodoVentaS)
     return lista;
 }
 
-nodoVentaS * buscarUltimo(nodoVentaS * lista)
+nodoVentaS *buscarUltimo(nodoVentaS *lista)
 {
-    nodoVentaS * seg = lista;
-    if(seg != NULL)
-        while(seg->siguiente != NULL)
+    nodoVentaS *seg = lista;
+    if (seg != NULL)
+        while (seg->siguiente != NULL)
         {
             seg = seg->siguiente;
         }
     return seg;
 }
 
-nodoVentaS * agregar(nodoVentaS * lista, nodoVentaS * nuevonodoVentaS)
+nodoVentaS *agregar(nodoVentaS *lista, nodoVentaS *nuevonodoVentaS)
 {
-    if(lista == NULL)
+    if (lista == NULL)
     {
         lista = nuevonodoVentaS;
     }
     else
     {
-        nodoVentaS * ultimo = buscarUltimo(lista);
+        nodoVentaS *ultimo = buscarUltimo(lista);
         ultimo->siguiente = nuevonodoVentaS;
     }
     return lista;
 }
 
-void mostrarLista(nodoVentaS* lista)
+void mostrarLista(nodoVentaS *lista)
 {
-    while(lista->siguiente != NULL)
+    while (lista->siguiente != NULL)
     {
         printf("ID VENTA: [%i]  ", lista->dato.idVenta);
         lista = lista->siguiente;
     }
 
-    if(lista->siguiente == NULL)
+    if (lista->siguiente == NULL)
     {
         printf("[%i]  ", lista->dato.idVenta);
         printf("END");
     }
-
 }
 
 /// PILAS
@@ -1069,16 +1055,16 @@ void inicPila(Pila *p)
     p->lista = inicLista();
 }
 
-void apilar(Pila* p,venta dato)
+void apilar(Pila *p, venta dato)
 {
-    nodoVentaS* nuevo = crear(dato);
+    nodoVentaS *nuevo = crear(dato);
 
-    p->lista = agregarPrincipio(p->lista,nuevo);
+    p->lista = agregarPrincipio(p->lista, nuevo);
 }
 
 venta desapilar(Pila *p)
 {
-    nodoVentaS* anterior =  p->lista;
+    nodoVentaS *anterior = p->lista;
     p->lista = p->lista->siguiente;
 
     return anterior->dato;
@@ -1100,8 +1086,6 @@ void mostrar(Pila *p)
     mostrarLista(p->lista);
     printf("\n\n----------------------------------------------------------------------------\n");
 }
-
-
 
 /// FUNCIONES LISTAS DOBLES VENTA
 nodoVentaD *inicListaDobleVenta()
@@ -1192,31 +1176,29 @@ int historialComprasId(usuario aux, int cursor) /// cursor es donde esta parado 
     inicPila(&PILITA);
     venta aux3;
 
-    for(int i = 0; i < aux.validosCompras; i++)
+    for (int i = 0; i < aux.validosCompras; i++)
     {
-        apilar(&PILITA,aux.compras[i]);
+        apilar(&PILITA, aux.compras[i]);
     }
 
     nodoVentaD *lista = inicListaDobleVenta();
 
-    while(!pilavacia(&PILITA))
+    while (!pilavacia(&PILITA))
     {
         aux3 = desapilar(&PILITA);
-        nodoVentaD* aux2 = crearNodoDobleVenta(aux3);
-        lista = agregarAlFinalDobleVenta(lista,aux2);
+        nodoVentaD *aux2 = crearNodoDobleVenta(aux3);
+        lista = agregarAlFinalDobleVenta(lista, aux2);
     }
 
-
-//    usuario aux = BuscarUnClientePorID(id);
-//    nodoVentaD *lista = inicListaDobleVenta();
-//    nodoVentaD* aux2 = NULL;
-//
-//    for(int i = 0; i < aux.validosCompras; i++)
-//    {
-//        aux2 = crearNodoDobleVenta(aux.compras[i]);
-//        lista = agregarAlFinalDobleVenta(lista,aux2);
-//    }
-
+    //    usuario aux = BuscarUnClientePorID(id);
+    //    nodoVentaD *lista = inicListaDobleVenta();
+    //    nodoVentaD* aux2 = NULL;
+    //
+    //    for(int i = 0; i < aux.validosCompras; i++)
+    //    {
+    //        aux2 = crearNodoDobleVenta(aux.compras[i]);
+    //        lista = agregarAlFinalDobleVenta(lista,aux2);
+    //    }
 
     dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
@@ -1227,17 +1209,17 @@ int historialComprasId(usuario aux, int cursor) /// cursor es donde esta parado 
     printf("ID: %i", aux.idCliente);
 
     /// TABLA HEADERS DE E-COMMERCE STOCK
-    gotoxy(9,5);
+    gotoxy(9, 5);
     printf("ID VENTA");
-    gotoxy(27,5);
+    gotoxy(27, 5);
     printf("TOTAL");
-    gotoxy(41,5);
+    gotoxy(41, 5);
     printf("DIRECCION ENVIO");
-    gotoxy(60,5);
+    gotoxy(60, 5);
     printf("ESTADO ENVIO");
 
     /// MUESTRA LAS OPCIONES
-    gotoxy(9,7);
+    gotoxy(9, 7);
     int cantidadOpciones = contarOpcionesVentas(lista);
 
     mostrarOpcionesVenta(lista, cursor);
@@ -1308,7 +1290,7 @@ int historialComprasId(usuario aux, int cursor) /// cursor es donde esta parado 
             cursor += 6;
         }
     }
-    gotoxy(0,0);
+    gotoxy(0, 0);
     printf("aux username: %s aux idcliente: %i, cursor: %i", aux.username, aux.idCliente, cursor);
     system("pause");
     return historialComprasId(aux, cursor);
@@ -1319,9 +1301,9 @@ void mostrarOpcionesVenta(nodoVentaD *lista, int cursor)
     nodoVentaD *anterior;
     int posicionY;
     int posicionX;
-    int contPaginas = ceil(((float)cursor/6));
+    int contPaginas = ceil(((float)cursor / 6));
 
-    int i=  1 + ((contPaginas-1)*6);
+    int i = 1 + ((contPaginas - 1) * 6);
 
     int cantidadxColumna = 6;
 
@@ -1332,30 +1314,30 @@ void mostrarOpcionesVenta(nodoVentaD *lista, int cursor)
 
     int tope = i + 5;
 
-    for(int i = 0; i < ((contPaginas-1)*6); i++)
+    for (int i = 0; i < ((contPaginas - 1) * 6); i++)
     {
         lista = lista->siguiente;
     }
 
-    while((lista != NULL)  && (i <= tope))
+    while ((lista != NULL) && (i <= tope))
     {
-        posicionY = 14 + 3 + i*2;
+        posicionY = 14 + 3 + i * 2;
 
-        if((i-1) % 6 == 0 && i != 0)
+        if ((i - 1) % 6 == 0 && i != 0)
         {
             cantColumnas++;
         }
 
         posicionX = 2;
 
-        if((cantColumnas % 2 != 0) )
+        if ((cantColumnas % 2 != 0))
         {
             posicionY -= (contPaginas * 12);
         }
 
-        gotoxy(posicionX,posicionY);
+        gotoxy(posicionX, posicionY);
 
-        if(i == cursor)
+        if (i == cursor)
         {
             printf(" >>>> ");
         }
@@ -1377,7 +1359,6 @@ void mostrarOpcionesVenta(nodoVentaD *lista, int cursor)
     }
 }
 
-
 /// MOSTRAR HISTORIAL DE VENTAS
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int historialComprasTodas(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
@@ -1388,7 +1369,6 @@ int historialComprasTodas(int id, int cursor) /// cursor es donde esta parado el
     nodoVentaD *lista = inicListaDobleVenta();
     lista = despersistirListaDobleVentasExitosas(lista);
 
-
     dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
 
@@ -1398,17 +1378,17 @@ int historialComprasTodas(int id, int cursor) /// cursor es donde esta parado el
     printf("ID: %i", id);
 
     /// TABLA HEADERS DE E-COMMERCE STOCK
-    gotoxy(9,5);
+    gotoxy(9, 5);
     printf("ID VENTA");
-    gotoxy(27,5);
+    gotoxy(27, 5);
     printf("ID CLIENTE");
-    gotoxy(41,5);
+    gotoxy(41, 5);
     printf("DIRECCION ENVIO");
-    gotoxy(60,5);
+    gotoxy(60, 5);
     printf("ESTADO ENVIO");
 
     /// MUESTRA LAS OPCIONES
-    gotoxy(9,7);
+    gotoxy(9, 7);
     int cantidadOpciones = contarOpcionesVentas(lista);
     // printf("\ncantidadOpciones: %i", cantidadOpciones);
     // system("pause");
@@ -1490,9 +1470,9 @@ void mostrarOpcionesVentaTodas(nodoVentaD *lista, int cursor)
     nodoVentaD *anterior;
     int posicionY;
     int posicionX;
-    int contPaginas = ceil(((float)cursor/6));
+    int contPaginas = ceil(((float)cursor / 6));
 
-    int i=  1 + ((contPaginas-1)*6);
+    int i = 1 + ((contPaginas - 1) * 6);
 
     int cantidadxColumna = 6;
 
@@ -1503,30 +1483,30 @@ void mostrarOpcionesVentaTodas(nodoVentaD *lista, int cursor)
 
     int tope = i + 5;
 
-    for(int i = 0; i < ((contPaginas-1)*6); i++)
+    for (int i = 0; i < ((contPaginas - 1) * 6); i++)
     {
         lista = lista->siguiente;
     }
 
-    while((lista != NULL)  && (i <= tope))
+    while ((lista != NULL) && (i <= tope))
     {
-        posicionY = 14 + 3 + i*2;
+        posicionY = 14 + 3 + i * 2;
 
-        if((i-1) % 6 == 0 && i != 0)
+        if ((i - 1) % 6 == 0 && i != 0)
         {
             cantColumnas++;
         }
 
         posicionX = 2;
 
-        if((cantColumnas % 2 != 0) )
+        if ((cantColumnas % 2 != 0))
         {
             posicionY -= (contPaginas * 12);
         }
 
-        gotoxy(posicionX,posicionY);
+        gotoxy(posicionX, posicionY);
 
-        if(i == cursor)
+        if (i == cursor)
         {
             printf(" >>>> ");
         }
@@ -1535,7 +1515,7 @@ void mostrarOpcionesVentaTodas(nodoVentaD *lista, int cursor)
             printf("       ");
         }
 
-        printf("%-21i %-12i %-20s %.0f", lista->dato.idVenta, lista->dato.idCliente,lista->dato.despachar.direccion, lista->dato.total);
+        printf("%-21i %-12i %-20s %.0f", lista->dato.idVenta, lista->dato.idCliente, lista->dato.despachar.direccion, lista->dato.total);
 
         //        gotoxy(0,0);
         //        //printf("cantColumnas: %i i = %i",cantColumnas, i);
@@ -1548,11 +1528,11 @@ void mostrarOpcionesVentaTodas(nodoVentaD *lista, int cursor)
     }
 }
 
-void cancelarVenta()
+void cancelarVentaMenu(int idUsuario)
 {
     int idVenta;
 
-    nodoVentaD* lista = inicListaDobleVenta();
+    nodoVentaD *lista = inicListaDobleVenta();
     lista = despersistirListaDobleVentasExitosas(lista);
     // faltan las de despersistir usuario para poder modificarlo en ambos
 
@@ -1566,81 +1546,121 @@ void cancelarVenta()
     dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
     centrarTexto("E-COMMERCE - CANCELAR VENTA", 2);
 
-    gotoxy(7,5);
+    gotoxy(7, 5);
     printf("Introduzca el id de la venta:");
     scanf("%i", &idVenta);
-
-    /// FUNCION QUE DA DE BAJA LA VENTA
-
-
-
-
-    gotoxy(7,21);
+    cancelarVenta(idUsuario, idVenta);
+    gotoxy(7, 21);
     printf("Para salir presionar ESC");
-
 
     int opcion = capturarTecla2();
 
-
-    if(opcion == KEY_ESC)
+    if (opcion == KEY_ESC)
     {
-        Beep(800,80);
+        Beep(800, 80);
     }
 
     if (opcion == KEY_ESC)
     {
         return 0;
     }
-
 }
 
-
-void cancelarCompra(int id)
+void cancelarCompraMenu(int idUsuario)
 {
     int idVenta;
 
-    nodoVentaD* lista = inicListaDobleVenta();
+    nodoVentaD *lista = inicListaDobleVenta();
     lista = despersistirListaDobleVentasExitosas(lista);
     // faltan las de despersistir usuario para poder modificarlo en ambos
-
-
 
     system("cls");
     ocultarCursor();
     dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
 
-    gotoxy(70,2);
-    printf("ID: %i", id);
+    gotoxy(70, 2);
+    printf("ID: %i", idUsuario);
     gotoxy(7, 21);
     printf("Mensaje de consola ...");
     dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
     centrarTexto("E-COMMERCE - CANCELAR COMPRA", 2);
 
-    gotoxy(7,5);
+    gotoxy(7, 5);
     printf("Introduzca el id de la compra:");
     scanf("%i", &idVenta);
-
-    /// FUNCION QUE DA DE BAJA LA COMPRA
-
-
-
-
-    gotoxy(7,21);
+    ///---- baja de la compra ----///
+    cancelarVenta(idUsuario, idVenta);
+    gotoxy(7, 21);
     printf("Para salir presionar ESC");
-
 
     int opcion = capturarTecla2();
 
-
-    if(opcion == KEY_ESC)
+    if (opcion == KEY_ESC)
     {
-        Beep(800,80);
+        Beep(800, 80);
     }
 
     if (opcion == KEY_ESC)
     {
         return 0;
     }
+}
 
+void cancelarVenta(int idUsuario, int idVenta)
+{
+    FILE *buffer = fopen(ArchivoUsuarios, "r+b");
+    usuario Aux;
+    venta temporal;
+
+    FILE *bufferVentas = fopen(archivoVentas, "r+b");
+
+    if (buffer != NULL)
+    {
+        while (fread(&Aux, sizeof(usuario), 1, buffer) > 0)
+        {
+            if (Aux.idCliente == idUsuario)
+            {
+                fseek(buffer, sizeof(usuario) * (-1), SEEK_CUR);
+                cancelarVentaEnArray(Aux, idVenta);
+                system("cls");
+                printf("ANULADA EN USUARIO! \n");
+                fwrite(&Aux, sizeof(usuario), 1, buffer);
+                system("pause");
+            }
+        }
+        fclose(buffer);
+    }
+
+    if (bufferVentas != NULL)
+    {
+
+        while (fread(&temporal, sizeof(venta), 1, bufferVentas) > 0)
+        {
+
+            if (temporal.idVenta == idVenta)
+            {
+
+                fseek(bufferVentas, sizeof(venta) * (-1), SEEK_CUR);
+                temporal.estadoVenta = 1;
+                fwrite(&temporal, sizeof(venta), 1, bufferVentas);
+            }
+        }
+        fclose(bufferVentas);
+    }
+}
+
+void cancelarVentaEnArray(usuario A, int idVenta)
+{
+    int i = 0;
+    int flag = 0;
+    while (i < A.validosCarrito && flag == 0)
+    {
+        if (A.compras[i].idVenta == idVenta)
+        {
+            A.compras[i].estadoVenta = 1;
+            flag = 1;
+        }
+        i++;
+    }
 }

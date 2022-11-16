@@ -128,7 +128,7 @@ void switchUsuario(int id, int opcion)
             mostrar=mostrarsubVentas(id,1);
             if(mostrar != 0)
             {
-                //mostrarUnProductoUsuario(id, mostrar);
+                //mostrarUnProductoUsuario(id, mostrar); // ACA QUITAR PRODUCTO.
                 /// (mostrar producto pregunta si quiere añadirlo al carrito, de no querer vuelve al menu de productos ed querer pregunta cantidad y se agrega.
                 /// funcion de mostrar el producto y añadir a carrito
             }
@@ -196,7 +196,7 @@ void switchUsuario(int id, int opcion)
         while(mostrar != 0);
         break;
     case 6:
-        cancelarCompra(id);
+        cancelarCompraMenu(id);
         break;
     case 7:
         return 0;
