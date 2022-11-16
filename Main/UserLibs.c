@@ -1290,17 +1290,11 @@ int historialComprasId(usuario aux, int cursor) /// cursor es donde esta parado 
             cursor += 6;
         }
     }
-<<<<<<< HEAD
 
 //    gotoxy(0,1);
 //    printf("aux username: %s aux idcliente: %i, cursor: %i", aux.username, aux.idCliente, cursor);
 //    system("pause");
 
-=======
-    gotoxy(0, 0);
-    printf("aux username: %s aux idcliente: %i, cursor: %i", aux.username, aux.idCliente, cursor);
-    system("pause");
->>>>>>> 2dc7d75b7d46dc82bfca321e8814492a2ab19550
     return historialComprasId(aux, cursor);
 }
 
