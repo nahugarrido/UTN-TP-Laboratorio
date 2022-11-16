@@ -7,7 +7,6 @@
 #define KEY_ESC 27
 #define KEY_LEFT 75 +256
 #define KEY_RIGHT 77 +256
-#include "estructuras.h"
 #include "sistema.h"
 #include "menuProductos.h"
 
@@ -114,20 +113,44 @@ void switchProductos(int id, int opcion)
 {
     int mostrar = 1;
     int categoria = 0;
+    int cursor = 1;
+
+//    nodoCategoria *lista = inicListaDobleProducto();
+//    lista = cargarListaDeListas(lista);
 
     switch(opcion)
     {
     case 1:
         do
         {
-        mostrar = mostrarStock(id,1);
-        if(mostrar != 0)
-        {
-             mostrarUnProductoUsuario(id, mostrar);
-            /// (mostrar producto pregunta si quiere añadirlo al carrito, de no querer vuelve al menu de productos ed querer pregunta cantidad y se agrega.
-            /// funcion de mostrar el producto y añadir a carrito
+            nodoCategoria *lista = inicListaDobleProducto();
+            lista = cargarListaDeListas(lista);
+
+            categoria = mostrarCategorias(id,cursor);
+
+            if(categoria != 0 && lista != NULL)
+            {
+                for(int i = 1; i < categoria; i++)
+                {
+                    lista = lista->siguiente;
+                }
+                /// ACA SE HACE EL DO WHILE DE PRODUCTOS QUE ANTES SE HACIA SOLO
+                do
+                {
+                    mostrar = mostrarStock(id,1,lista->Categoria.nroCategoria);
+                    if(mostrar != 0)
+                    {
+                        mostrarUnProductoUsuario(id, mostrar, lista->Categoria.nroCategoria);
+                        /// (mostrar producto pregunta si quiere añadirlo al carrito, de no querer vuelve al menu de productos ed querer pregunta cantidad y se agrega.
+                        /// funcion de mostrar el producto y añadir a carrito
+                    }
+                }
+                while(mostrar != 0);
+                cursor = categoria;
+            }
+
         }
-        } while(mostrar != 0);
+        while(categoria != 0);
         break;
     case 2:
         buscarProductoFuncion();
@@ -156,6 +179,11 @@ void buscarProductoFuncion()
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
 
     centrarTexto("E-COMMERCE - BUSCAR PRODUCTOS",2);
+
+    dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    gotoxy(9,21);
+    printf("Mensaje de consola ...");
+
     int id = 3;
     gotoxy(70,2);
     nodoProductoD* listaProductos;
@@ -189,44 +217,60 @@ void buscarProducto(nodoProductoD* listaProductos,char productoBuscado[])
         {
             seg = seg->siguiente;
         }
-            if(strcmpi(seg->dato.nombre, productoBuscado) == 0)
-            {
-                gotoxy(3,6);
-                sleep(1);
-                printf("Producto encontrado\n");
-                produAux = seg->dato;
-                sleep(2);
-                mostrarProductoAdmin(produAux);
-                seg = seg->siguiente;
-            }
-            else
-            {
-                gotoxy(3,6);
-                printf("Producto no encontrado\n");
-            }
+        if(strcmpi(seg->dato.nombre, productoBuscado) == 0)
+        {
+            gotoxy(3,7);
+            sleep(1);
+            printf("Producto encontrado\n");
+            produAux = seg->dato;
+            sleep(2);
+            mostrarProductoAdmin(produAux);
+            seg = seg->siguiente;
+        }
+        else
+        {
+            gotoxy(3,7);
+            printf("Producto no encontrado\n");
+        }
     }
-    else{
+    else
+    {
         gotoxy(3,8);
         printf("No se encontro el producto buscado!\n");
     }
-    gotoxy(20,20);system("pause");
+    gotoxy(7,21);
+    printf("Para salir presionar ESC");
+
+
+    int opcion = capturarTecla2();
+
+
+    if(opcion == KEY_ESC)
+    {
+        Beep(800,80);
+    }
+
+    if (opcion == KEY_ESC)
+    {
+        return 0;
+    }
 }
 
 void mostrarProductoAdmin(producto produ) //FUNCION MOSTRAR LISTA CARGADA
 {
-        gotoxy(3,8);
-        printf("NOMBRE: %s \n", produ.nombre);
-        gotoxy(3,9);
-        printf("DESCRIPCION: %s \n", produ.descripcion);
-        gotoxy(3,10);
-        printf("PRECIO VENTA: %c%.2f \n",36, produ.precioVenta);
-        gotoxy(3,11);
-        printf("PRECIO COSTO: %c%.2f \n",36, produ.precioCosto);
-        gotoxy(3,12);
-        printf("CANTIDAD: %d \n", produ.cantidad);
-        gotoxy(3,13);
-        //printf("STOCK: %i  ( 0 en stock // 1 fuera de stock ) \n", produ.flagStock);
-        printf("\n");
+    gotoxy(3,9);
+    printf("NOMBRE: %s \n", produ.nombre);
+    gotoxy(3,10);
+    printf("DESCRIPCION: %s \n", produ.descripcion);
+    gotoxy(3,11);
+    printf("PRECIO VENTA: %c%.2f \n",36, produ.precioVenta);
+    gotoxy(3,12);
+    printf("PRECIO COSTO: %c%.2f \n",36, produ.precioCosto);
+    gotoxy(3,13);
+    printf("CANTIDAD: %d \n", produ.cantidad);
+    gotoxy(3,14);
+    //printf("STOCK: %i  ( 0 en stock // 1 fuera de stock ) \n", produ.flagStock);
+    printf("\n");
 }
 
 //AGREGAR UN PRODUCTO
@@ -239,57 +283,83 @@ void cargarProductoNuevoFuncion()
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
 
     centrarTexto("E-COMMERCE - AGREGAR PRODUCTOS",2);
+    dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+
+//    gotoxy(9,21);
+//    printf("Mensaje de consola ...");
+
     gotoxy(70,2);
     gotoxy(3,5);
     agregarProductoAdmin();
-    int opcion = capturarTeclaSiNo();
-    if(opcion == KEY_ESC)
-    {
-        return 0;
-    }
+
+    sleep(1);
     return 0;
 }
 //
 
 void showCategoriasAdmin()
 {
-    gotoxy(3,5);printf("Ingrese 1.1 Smartphones Samsung.");
-    gotoxy(3,6);printf("Ingrese 1.2 Smartphones Apple.");
-    gotoxy(3,7);printf("Ingrese 1.3 Smartphones.");
-    gotoxy(3,8);printf("Ingrese 2.1 Tablets Samsung.");
-    gotoxy(3,9);printf("Ingrese 2.2 Tablets Apple.");
-    gotoxy(43,5);printf("Ingrese 2.3 Otros Tablets.");
-    gotoxy(43,6);printf("Ingrese 3.1 Notebooks Samsung.");
-    gotoxy(43,7);printf("Ingrese 3.2 Notebooks Apple.");
-    gotoxy(43,8);printf("Ingrese 3.3 Otras Notebooks.");
+    gotoxy(3,5);
+    printf("Ingrese 1.1 Samsung.                        ");
+    gotoxy(3,6);
+    printf("Ingrese 1.2 Apple.                          ");
+    gotoxy(3,7);
+    printf("Ingrese 1.3 LG.                             ");
+    gotoxy(3,8);
+    printf("Ingrese 1.4 Sony.                           ");
+    gotoxy(3,9);
+    printf("Ingrese 1.5 Otros.                          ");
+//    gotoxy(43,5);printf("Ingrese 2.3 Otros Tablets.");
+//    gotoxy(43,6);printf("Ingrese 3.1 Notebooks Samsung.");
+//    gotoxy(43,7);printf("Ingrese 3.2 Notebooks Apple.");
+//    gotoxy(43,8);printf("Ingrese 3.3 Otras Notebooks.");
 }
 
 producto cargarProductoAdmin()
 {
     producto nuevo;
 
-    gotoxy(3,5);borrarPantallaCorto();
-    gotoxy(3,5);printf("Ingrese el nombre del producto:         \n");
+    gotoxy(3,5);
+    borrarPantallaCorto();
+    gotoxy(3,5);
+    printf("Ingrese el nombre del producto: \n");
     fflush(stdin);
-    gotoxy(3,6);gets(nuevo.nombre);
+    gotoxy(3,6);
+    gets(nuevo.nombre);
     darFormatoHoja();
-    gotoxy(3,8);showCategoriasAdmin();
-    gotoxy(3,11);printf("Ingrese una categoria: \n");
+    gotoxy(3,8);
+    showCategoriasAdmin();
+    gotoxy(3,11);
+    printf("Ingrese una categoria: \n");
     fflush(stdin);
-    gotoxy(3,12);gets(nuevo.categoria);
-    gotoxy(3,5);borrarPantallaCorto();
-    gotoxy(3,5);printf("Ingrese una descripcion: (280 caracteres) \n");
+    gotoxy(3,12);
+    gets(nuevo.nombreCategoria);
+    gotoxy(3,13);
+    printf("Ingrese el nro de la categoria: \n");
+    gotoxy(3,14);
+    scanf("%i", &nuevo.nroCategoria);
+    gotoxy(3,5);
+    borrarPantallaCorto();
+    gotoxy(3,5);
+    printf("Ingrese una descripcion: (280 caracteres) \n");
     fflush(stdin);
-    gotoxy(3,6);gets(nuevo.descripcion);
-    gotoxy(3,7);printf("Ingrese el precio venta: \n");
+    gotoxy(3,6);
+    gets(nuevo.descripcion);
+    gotoxy(3,7);
+    printf("Ingrese el precio venta: \n");
     fflush(stdin);
-    gotoxy(3,8);scanf("%f", &nuevo.precioVenta);
-    gotoxy(3,9);printf("Ingrese precio de compra: \n");
+    gotoxy(3,8);
+    scanf("%f", &nuevo.precioVenta);
+    gotoxy(3,9);
+    printf("Ingrese precio de compra: \n");
     fflush(stdin);
-    gotoxy(3,10);scanf("%f", &nuevo.precioCosto);
+    gotoxy(3,10);
+    scanf("%f", &nuevo.precioCosto);
     fflush(stdin);
-    gotoxy(3,11);printf("Ingrese la cantidad de stock: \n");
-    gotoxy(3,12);scanf("%i", &nuevo.cantidad);
+    gotoxy(3,11);
+    printf("Ingrese la cantidad de stock: \n");
+    gotoxy(3,12);
+    scanf("%i", &nuevo.cantidad);
     gotoxy(3,13);
     nuevo.flagStock = 0;
     mostrarProductoCargado(nuevo);
@@ -301,14 +371,32 @@ void agregarProductoAdmin()
 {
     FILE *buffer = fopen("Stock.dat", "ab");
     producto Aux;
+    char respuestaC;
 
-    printf("Desea agregar un producto a la lista?\n");
-    //gotoxy(30,7);
+    printf("Desea agregar un producto a la lista?(s/n) ");
+//    fflush(stdin);
+//    scanf("%c", &respuestaC);
+
     int respuesta;
+
+//    if(respuestaC == 's' || respuestaC == 'S')
+//    {
+//        respuesta = 1;
+//    }
+//
+//    if(respuestaC == 'n' || respuestaC == 'N')
+//    {
+//        respuesta = 2;
+//    }
+
     gotoxy(3,8);
     respuesta = seleccionarSiNoMenuProducto(1);
+    //respuesta = seleccionarSiNo(1);
+
     borrarPantallaLargo();
+
     darFormatoHoja();
+
     if(respuesta == 1)
     {
         if (buffer != NULL)
@@ -333,64 +421,110 @@ void darFormatoHoja()
 {
     dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
-    dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
-    dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
     centrarTexto("E-COMMERCE - AGREGAR PRODUCTOS",2);
     gotoxy(70,2);
     gotoxy(3,5);
-    dibujarCuadro(1,21,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
-    gotoxy(33,22);
-    printf("MENU PRODUCTOS");
+    dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    gotoxy(9,21);
+    printf("Cancelando operacion ...");
 
 }
 
 void borrarPantallaLargo()
 {
-    gotoxy(3,5);printf("                                                                          ");
-    gotoxy(3,6);printf("                                                                          ");
-    gotoxy(3,7);printf("                                                                          ");
-    gotoxy(3,8);printf("                                                                          ");
-    gotoxy(3,9);printf("                                                                          ");
-    gotoxy(3,10);printf("                                                                         ");
-    gotoxy(3,11);printf("                                                                         ");
-    gotoxy(3,12);printf("                                                                         ");
-    gotoxy(3,13);printf("                                                                         ");
-    gotoxy(3,14);printf("                                                                         ");
-    gotoxy(3,15);printf("                                                                         ");
-    gotoxy(3,16);printf("                                                                         ");
-    gotoxy(3,17);printf("                                                                         ");
-    gotoxy(3,18);printf("                                                                         ");
-    gotoxy(3,19);printf("                                                                         ");
-    gotoxy(3,20);printf("                                                                         ");
-    gotoxy(3,21);printf("                                                                         ");
-    gotoxy(3,22);printf("                                                                         ");
+    gotoxy(3,5);
+    printf("                                                                          ");
+    gotoxy(3,6);
+    printf("                                                                          ");
+    gotoxy(3,7);
+    printf("                                                                          ");
+    gotoxy(3,8);
+    printf("                                                                          ");
+    gotoxy(3,9);
+    printf("                                                                          ");
+    gotoxy(3,10);
+    printf("                                                                         ");
+    gotoxy(3,11);
+    printf("                                                                         ");
+    gotoxy(3,12);
+    printf("                                                                         ");
+    gotoxy(3,13);
+    printf("                                                                         ");
+    gotoxy(3,14);
+    printf("                                                                         ");
+    gotoxy(3,15);
+    printf("                                                                         ");
+    gotoxy(3,16);
+    printf("                                                                         ");
+    gotoxy(3,17);
+    printf("                                                                         ");
+    gotoxy(1,18);
+    printf("                                                                              ");
+    gotoxy(1,19);
+    printf("                                                                              ");
+    gotoxy(1,20);
+    printf("                                                                              ");
+    gotoxy(3,21);
+    printf("                                                                         ");
+    gotoxy(3,22);
+    printf("                                                                         ");
 }
 
 void borrarPantallaCorto()
 {
-    gotoxy(3,5);printf("                                                                          ");
-    gotoxy(3,6);printf("                                                                          ");
-    gotoxy(3,7);printf("                                                                          ");
-    gotoxy(3,8);printf("                                                                          ");
-    gotoxy(3,9);printf("                                                                          ");
-    gotoxy(3,10);printf("                                                                         ");
-    gotoxy(3,11);printf("                                                                         ");
-    gotoxy(3,12);printf("                                                                         ");
-    gotoxy(3,13);printf("                                                                         ");
-    gotoxy(3,14);printf("                                                                         ");
-    gotoxy(3,15);printf("                                                                         ");
+    gotoxy(3,5);
+    printf("                                                                          ");
+    gotoxy(3,6);
+    printf("                                                                          ");
+    gotoxy(3,7);
+    printf("                                                                          ");
+    gotoxy(3,8);
+    printf("                                                                          ");
+    gotoxy(3,9);
+    printf("                                                                          ");
+    gotoxy(3,10);
+    printf("                                                                         ");
+    gotoxy(3,11);
+    printf("                                                                         ");
+    gotoxy(3,12);
+    printf("                                                                         ");
+    gotoxy(3,13);
+    printf("                                                                         ");
+    gotoxy(3,14);
+    printf("                                                                         ");
+    gotoxy(3,15);
+    printf("                                                                         ");
+    /////
+    gotoxy(3,16);
+    printf("                                                                         ");
+    gotoxy(3,17);
+    printf("                                                                         ");
+    gotoxy(1,18);
+    printf("                                                                              ");
+    gotoxy(1,19);
+    printf("                                                                              ");
+    gotoxy(1,20);
+    printf("                                                                              ");
+
 }
 
 void mostrarProductoCargado(producto nuevo)
 {
-    gotoxy(3,5);borrarPantallaCorto();
-    gotoxy(3,5);printf("PRODUCTO NUEVO\n");
-    gotoxy(3,6);printf("Producto: %s\n",nuevo.nombre);
-    gotoxy(3,7);printf("Categoria: %s \n",nuevo.categoria);
-    gotoxy(3,8);printf("Descripcion: %s \n",nuevo.descripcion);
-    gotoxy(3,9);printf("Precio de venta: %c%.2f \n",36,nuevo.precioVenta);
-    gotoxy(3,10);printf("Precio de compra: %c%.2f \n",36,nuevo.precioCosto);
-    gotoxy(3,11);printf("Cantidad de stock: %i \n",nuevo.cantidad);
+    gotoxy(3,5);
+    borrarPantallaCorto();
+    gotoxy(3,5);
+    printf("PRODUCTO NUEVO\n");
+    gotoxy(3,6);
+    printf("Producto: %s\n",nuevo.nombre);
+//    gotoxy(3,7);printf("Categoria: %s \n",nuevo.categoria);
+    gotoxy(3,8);
+    printf("Descripcion: %s \n",nuevo.descripcion);
+    gotoxy(3,9);
+    printf("Precio de venta: %c%.2f \n",36,nuevo.precioVenta);
+    gotoxy(3,10);
+    printf("Precio de compra: %c%.2f \n",36,nuevo.precioCosto);
+    gotoxy(3,11);
+    printf("Cantidad de stock: %i \n",nuevo.cantidad);
 }
 
 
@@ -446,7 +580,7 @@ int seleccionarSiNoMenuProducto(int cursor) /// 1 ES SI 2 ES NO
 
 void mostrarSiNoMenuProducto(int cursor)
 {
-    gotoxy(28,20);
+    gotoxy(4,8);
     if(cursor == 1)
     {
         printf(">>>   ");

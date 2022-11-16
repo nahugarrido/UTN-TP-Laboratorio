@@ -5,7 +5,6 @@
 #define KEY_DOWN 80 +256
 #define KEY_ENTER 13
 #define KEY_ESC 27
-#include "estructuras.h"
 #include "sistema.h"
 #include "menuAdmin.h"
 #include "menuUsuariosAdmin.h"
@@ -119,8 +118,18 @@ void switchAdmin(int id, int opcion)
     switch(opcion)
     {
     case 1:
+        do
+        {
+            mostrar = historialComprasTodas(id,1);
+            if(mostrar != 0)
+            {
+                break;
+            }
+        }
+        while(mostrar != 0);
         break;
     case 2:
+        cancelarVenta();
         break;
     case 3:
         do

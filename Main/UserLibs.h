@@ -1,6 +1,16 @@
 #pragma once
-#include "carritoCompras.h"
+#include "productos.h"
+
 /// ACA VAN LAS ESTRUCTURAS Y PROTOTIPADOS
+
+typedef struct
+{
+    producto dato;
+    int cantidad;
+    float subtotal;
+    int flag;
+} subVenta;
+
 typedef struct
 {
     char pais[50];
@@ -9,22 +19,21 @@ typedef struct
     char direccion[50];
 } destino;
 
-
-typedef struct {
-subVenta arreglo[50];
-destino despachar;
-float total;
-int idVenta;
-int idCliente;
-int estadoEnvio; // 0 no despachado // 1 despachado
-int estadoVenta; // 0 normal // 1 cancelada
+typedef struct
+{
+    subVenta arreglo[50];
+    destino despachar;
+    float total;
+    int idVenta;
+    int idCliente;
+    int estadoEnvio; // 0 no despachado // 1 despachado
+    int estadoVenta; // 0 normal // 1 cancelada
 } venta;
-
 
 typedef struct
 {
-    char username[30];     //
-    char password[30];     //
+    char username[30]; //
+    char password[30]; //
     venta compras[30]; /// Fila
     subVenta carrito[50];
     int validosCarrito;
@@ -36,23 +45,12 @@ typedef struct
 } usuario;
 
 ///// ESTRUCTURAS USER LIBS
-//typedef struct
-//{
-//    char username[30];     //
-//    char password[30];     //
-//    venta compras[100]; /// Fila
-//    nodoListaDSubVenta carrito;
-//    float saldo;
-//    int admin;         // 0 no es admin  // 1 es admin
-//    int estadoCliente; // 0 baja // 1 alta
-//    int idCliente;
-//} usuario;
-
-typedef struct {
+typedef struct
+{
     subVenta dato;
-    struct nodoListaDSubVenta* sig;
-    struct nodoListaDSubVenta* ant;
-}nodoListaDSubVenta;
+    struct nodoListaDSubVenta *sig;
+    struct nodoListaDSubVenta *ant;
+} nodoListaDSubVenta;
 
 /// ESTRUCTURAS MENU USUARIO
 typedef struct
@@ -63,21 +61,23 @@ typedef struct
 } nodoUsuarioD;
 
 /// ESTRUCTURAS LISTA PILAS SUBVENTAS
-typedef struct{
+typedef struct
+{
     venta dato;
-    struct nodoVentaS* siguiente;
+    struct nodoVentaS *siguiente;
 } nodoVentaS;
 
-typedef struct{
-     nodoVentaS* lista;
+typedef struct
+{
+    nodoVentaS *lista;
 } Pila;
 
-typedef struct{
+typedef struct
+{
     venta dato;
-    struct nodoVentaD* siguiente;
-    struct nodoVentaD* anterior;
+    struct nodoVentaD *siguiente;
+    struct nodoVentaD *anterior;
 } nodoVentaD;
-
 
 /// FUNCIONES
 void AltaUsuario();
@@ -116,15 +116,15 @@ int capturarTecla3();
 /// OTRAS
 void saldoDisponible(int id);
 /// BASICAS LISTAS SIMPLES SUBVENTAS
-nodoVentaS* inicLista();
-nodoVentaS* crear(venta dato);
-nodoVentaS* agregarPrincipio(nodoVentaS* lista, nodoVentaS* nuevonodoVentaS);
-nodoVentaS * buscarUltimo(nodoVentaS * lista);
-nodoVentaS * agregar(nodoVentaS * lista, nodoVentaS * nuevonodoVentaS);
-void mostrarLista(nodoVentaS* lista);
+nodoVentaS *inicLista();
+nodoVentaS *crear(venta dato);
+nodoVentaS *agregarPrincipio(nodoVentaS *lista, nodoVentaS *nuevonodoVentaS);
+nodoVentaS *buscarUltimo(nodoVentaS *lista);
+nodoVentaS *agregar(nodoVentaS *lista, nodoVentaS *nuevonodoVentaS);
+void mostrarLista(nodoVentaS *lista);
 /// PILAS SUBVENTA
 void inicPila(Pila *p);
-void apilar(Pila* p,venta dato);
+void apilar(Pila *p, venta dato);
 venta desapilar(Pila *p);
 venta tope(Pila *p);
 int pilavacia(Pila *p);
@@ -137,3 +137,8 @@ nodoVentaD *agregarAlFinalDobleVenta(nodoVentaD *lista, nodoVentaD *nuevoNodo);
 int contarOpcionesVentas(nodoVentaD *lista);
 /// MOSTRAR HISTORIAL DE VENTAS
 int historialComprasId(int id, int cursor);
+/// MOSTRAR HISTORIAL TODAS LAS COMPRAS
+int historialComprasTodas(int id, int cursor);
+void mostrarOpcionesVentaTodas(nodoVentaD *lista, int cursor);
+void cancelarVenta();
+void cancelarCompra(int id);

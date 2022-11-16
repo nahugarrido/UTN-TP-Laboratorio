@@ -4,7 +4,6 @@
 #include <ctype.h>
 #include <time.h>
 #include <stdbool.h>
-#include "estructuras.h"
 #include "carritoCompras.h"
 #include "UserLibs.h"
 #define archivoUsuarios "ArchivoUsuario.dat"
@@ -931,8 +930,22 @@ void mostrarUnUsuario(int mostrar)
 
 
     dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
-    gotoxy(7, 21);
-    system("pause");
+    gotoxy(7,21);
+    printf("Para salir presionar ESC");
+
+
+    int opcion = capturarTecla2();
+
+
+    if(opcion == KEY_ESC)
+    {
+        Beep(800,80);
+    }
+
+    if (opcion == KEY_ESC)
+    {
+        return 0;
+    }
 }
 
 
@@ -1334,7 +1347,7 @@ void mostrarOpcionesVenta(nodoVentaD *lista, int cursor)
             printf("       ");
         }
 
-        printf("%-21i %-15i %-15.0f %.0f", lista->dato.idVenta, lista->dato.estadoEnvio, lista->dato.total, lista->dato.despachar.direccion);
+        printf("%-21i %-12.0f %-22s %.0f", lista->dato.idVenta, lista->dato.total, lista->dato.despachar.direccion, lista->dato.estadoEnvio);
 
         //        gotoxy(0,0);
         //        //printf("cantColumnas: %i i = %i",cantColumnas, i);
@@ -1347,3 +1360,270 @@ void mostrarOpcionesVenta(nodoVentaD *lista, int cursor)
     }
 }
 
+
+/// MOSTRAR HISTORIAL DE VENTAS
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+int historialComprasTodas(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
+{
+
+    system("cls");
+
+    nodoVentaD *lista = inicListaDobleVenta();
+    lista = despersistirListaDobleVentasExitosas(lista);
+
+
+    dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
+
+    centrarTexto("E-COMMERCE - HISTORIAL DE COMPRAS", 2);
+
+    gotoxy(70, 2);
+    printf("ID: %i", id);
+
+    /// TABLA HEADERS DE E-COMMERCE STOCK
+    gotoxy(9,5);
+    printf("ID VENTA");
+    gotoxy(27,5);
+    printf("ID CLIENTE");
+    gotoxy(41,5);
+    printf("DIRECCION ENVIO");
+    gotoxy(60,5);
+    printf("ESTADO ENVIO");
+
+    /// MUESTRA LAS OPCIONES
+    gotoxy(9,7);
+    int cantidadOpciones = contarOpcionesVentas(lista);
+    // printf("\ncantidadOpciones: %i", cantidadOpciones);
+    // system("pause");
+
+    mostrarOpcionesVentaTodas(lista, cursor);
+
+    gotoxy(7, 21);
+    printf("Para salir presionar ESC");
+    dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    ocultarCursor();
+
+    int opcion = capturarTecla2();
+
+    gotoxy(0, 0);
+    // printf("cursor: %i", cursor); //// PARA VER EL CURSOR  --------------------------------------------------------------------------->
+    // system("pause");
+
+    /// SONIDO
+    if (opcion == KEY_ENTER)
+    {
+        Beep(400, 80);
+    }
+    else if (opcion == KEY_ESC)
+    {
+        Beep(800, 80);
+    }
+    else
+    {
+        Beep(600, 80);
+    }
+
+    if (opcion == KEY_ESC)
+    {
+        return 0;
+    }
+
+    if (opcion == KEY_ENTER)
+    {
+        return 0;
+    }
+
+    if (opcion == KEY_UP)
+    {
+        if (cursor - 1 > 0)
+        {
+            cursor -= 1;
+        }
+    }
+
+    if (opcion == KEY_DOWN)
+    {
+        if (cursor + 1 <= cantidadOpciones)
+        {
+            cursor += 1;
+        }
+    }
+
+    if (opcion == KEY_LEFT)
+    {
+        if (cursor - 6 > 0)
+        {
+            cursor -= 6;
+        }
+    }
+
+    if (opcion == KEY_RIGHT)
+    {
+        if (cursor + 6 <= cantidadOpciones)
+        {
+            cursor += 6;
+        }
+    }
+
+    return historialComprasTodas(id, cursor);
+}
+
+void mostrarOpcionesVentaTodas(nodoVentaD *lista, int cursor)
+{
+    nodoVentaD *anterior;
+    int posicionY;
+    int posicionX;
+    int contPaginas = ceil(((float)cursor/6));
+
+    int i=  1 + ((contPaginas-1)*6);
+
+    int cantidadxColumna = 6;
+
+    int cantColumnas = 0;
+
+    /// esto ya deberia funcionar para navegar en el menu en todas las direcciones de no funcionar
+    /// hay que revisar en mostrar productos los if a ver si deberiamos poner +1 -1 en condiciones = <=
+
+    int tope = i + 5;
+
+    for(int i = 0; i < ((contPaginas-1)*6); i++)
+    {
+        lista = lista->siguiente;
+    }
+
+    while((lista != NULL)  && (i <= tope))
+    {
+        posicionY = 14 + 3 + i*2;
+
+        if((i-1) % 6 == 0 && i != 0)
+        {
+            cantColumnas++;
+        }
+
+        posicionX = 2;
+
+        if((cantColumnas % 2 != 0) )
+        {
+            posicionY -= (contPaginas * 12);
+        }
+
+        gotoxy(posicionX,posicionY);
+
+        if(i == cursor)
+        {
+            printf(" >>>> ");
+        }
+        else
+        {
+            printf("       ");
+        }
+
+        printf("%-21i %-12i %-20s %.0f", lista->dato.idVenta, lista->dato.idCliente,lista->dato.despachar.direccion, lista->dato.total);
+
+        //        gotoxy(0,0);
+        //        //printf("cantColumnas: %i i = %i",cantColumnas, i);
+        //        printf("posicionY: %i",posicion);
+        //        system("pause");
+
+        i++;
+        anterior = lista;
+        lista = lista->siguiente;
+    }
+}
+
+void cancelarVenta()
+{
+    int idVenta;
+
+    nodoVentaD* lista = inicListaDobleVenta();
+    lista = despersistirListaDobleVentasExitosas(lista);
+    // faltan las de despersistir usuario para poder modificarlo en ambos
+
+    system("cls");
+    ocultarCursor();
+    dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
+
+    gotoxy(7, 21);
+    printf("Mensaje de consola ...");
+    dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    centrarTexto("E-COMMERCE - CANCELAR VENTA", 2);
+
+    gotoxy(7,5);
+    printf("Introduzca el id de la venta:");
+    scanf("%i", &idVenta);
+
+    /// FUNCION QUE DA DE BAJA LA VENTA
+
+
+
+
+    gotoxy(7,21);
+    printf("Para salir presionar ESC");
+
+
+    int opcion = capturarTecla2();
+
+
+    if(opcion == KEY_ESC)
+    {
+        Beep(800,80);
+    }
+
+    if (opcion == KEY_ESC)
+    {
+        return 0;
+    }
+
+}
+
+
+void cancelarCompra(int id)
+{
+    int idVenta;
+
+    nodoVentaD* lista = inicListaDobleVenta();
+    lista = despersistirListaDobleVentasExitosas(lista);
+    // faltan las de despersistir usuario para poder modificarlo en ambos
+
+
+
+    system("cls");
+    ocultarCursor();
+    dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
+
+    gotoxy(70,2);
+    printf("ID: %i", id);
+    gotoxy(7, 21);
+    printf("Mensaje de consola ...");
+    dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    centrarTexto("E-COMMERCE - CANCELAR COMPRA", 2);
+
+    gotoxy(7,5);
+    printf("Introduzca el id de la compra:");
+    scanf("%i", &idVenta);
+
+    /// FUNCION QUE DA DE BAJA LA COMPRA
+
+
+
+
+    gotoxy(7,21);
+    printf("Para salir presionar ESC");
+
+
+    int opcion = capturarTecla2();
+
+
+    if(opcion == KEY_ESC)
+    {
+        Beep(800,80);
+    }
+
+    if (opcion == KEY_ESC)
+    {
+        return 0;
+    }
+
+}
