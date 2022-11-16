@@ -582,3 +582,141 @@
 	"UserLibs.h"
 	"carritoCompras.h"
 
+1668558721 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\carritocompras.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"UserLibs.h"
+	"carritoCompras.h"
+	"ventas.h"
+
+1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\userlibs.h
+	"productos.h"
+
+1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\productos.h
+
+1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\carritocompras.h
+	"productos.h"
+	"UserLibs.h"
+	"sistema.h"
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<math.h>
+
+1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\sistema.h
+
+1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\ventas.h
+	<stdio.h>
+	<stdlib.h>
+	"productos.h"
+	"UserLibs.h"
+	"carritoCompras.h"
+
+1668558721 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\loginalgoritmo.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"UserLibs.h"
+	"loginAlgoritmo.h"
+
+1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\loginalgoritmo.h
+
+1668559552 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuUsuario.h"
+	"menuAdmin.h"
+	"menuEnvios.h"
+	"menuProductos.h"
+	"menuUsuariosAdmin.h"
+	"productos.h"
+	"UserLibs.h"
+	"loginAlgoritmo.h"
+
+1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\menuusuario.h
+
+1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\menuadmin.h
+
+1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\menuenvios.h
+
+1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\menuproductos.h
+	"productos.h"
+
+1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\menuusuariosadmin.h
+
+1668558721 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\menuadmin.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuAdmin.h"
+	"menuUsuariosAdmin.h"
+	"menuEnvios.h"
+	"menuProductos.h"
+
+1668558721 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\menuenvios.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuEnvios.h"
+
+1668558721 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\menuproductos.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuProductos.h"
+
+1668558721 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\menuusuario.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"productos.h"
+	"menuUsuario.h"
+	"carritoCompras.h"
+
+1668558721 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\menuusuariosadmin.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+	"menuUsuariosAdmin.h"
+	"UserLibs.h"
+
+1668558721 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\productos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<time.h>
+	<stdbool.h>
+	"productos.h"
+
+1668558721 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\sistema.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"sistema.h"
+
+1668559573 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\userlibs.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<time.h>
+	<stdbool.h>
+	"carritoCompras.h"
+	"UserLibs.h"
+
+1668559630 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\ventas.c
+	"productos.h"
+	"UserLibs.h"
+	"carritoCompras.h"
+	"ventas.h"
+

@@ -1347,7 +1347,7 @@ void mostrarOpcionesVenta(nodoVentaD *lista, int cursor)
             printf("       ");
         }
 
-        printf("%-21i %-15i %-15.0f %.0f", lista->dato.idVenta, lista->dato.estadoEnvio, lista->dato.total, lista->dato.despachar.direccion);
+        printf("%-21i %-12.0f %-22s %.0f", lista->dato.idVenta, lista->dato.total, lista->dato.despachar.direccion, lista->dato.estadoEnvio);
 
         //        gotoxy(0,0);
         //        //printf("cantColumnas: %i i = %i",cantColumnas, i);
@@ -1518,7 +1518,7 @@ void mostrarOpcionesVentaTodas(nodoVentaD *lista, int cursor)
             printf("       ");
         }
 
-        printf("%-21i %-15i %-15.0f %.0f", lista->dato.idVenta, lista->dato.idCliente, lista->dato.total, lista->dato.despachar.direccion);
+        printf("%-21i %-12i %-20s %.0f", lista->dato.idVenta, lista->dato.idCliente,lista->dato.despachar.direccion, lista->dato.total);
 
         //        gotoxy(0,0);
         //        //printf("cantColumnas: %i i = %i",cantColumnas, i);

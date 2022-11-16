@@ -108,9 +108,7 @@ void persistirCompraEnUsuarioyVentas(int idUsuario, int idVenta)
                 aux.compras[aux.validosCompras].idVenta = idVenta;
                 aux.compras[aux.validosCompras].total = total;
                 aux.validosCarrito = 0;
-
-                pedirDatosEnvio(aux.compras[aux.validosCompras].despachar);
-
+                aux.compras[aux.validosCompras].despachar = pedirDatosEnvio(aux.compras[aux.validosCompras].despachar);
                 cursor = aux.compras[aux.validosCompras];
                 aux.validosCompras += 1;
 
@@ -252,7 +250,7 @@ int generarIdVenta()
 {
     FILE *bufferVentas = fopen(archivoVentas, "rb");
     venta Aux;
-    int id = 0;
+    int id = 1;
 
     if (bufferVentas)
     {
