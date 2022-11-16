@@ -42,19 +42,13 @@ int verificarSaldo(float saldo, float gasto)
 /// FUNCION 3 QUE SE INVOCA PARA GENRAR LA COMPRA
 void compraConfirmada(usuario deseado, float gasto)
 {
-    system("cls");
-    printf("DEBUG\n");
-    system("pause");
+
     /// se descuenta el saldo del usuario.
     descontarSaldoAuxiliar(deseado, gasto);
     int idVenta = generarIdVenta();
     /// pasa la subventa a venta. pide datos de envio/// guarda en el archivo usuario. reinicia los validos de subVentas.
     //descontarLoDelCarrito(deseado);
     persistirCompraEnUsuarioyVentas(deseado, idVenta);
-
-    system("cls");
-    printf("/-/-/-/-/-/-/-/-/-/-/-\n");
-    system("pause");
 }
 
 /// FUNCION 4 QUE SE INVOCA PARA GENERAR LA COMPRA
@@ -289,22 +283,40 @@ venta buscarUnaVentaEnArray(usuario A, int idVenta)
 
 destino pedirDatosEnvio(destino Aux)
 {
+    system("cls");
+    dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
 
-    printf("\nIngrese el pais de destino: \n");
+    centrarTexto("E-COMMERCE - DIRECCION DE ENVIO",2);
+    dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    gotoxy(7,21);
+    printf("Mensaje de consola ...");
+
+    gotoxy(7,5);
+    printf("Ingrese el pais de destino: ");
     fflush(stdin);
     gets(Aux.pais);
 
-    printf("\nIngrese la provincia: \n");
+    gotoxy(7,7);
+    printf("Ingrese la provincia: ");
     fflush(stdin);
     gets(Aux.provincia);
 
-    printf("\nIngrese la ciudad: \n");
+    gotoxy(7,9);
+    printf("Ingrese la ciudad: ");
     fflush(stdin);
     gets(Aux.ciudad);
 
-    printf("\nIngrese la direccion: \n");
+    gotoxy(7,11);
+    printf("Ingrese la direccion: ");
     fflush(stdin);
     gets(Aux.direccion);
+
+    gotoxy(7,21);
+    printf("                                     ");
+    gotoxy(7,21);
+    printf("Has realizado tu compra con exito!");
+    sleep(1);
 
     return Aux;
 }

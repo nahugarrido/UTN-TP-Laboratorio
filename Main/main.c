@@ -24,12 +24,11 @@ int main()
         int id = 0;
         //id = login(1);
         /// TESTEAR SIN PASAR POR EL LOGIN
-        id = 1;
+        //id = 1;
 
-        int opcion, opcion2;
+        int opcion;
 
         nodoArbolUsuario* arbol;
-
         arbol = inicArbol();
         arbol = leerArchivo(arbol);
 

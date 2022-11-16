@@ -124,11 +124,7 @@ int contadorRegistros()
     {
         while (fread(&Aux, sizeof(usuario), 1, buffer) > 0)
         {
-
-            if (Aux.admin == 0)
-            {
                 cant++;
-            }
         }
         fclose(buffer);
     }
@@ -1186,7 +1182,11 @@ int contarOpcionesVentas(nodoVentaD *lista)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int historialComprasId(usuario aux, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
 {
-    /// CON PILAS PERO EXPLOTA A LA QUINTA RECURSION (?
+/// ESTA FUNCION FALLA CON LA RECURSIVIDAD AL INVOCARSE 5 VECES
+//    gotoxy(0,0);
+//    printf("aux username: %s aux idcliente: %i, cursor: %i", aux.username, aux.idCliente, cursor);
+//    system("pause");
+
     system("cls");
     Pila PILITA;
     inicPila(&PILITA);
@@ -1308,9 +1308,11 @@ int historialComprasId(usuario aux, int cursor) /// cursor es donde esta parado 
             cursor += 6;
         }
     }
-    gotoxy(0,0);
-    printf("aux username: %s aux idcliente: %i, cursor: %i", aux.username, aux.idCliente, cursor);
-    system("pause");
+
+//    gotoxy(0,1);
+//    printf("aux username: %s aux idcliente: %i, cursor: %i", aux.username, aux.idCliente, cursor);
+//    system("pause");
+
     return historialComprasId(aux, cursor);
 }
 
