@@ -54,24 +54,28 @@ void generarCompra(int idUsuario, float gasto)
     if (verificarSaldo(deseado.saldo, gasto) == 1)
     {
         /// descuenta del saldo.
-        /// descuenta del stock de los productos.
+        usuario salvador = BuscarUsuario(idUsuario);
         /// persiste en archivos de  usuario.
         compraConfirmada(idUsuario, gasto);
+
+        descontarLoDelCarrito(salvador);
     }
 }
 
-void compraConfirmada(int id, float gasto)
+void compraConfirmada(int idUsuario, float gasto)
 {
 
-    usuario deseado = BuscarUsuario(id);
-
-    descontarSaldoAuxiliar(deseado.idCliente, gasto); /// se descuenta el saldo del usuario.
-    //descontarLoDelCarrito(deseado); /// se descuenta el stock del archivo productos.
+    usuario deseado = BuscarUsuario(idUsuario);
+    usuario salvador = deseado;
+    /// se descuenta el saldo del usuario.
+    descontarSaldoAuxiliar(deseado.idCliente, gasto);
     int idVenta = generarIdVenta();
-    system("cls");
-    persistirCompraEnUsuarioyVentas(id, idVenta); /// pasa la subventa a venta. pide datos de envio/// guarda en el archivo usuario. reinicia los validos de subVentas.
-    system("pause");
+    /// pasa la subventa a venta. pide datos de envio/// guarda en el archivo usuario. reinicia los validos de subVentas.
+    persistirCompraEnUsuarioyVentas(deseado.idCliente, idVenta);
 
+    system("cls");
+    printf("/-/-/-/-/-/-/-/-/-/-/-\n");
+    system("pause");
 }
 
 void persistirCompraEnUsuarioyVentas(int idUsuario, int idVenta)
@@ -123,15 +127,11 @@ void persistirCompraEnUsuarioyVentas(int idUsuario, int idVenta)
 
 void descontarLoDelCarrito(usuario A)
 {
-         system("cls");
-          printf("HOLA\n");
-          system("pause");
-    /*for (int i = 0; i < A.validosCarrito; i++)
+
+    for (int i = 0; i < A.validosCarrito; i++)
     {
-
-
-        // descontarStock(A.carrito[i].dato.nombre, A.carrito[i].cantidad);
-    }*/
+        descontarStock(A.carrito[i].dato.nombre, A.carrito[i].cantidad);
+    }
 }
 
 /// PRODUCTOS
@@ -154,7 +154,6 @@ void descontarStock(char aDescontar[], int cantidad)
             {
                 fseek(buffer, sizeof(producto) * (-1), SEEK_CUR);
                 Aux.cantidad = (Aux.cantidad - cantidad);
-                //mostrarProducto(Aux);
                 fwrite(&Aux, sizeof(producto), 1, buffer);
                 flag = 1;
                 fclose(buffer);
