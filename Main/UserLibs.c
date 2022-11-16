@@ -362,18 +362,22 @@ usuario BuscarUnClientePorID(int IdUsuario)
 {
     FILE *buffer = fopen(archivoUsuarios, "rb");
     usuario Aux;
+
+
+
     int flag = VerificarPorID(IdUsuario);
 
-    while ((fread(&Aux, sizeof(usuario), 1, buffer) > 0) && flag == 1)
+    if(buffer != NULL)
     {
-        if (Aux.idCliente == IdUsuario)
+        while ((fread(&Aux, sizeof(usuario), 1, buffer) > 0) && flag == 1)
         {
-
-            flag = 0;
-            fclose(buffer);
+            if (Aux.idCliente == IdUsuario)
+            {
+                flag = 0;
+                fclose(buffer);
+            }
         }
     }
-
     return Aux;
 }
 
@@ -382,13 +386,16 @@ int VerificarPorID(int IdCliente)
     FILE *buffer = fopen(archivoUsuarios, "rb");
     usuario Aux;
     int flag = 0;
-    while ((fread(&Aux, sizeof(usuario), 1, buffer) > 0) && flag == 0)
+    if(buffer != NULL)
     {
-        if (Aux.idCliente == IdCliente)
+        while ((fread(&Aux, sizeof(usuario), 1, buffer) > 0) && flag == 0)
         {
+            if (Aux.idCliente == IdCliente)
+            {
 
-            flag = 1;
-            fclose(buffer);
+                flag = 1;
+                fclose(buffer);
+            }
         }
     }
 
@@ -1177,12 +1184,10 @@ int contarOpcionesVentas(nodoVentaD *lista)
 
 /// MOSTRAR HISTORIAL DE VENTAS
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int historialComprasId(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
+int historialComprasId(usuario aux, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
 {
-
-    system("cls");
     /// CON PILAS PERO EXPLOTA A LA QUINTA RECURSION (?
-    usuario aux = BuscarUnClientePorID(id);
+    system("cls");
     Pila PILITA;
     inicPila(&PILITA);
     venta aux3;
@@ -1198,7 +1203,6 @@ int historialComprasId(int id, int cursor) /// cursor es donde esta parado el >>
     {
         aux3 = desapilar(&PILITA);
         nodoVentaD* aux2 = crearNodoDobleVenta(aux3);
-        printf("%i   ", aux2->dato.idVenta);
         lista = agregarAlFinalDobleVenta(lista,aux2);
     }
 
@@ -1220,7 +1224,7 @@ int historialComprasId(int id, int cursor) /// cursor es donde esta parado el >>
     centrarTexto("E-COMMERCE - HISTORIAL DE COMPRAS", 2);
 
     gotoxy(70, 2);
-    printf("ID: %i", id);
+    printf("ID: %i", aux.idCliente);
 
     /// TABLA HEADERS DE E-COMMERCE STOCK
     gotoxy(9,5);
@@ -1304,8 +1308,10 @@ int historialComprasId(int id, int cursor) /// cursor es donde esta parado el >>
             cursor += 6;
         }
     }
-
-    return historialComprasId(id, cursor);
+    gotoxy(0,0);
+    printf("aux username: %s aux idcliente: %i, cursor: %i", aux.username, aux.idCliente, cursor);
+    system("pause");
+    return historialComprasId(aux, cursor);
 }
 
 void mostrarOpcionesVenta(nodoVentaD *lista, int cursor)

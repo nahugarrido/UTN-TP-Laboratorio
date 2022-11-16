@@ -6,12 +6,12 @@
 #define archivoVentas "Ventas.dat"
 ///////////
 /// PROTOTIPADOS  DE LA FUNCION GENERAR COMPRA. ///
-void descontarSaldoAuxiliar(int idUsuario, float gasto);
+void descontarSaldoAuxiliar(usuario deseado, float gasto);
 int verificarSaldo(float saldo, float gasto);
 void generarCompra(int idUsuario, float gasto);
-void compraConfirmada(int id, float gasto);
+void compraConfirmada(usuario deseado, float gasto);
 void compraComfirmadaAuxiliar(usuario deseado, float gasto, int idVenta);
-void persistirCompraEnUsuarioyVentas(int idUsuario, int idVenta);
+void persistirCompraEnUsuarioyVentas(usuario deseado, int idVenta);
 void descontarLoDelCarrito(usuario A);
 void descontarStock(char aDescontar[100], int cantidad);
 void cambiarEstadoSubVenta(char nombreProducto[], int idUsuario);

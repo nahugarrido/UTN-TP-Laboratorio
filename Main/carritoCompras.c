@@ -82,6 +82,7 @@ usuario BuscarUsuario(int idCliente)
     usuario Deseado;
 
     FILE *bufferUsuarios = fopen(ArchivoUsuarios, "rb");
+
     if (bufferUsuarios != NULL)
     {
         while ((fread(&Aux, sizeof(usuario), 1, bufferUsuarios) > 0) && flagUsuarios == 0)
@@ -224,7 +225,6 @@ nodoListaDSubVenta *agregarAlFinalDSubVenta(nodoListaDSubVenta *lista, nodoLista
 
 int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
 {
-
     system("cls");
     nodoListaDSubVenta *lista = inicListaDSubVenta();
     lista = despersistirListaDSubVenta(lista);
@@ -300,6 +300,7 @@ int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>>
     if ((opcion == KEY_S) || (opcion == KEY_s))
     {
         generarCompra(id,888); /// en el numero iria el total de gasto de la factura.
+    }
 
     if (opcion == KEY_UP)
     {

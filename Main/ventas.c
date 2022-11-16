@@ -6,12 +6,62 @@
 #define ArchProductos "Stock.dat"
 #include "ventas.h"
 
-void descontarSaldoAuxiliar(int idUsuario, float gasto)
+/// FUNCION 1 QUE SE INVOCA PARA GENERAR LA COMPRA
+void generarCompra(int idUsuario, float gasto)
+{
+
+    usuario deseado = BuscarUsuario(idUsuario);
+
+    if (verificarSaldo(deseado.saldo, gasto) == 0)
+    {
+        gotoxy(7, 21);
+        printf("Saldo insuficiente, elimine un producto de su carrito. \n");
+    }
+
+    if (verificarSaldo(deseado.saldo, gasto) == 1)
+    {
+        /// descuenta del saldo.
+        /// persiste en archivos de  usuario.
+        compraConfirmada(deseado, gasto);
+        descontarLoDelCarrito(deseado);
+    }
+}
+
+/// FUNCION 2 QUE SE INVOCA PARA GENERAR LA COMPRA
+int verificarSaldo(float saldo, float gasto)
+{
+    int flag = 0;
+
+    if (saldo >= gasto)
+    {
+        flag = 1;
+    }
+    return flag;
+}
+
+/// FUNCION 3 QUE SE INVOCA PARA GENRAR LA COMPRA
+void compraConfirmada(usuario deseado, float gasto)
+{
+    system("cls");
+    printf("DEBUG\n");
+    system("pause");
+    /// se descuenta el saldo del usuario.
+    descontarSaldoAuxiliar(deseado, gasto);
+    int idVenta = generarIdVenta();
+    /// pasa la subventa a venta. pide datos de envio/// guarda en el archivo usuario. reinicia los validos de subVentas.
+    //descontarLoDelCarrito(deseado);
+    persistirCompraEnUsuarioyVentas(deseado, idVenta);
+
+    system("cls");
+    printf("/-/-/-/-/-/-/-/-/-/-/-\n");
+    system("pause");
+}
+
+/// FUNCION 4 QUE SE INVOCA PARA GENERAR LA COMPRA
+void descontarSaldoAuxiliar(usuario deseado, float gasto)
 {
 
     usuario aux;
-
-    usuario deseado = BuscarUsuario(idUsuario);
 
     FILE *bufferUsuario = fopen(ArchivoUsuarios, "r+b");
 
@@ -30,59 +80,8 @@ void descontarSaldoAuxiliar(int idUsuario, float gasto)
     }
 }
 
-int verificarSaldo(float saldo, float gasto)
+void persistirCompraEnUsuarioyVentas(usuario deseado, int idVenta)
 {
-    int flag = 0;
-
-    if (saldo >= gasto)
-    {
-        flag = 1;
-    }
-    return flag;
-}
-
-void generarCompra(int idUsuario, float gasto)
-{
-
-    usuario deseado = BuscarUsuario(idUsuario);
-    while (verificarSaldo(deseado.saldo, gasto) == 0)
-    {
-        gotoxy(7, 21);
-        printf("Saldo insuficiente, elimine un producto de su carrito. \n");
-    }
-
-    if (verificarSaldo(deseado.saldo, gasto) == 1)
-    {
-        /// descuenta del saldo.
-        usuario salvador = BuscarUsuario(idUsuario);
-        /// persiste en archivos de  usuario.
-        compraConfirmada(idUsuario, gasto);
-
-        descontarLoDelCarrito(salvador);
-    }
-}
-
-void compraConfirmada(int idUsuario, float gasto)
-{
-
-    usuario deseado = BuscarUsuario(idUsuario);
-    usuario salvador = deseado;
-    /// se descuenta el saldo del usuario.
-    descontarSaldoAuxiliar(deseado.idCliente, gasto);
-    int idVenta = generarIdVenta();
-    /// pasa la subventa a venta. pide datos de envio/// guarda en el archivo usuario. reinicia los validos de subVentas.
-    persistirCompraEnUsuarioyVentas(deseado.idCliente, idVenta);
-
-    system("cls");
-    printf("/-/-/-/-/-/-/-/-/-/-/-\n");
-    system("pause");
-}
-
-void persistirCompraEnUsuarioyVentas(int idUsuario, int idVenta)
-{
-
-    usuario deseado = BuscarUsuario(idUsuario);
-
     usuario aux;
 
     venta cursor;
@@ -108,7 +107,7 @@ void persistirCompraEnUsuarioyVentas(int idUsuario, int idVenta)
                 }
                 aux.compras[aux.validosCompras].estadoEnvio = 0;
                 aux.compras[aux.validosCompras].estadoVenta = 0;
-                aux.compras[aux.validosCompras].idCliente = idUsuario;
+                aux.compras[aux.validosCompras].idCliente = deseado.idCliente;
                 aux.compras[aux.validosCompras].idVenta = idVenta;
                 aux.compras[aux.validosCompras].total = total;
                 aux.validosCarrito = 0;
@@ -153,8 +152,11 @@ void descontarStock(char aDescontar[], int cantidad)
             if (0 == strcmpi(Aux.nombre, aDescontar))
             {
                 fseek(buffer, sizeof(producto) * (-1), SEEK_CUR);
-                Aux.cantidad = (Aux.cantidad - cantidad);
+//                Aux.cantidad = (Aux.cantidad - cantidad);
+                Aux.cantidad -= cantidad;
                 fwrite(&Aux, sizeof(producto), 1, buffer);
+                gotoxy(10,10);
+                printf("Producto a descontar: %s cantidad: %i",Aux.nombre, Aux.cantidad);
                 flag = 1;
                 fclose(buffer);
             }

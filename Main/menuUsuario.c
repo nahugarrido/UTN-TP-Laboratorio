@@ -115,6 +115,7 @@ void switchUsuario(int id, int opcion)
     int mostrar = 1;
     int categoria = 0;
     int cursor = 1;
+    usuario aux = BuscarUnClientePorID(id);
 
     switch(opcion)
     {
@@ -186,7 +187,7 @@ void switchUsuario(int id, int opcion)
     case 5:
         do
         {
-            mostrar = historialComprasId(id,1);
+            mostrar = historialComprasId(aux,1);
             if(mostrar != 0)
             {
                 break;
