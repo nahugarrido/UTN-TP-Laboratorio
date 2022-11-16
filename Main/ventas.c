@@ -49,7 +49,7 @@ void compraConfirmada(usuario deseado, float gasto)
     ;
     /// pasa la subventa a venta. pide datos de envio/// guarda en el archivo usuario. reinicia los validos de subVentas.
     // descontarLoDelCarrito(deseado);
-    persistirCompraEnUsuarioyVentas(deseado, idVenta);
+    persistirCompraEnUsuarioyVentas(deseado, idVenta, gasto);
 }
 
 /// FUNCION 4 QUE SE INVOCA PARA GENERAR LA COMPRA
@@ -75,7 +75,7 @@ void descontarSaldoAuxiliar(usuario deseado, float gasto)
     }
 }
 
-void persistirCompraEnUsuarioyVentas(usuario deseado, int idVenta)
+void persistirCompraEnUsuarioyVentas(usuario deseado, int idVenta, float gasto)
 {
     usuario aux;
 
@@ -98,13 +98,13 @@ void persistirCompraEnUsuarioyVentas(usuario deseado, int idVenta)
                 for (int i = 0; i < aux.validosCarrito; i++)
                 {
                     aux.carrito[i] = aux.compras[aux.validosCompras].arreglo[i];
-                    total += aux.carrito[i].subtotal;
+                    total += (aux.carrito[i].subtotal * aux.carrito[i].cantidad);
                 }
                 aux.compras[aux.validosCompras].estadoEnvio = 0;
                 aux.compras[aux.validosCompras].estadoVenta = 0;
                 aux.compras[aux.validosCompras].idCliente = deseado.idCliente;
                 aux.compras[aux.validosCompras].idVenta = idVenta;
-                aux.compras[aux.validosCompras].total = total;
+                aux.compras[aux.validosCompras].total = gasto;
                 aux.validosCarrito = 0;
                 aux.compras[aux.validosCompras].despachar = pedirDatosEnvio(aux.compras[aux.validosCompras].despachar);
                 cursor = aux.compras[aux.validosCompras];
@@ -284,37 +284,37 @@ venta buscarUnaVentaEnArray(usuario A, int idVenta)
 destino pedirDatosEnvio(destino Aux)
 {
     system("cls");
-    dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL
-    dibujarCuadro(1,1,78,3); //SE DIBUJA EL CUADRO DEL TITULO
+    dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
+    dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
 
-    centrarTexto("E-COMMERCE - DIRECCION DE ENVIO",2);
-    dibujarCuadro(1,19,78,23); //SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
-    gotoxy(7,21);
+    centrarTexto("E-COMMERCE - DIRECCION DE ENVIO", 2);
+    dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
+    gotoxy(7, 21);
     printf("Mensaje de consola ...");
 
-    gotoxy(7,5);
+    gotoxy(7, 5);
     printf("Ingrese el pais de destino: ");
     fflush(stdin);
     gets(Aux.pais);
 
-    gotoxy(7,7);
+    gotoxy(7, 7);
     printf("Ingrese la provincia: ");
     fflush(stdin);
     gets(Aux.provincia);
 
-    gotoxy(7,9);
+    gotoxy(7, 9);
     printf("Ingrese la ciudad: ");
     fflush(stdin);
     gets(Aux.ciudad);
 
-    gotoxy(7,11);
+    gotoxy(7, 11);
     printf("Ingrese la direccion: ");
     fflush(stdin);
     gets(Aux.direccion);
 
-    gotoxy(7,21);
+    gotoxy(7, 21);
     printf("                                     ");
-    gotoxy(7,21);
+    gotoxy(7, 21);
     printf("Has realizado tu compra con exito!");
     sleep(1);
 
@@ -332,11 +332,11 @@ nodoVentaD *despersistirListaDobleVentasExitosas(nodoVentaD *lista)
     {
         while (fread(&aux, sizeof(venta), 1, ptr) > 0)
         {
-/// TESTEAR VENTA
-//        gotoxy(10,10);
-//        printf("%i ",aux.idVenta);
-//        gotoxy(10,11);
-//        system("pause");
+            /// TESTEAR VENTA
+            //        gotoxy(10,10);
+            //        printf("%i ",aux.idVenta);
+            //        gotoxy(10,11);
+            //        system("pause");
             if (aux.estadoVenta == 0)
             {
                 aux2 = crearNodoDobleVenta(aux);

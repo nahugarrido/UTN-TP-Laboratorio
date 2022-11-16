@@ -39,9 +39,11 @@ void agregarAlCarrito(int idCliente, int cantidadProductos, producto Dato)
                 Aux.carrito[Aux.validosCarrito].dato = Dato;
                 Aux.carrito[Aux.validosCarrito].cantidad = cantidadProductos;
                 Aux.carrito[Aux.validosCarrito].subtotal = subtotal;
-                //                gotoxy(10,14);
-                //                printf("AUX USUARIO: %s VALIDOS CARRITO: %i\n", Aux.username, Aux.validosCarrito);
-                //                printf("DATOS DEL AUX: PRODUCTO: %s CANTIDAD: %i SUBTOTAL: %f", Aux.carrito[Aux.validosCarrito].dato.nombre,Aux.carrito[Aux.validosCarrito].cantidad, Aux.carrito[Aux.validosCarrito].subtotal);
+                gotoxy(10, 14);
+                system("cls");
+                printf("AUX USUARIO: %s VALIDOS CARRITO: %i\n", Aux.username, Aux.validosCarrito);
+                printf("DATOS DEL AUX: PRODUCTO: %s CANTIDAD: %i SUBTOTAL: %f \n", Aux.carrito[Aux.validosCarrito].dato.nombre, Aux.carrito[Aux.validosCarrito].cantidad, Aux.carrito[Aux.validosCarrito].subtotal);
+                system("pause");
                 Aux.validosCarrito = (Aux.validosCarrito + 1);
                 fwrite(&Aux, sizeof(usuario), 1, bufferUsuarios);
                 fclose(bufferUsuarios);
@@ -488,7 +490,7 @@ float calcularSubTotal(int idUsuario)
 
     for (int i = 0; i < A.validosCarrito; i++)
     {
-        subtotal += (A.carrito[i].cantidad * A.carrito[i].subtotal);
+        subtotal += (A.carrito[i].subtotal);
     }
 
     return subtotal;
