@@ -10,6 +10,7 @@ void descontarSaldoAuxiliar(int idUsuario, float gasto);
 int verificarSaldo(float saldo, float gasto);
 void generarCompra(int idUsuario, float gasto);
 void compraConfirmada(int id, float gasto);
+void compraComfirmadaAuxiliar(usuario deseado, float gasto, int idVenta);
 void persistirCompraEnUsuarioyVentas(int idUsuario, int idVenta);
 void descontarLoDelCarrito(usuario A);
 void descontarStock(char aDescontar[100], int cantidad);
@@ -22,3 +23,6 @@ venta buscarUnaVentaEnArray(usuario A, int idVenta);
 destino pedirDatosEnvio(destino Aux);
 /// PROTOTIPADOS LISTA DOBLE DE VENTAS;
 nodoVentaD *despersistirListaDobleVentasExitosas(nodoVentaD *lista);
+
+// salvador=usuario salvador;
+// descontarLoDelCarrito(salvador);

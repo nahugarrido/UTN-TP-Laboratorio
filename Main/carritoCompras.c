@@ -300,7 +300,7 @@ int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>>
     if ((opcion == KEY_S) || (opcion == KEY_s))
     {
         generarCompra(id,888); /// en el numero iria el total de gasto de la factura.
-    }
+
     if (opcion == KEY_UP)
     {
         if (cursor - 1 > 0)
@@ -471,4 +471,3 @@ int capturarTeclaCarrito()
 
     return opcion;
 }
-
