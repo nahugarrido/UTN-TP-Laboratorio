@@ -115,10 +115,13 @@ void switchEnvios(int id, int opcion)
     switch(opcion)
     {
     case 1:
+        mensajeTrabajando();
         break;
     case 2:
+        mensajeTrabajando();
         break;
     case 3:
+        mensajeTrabajando();
         break;
     case 4:
         return 0;
@@ -126,4 +129,13 @@ void switchEnvios(int id, int opcion)
     default:
         break;
     }
+}
+
+void mensajeTrabajando()
+{
+    gotoxy(7,21);
+    printf("Ups... Estamos trabajando en ello...");
+    sleep(2);
+    gotoxy(7,21);
+    printf("                                        ");
 }

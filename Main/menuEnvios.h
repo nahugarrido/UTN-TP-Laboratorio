@@ -8,3 +8,4 @@
 int menuEnvios(int id, int cursor);
 void mostrarOpcionesEnvios(int cantidadOpciones,opciones arreglo[], int cursor);
 void switchEnvios(int id, int opcion);
+void mensajeTrabajando();
