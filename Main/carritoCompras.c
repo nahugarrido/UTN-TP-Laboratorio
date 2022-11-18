@@ -39,9 +39,11 @@ void agregarAlCarrito(int idCliente, int cantidadProductos, producto Dato)
                 Aux.carrito[Aux.validosCarrito].dato = Dato;
                 Aux.carrito[Aux.validosCarrito].cantidad = cantidadProductos;
                 Aux.carrito[Aux.validosCarrito].subtotal = subtotal;
-                //                gotoxy(10,14);
-                //                printf("AUX USUARIO: %s VALIDOS CARRITO: %i\n", Aux.username, Aux.validosCarrito);
-                //                printf("DATOS DEL AUX: PRODUCTO: %s CANTIDAD: %i SUBTOTAL: %f", Aux.carrito[Aux.validosCarrito].dato.nombre,Aux.carrito[Aux.validosCarrito].cantidad, Aux.carrito[Aux.validosCarrito].subtotal);
+                gotoxy(10, 14);
+                system("cls");
+                printf("AUX USUARIO: %s VALIDOS CARRITO: %i\n", Aux.username, Aux.validosCarrito);
+                printf("DATOS DEL AUX: PRODUCTO: %s CANTIDAD: %i SUBTOTAL: %f \n", Aux.carrito[Aux.validosCarrito].dato.nombre, Aux.carrito[Aux.validosCarrito].cantidad, Aux.carrito[Aux.validosCarrito].subtotal);
+                system("pause");
                 Aux.validosCarrito = (Aux.validosCarrito + 1);
                 fwrite(&Aux, sizeof(usuario), 1, bufferUsuarios);
                 fclose(bufferUsuarios);
@@ -131,7 +133,7 @@ void showArray(usuario A)
 
 /// NODOCARRITO
 
-nodoListaDSubVenta *despersistirListaDSubVenta(nodoListaDSubVenta *lista)
+nodoListaDSubVenta *despersistirListaDSubVenta(nodoListaDSubVenta *lista, int id)
 {
     FILE *ptr = fopen(ArchivoUsuarios, "rb");
 
@@ -143,7 +145,10 @@ nodoListaDSubVenta *despersistirListaDSubVenta(nodoListaDSubVenta *lista)
     {
         while (fread(&aux, sizeof(usuario), 1, ptr) > 0)
         {
+            if(aux.idCliente == id)
+            {
             lista = obtenerSubVenta(aux, lista);
+            }
         }
         fclose(ptr);
     }
@@ -230,7 +235,7 @@ int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>>
 {
     system("cls");
     nodoListaDSubVenta *lista = inicListaDSubVenta();
-    lista = despersistirListaDSubVenta(lista);
+    lista = despersistirListaDSubVenta(lista, id);
 
     dibujarCuadro(0, 0, 79, 24); // SE DIBUJA EL CUADRO PRINCIPAL
     dibujarCuadro(1, 1, 78, 3);  // SE DIBUJA EL CUADRO DEL TITULO
@@ -302,7 +307,15 @@ int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>>
 
     if ((opcion == KEY_S) || (opcion == KEY_s))
     {
+        if(lista != NULL)
+        {
         generarCompra(id, subtotal); /// en el numero iria el total de gasto de la factura.
+        }
+        else
+        {
+            gotoxy(9, 7);
+            printf("lista vacia");
+        }
     }
 
     if (opcion == KEY_UP)
@@ -488,7 +501,7 @@ float calcularSubTotal(int idUsuario)
 
     for (int i = 0; i < A.validosCarrito; i++)
     {
-        subtotal += (A.carrito[i].cantidad * A.carrito[i].subtotal);
+        subtotal += (A.carrito[i].subtotal);
     }
 
     return subtotal;

@@ -126,7 +126,6 @@ void animacionPassword(char* password[])
     {
         if(caracter == KEY_ENTER)
         {
-            password2[i] = '\n';
             strcpy(password,password2);
             break;
         }
@@ -161,14 +160,13 @@ int verificacionLogin(char usuario[], char password[])
 
 int buscarPorUsuario(nodoArbolUsuario* arbol, char usuario[], char password[])
 {
+
     int respuesta = -1;
     if(arbol != NULL)
     {
-        if(strcmpi(arbol->dato.username, usuario) == 0 && strcmpi(arbol->dato.password, password))
+        if((strcmpi(arbol->dato.username, usuario) == 0) && (strcmpi(arbol->dato.password, password) == 0))
         {
-//       printf("\nENCONTRADO CON EXITO");
-//       printf("\nDNI: %i\n", arbol->dato.idCliente);
-            respuesta = arbol->dato.idCliente;
+                respuesta = arbol->dato.idCliente;
         }
         else
         {

@@ -30,7 +30,7 @@ void mostrarsubVentaCorto(subVenta nombre);
 int mostrarsubVentas(int id, int cursor);
 void mostrarOpcionesCarrito(nodoListaDSubVenta *lista, int cursor);
 nodoListaDSubVenta *obtenerListaDSubVentas(nodoListaDSubVenta *lista);
-nodoListaDSubVenta *despersistirListaDSubVenta(nodoListaDSubVenta *lista);
+nodoListaDSubVenta *despersistirListaDSubVenta(nodoListaDSubVenta *lista, int id);
 nodoListaDSubVenta *obtenerSubVenta(usuario A, nodoListaDSubVenta *lista);
 usuario BuscarUsuario(int idCliente);
 producto ObtenerProducto(producto dato);

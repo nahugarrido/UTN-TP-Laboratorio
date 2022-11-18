@@ -589,6 +589,7 @@ int mostrarUsuarios(int id, int cursor) /// cursor es donde esta parado el >>>> 
     printf("ID: %i", id);
 
     /// MUESTRA LAS OPCIONES
+    gotoxy(7,5);
     int cantidadOpciones = contarOpcionesusuarios(lista);
     // printf("\ncantidadOpciones: %i", cantidadOpciones);
     // system("pause");
