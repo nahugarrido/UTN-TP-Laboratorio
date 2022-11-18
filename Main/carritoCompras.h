@@ -35,9 +35,8 @@ nodoListaDSubVenta *obtenerSubVenta(usuario A, nodoListaDSubVenta *lista);
 usuario BuscarUsuario(int idCliente);
 producto ObtenerProducto(producto dato);
 void verificarStockParaAgregarAlCarrito(int cantidadProductos, int idCliente, producto Dato);
-//int sumarIgualesDelCarrito(int cantidad, producto Dato, int idCliente);
-///
 int contarOpcionessubVentas(nodoListaDSubVenta *lista);
 int mostrarsubVentas(int id, int cursor);
 int capturarTeclaCarrito();
 void suma();
+void cancelarCompra(int idUsuario);

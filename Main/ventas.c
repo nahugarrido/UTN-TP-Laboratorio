@@ -105,6 +105,7 @@ void persistirCompraEnUsuarioyVentas(usuario deseado, int idVenta, float gasto)
                 aux.compras[aux.validosCompras].idCliente = deseado.idCliente;
                 aux.compras[aux.validosCompras].idVenta = idVenta;
                 aux.compras[aux.validosCompras].total = gasto;
+                aux.saldo -= gasto;
                 aux.validosCarrito = 0;
                 aux.compras[aux.validosCompras].despachar = pedirDatosEnvio(aux.compras[aux.validosCompras].despachar);
                 cursor = aux.compras[aux.validosCompras];

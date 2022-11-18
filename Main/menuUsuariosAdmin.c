@@ -118,23 +118,23 @@ void switchUsuariosAdmin(int id, int opcion)
     case 1:
         do
         {
-        mostrar = mostrarUsuarios(id,1);
+            mostrar = mostrarUsuarios(id,1);
 
-        if(mostrar != 0)
-        {
-             mostrarUnUsuario(mostrar);
+            if(mostrar != 0)
+            {
+                mostrarUnUsuario(mostrar);
+            }
         }
-        } while(mostrar != 0);
-        //showArchiveClientes();
+        while(mostrar != 0);
         break;
     case 2:
-            verInformacionUsuarioID();
+        verInformacionUsuarioID();
         break;
     case 3:
-            AltaUsuario();
+        AltaUsuario();
         break;
     case 4:
-            modificarClienteMenu();
+        modificarClienteMenu();
         break;
     case 5:
         modificarEstadoClienteMenu();

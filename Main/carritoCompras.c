@@ -5,6 +5,8 @@
 #define KEY_DOWN 80 + 256
 #define KEY_ENTER 13
 #define KEY_ESC 27
+#define KEY_R 82
+#define KEY_r 114
 #include "UserLibs.h"
 #include "carritoCompras.h"
 #define ArchivoUsuarios "ArchivoUsuario.dat"
@@ -324,6 +326,11 @@ int mostrarsubVentas(int id, int cursor) /// cursor es donde esta parado el >>>>
         }
     }
 
+    if((opcion == KEY_R) || (opcion == KEY_r))
+    {
+        cancelarCompra(id);
+    }
+
     if (opcion == KEY_UP)
     {
         if (cursor - 1 > 0)
@@ -460,7 +467,7 @@ int capturarTeclaCarrito()
             tecla = 256 + getch();
         }
 
-    } while ((tecla != KEY_UP) && (tecla != KEY_DOWN) && (tecla != KEY_ESC) && (tecla != KEY_ENTER) && (tecla != KEY_LEFT) && (tecla != KEY_RIGHT) && (tecla != KEY_S) && (tecla != KEY_s));
+    } while ((tecla != KEY_UP) && (tecla != KEY_DOWN) && (tecla != KEY_ESC) && (tecla != KEY_ENTER) && (tecla != KEY_LEFT) && (tecla != KEY_RIGHT) && (tecla != KEY_S) && (tecla != KEY_s) && (tecla != KEY_R) && (tecla != KEY_r));
 
     switch (tecla)
     {
@@ -488,6 +495,12 @@ int capturarTeclaCarrito()
     case KEY_s:
         opcion = KEY_s;
         break;
+        case KEY_R:
+        opcion = KEY_R;
+        break;
+        case KEY_r:
+        opcion = KEY_r;
+        break;
     default:
         printf("\nDEFAULT!");
         system("pause");
@@ -511,4 +524,29 @@ float calcularSubTotal(int idUsuario)
     }
 
     return subtotal;
+}
+
+void cancelarCompra(int idUsuario)
+{
+    usuario aux;
+
+    FILE* bufferUsuarios = fopen(ArchivoUsuarios, "r+b");
+
+    if (bufferUsuarios)
+    {
+        while (fread(&aux, sizeof(usuario), 1, bufferUsuarios) > 0)
+        {
+            if (idUsuario == aux.idCliente)
+            {
+                fseek(bufferUsuarios, sizeof(usuario)*(-1), SEEK_CUR);
+
+                aux.validosCarrito = 0;
+
+                fwrite(&aux, sizeof(usuario), 1, bufferUsuarios);
+
+                fclose(bufferUsuarios);
+
+            }
+        }
+    }
 }

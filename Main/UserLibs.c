@@ -519,7 +519,7 @@ void modificarEstadoCliente(usuario A)
                 A = modificarEstadoContable(A);
                 fwrite(&A, sizeof(usuario), 1, buffer);
                 flag = 1;
-        fclose(buffer);
+                fclose(buffer);
             }
         }
     }
@@ -1557,7 +1557,7 @@ void cancelarVentaMenu(int idUsuario)
     printf("Introduzca el id de la venta: ");
     fflush(stdin);
     scanf("%i", &idVenta);
-    cancelarVenta(idUsuario, idVenta);
+    cancelarVentaAdmin(idUsuario, idVenta);
 
     gotoxy(7, 21);
     printf("Para salir presionar ESC");
@@ -1618,7 +1618,7 @@ void cancelarCompraMenu(int idUsuario)
     }
 }
 
-void cancelarVenta(int idUsuario, int idVenta) /// este idusuario que se pasa por parametro no se esta utilizando se esta asisgnado otro valor en el primer while
+void cancelarVentaAdmin(int idUsuario, int idVenta) /// este idusuario que se pasa por parametro no se esta utilizando se esta asisgnado otro valor en el primer while
 {
 
     usuario Aux;
@@ -1649,7 +1649,67 @@ void cancelarVenta(int idUsuario, int idVenta) /// este idusuario que se pasa po
             if (Aux.idCliente == idUsuario)
             {
                 fseek(buffer, sizeof(usuario) * (-1), SEEK_CUR);
-                cancelarVentaEnArray(Aux, idVenta);
+                Aux.saldo += temporal.total;
+                Aux = cancelarVentaEnArray(Aux, idVenta);
+                fwrite(&Aux, sizeof(usuario), 1, buffer);
+                fclose(buffer);
+            }
+        }
+
+    }
+
+    if (bufferVentas != NULL)
+    {
+        while (fread(&temporal, sizeof(venta), 1, bufferVentas) > 0)
+        {
+            if (temporal.idVenta == idVenta)
+            {
+                fseek(bufferVentas, sizeof(venta) * (-1), SEEK_CUR);
+                temporal.estadoVenta = 1;
+                fwrite(&temporal, sizeof(venta), 1, bufferVentas);
+                fclose(bufferVentas);
+            }
+        }
+    }
+}
+
+void cancelarVenta(int idUsuario, int idVenta) /// este idusuario que se pasa por parametro no se esta utilizando se esta asisgnado otro valor en el primer while
+{
+
+    usuario Aux;
+    venta temporal;
+
+    FILE *bufferVentas = fopen(archivoVentas, "r+b");
+    if (bufferVentas != NULL)
+    {
+
+        while (fread(&temporal, sizeof(venta), 1, bufferVentas) > 0)
+        {
+            if (temporal.idVenta == idVenta)
+            {
+                if(idUsuario == temporal.idCliente)
+                {
+                    idUsuario = temporal.idCliente;
+                    fseek(bufferVentas, sizeof(venta) * (-1), SEEK_CUR);
+                    temporal.estadoVenta = 1;
+                    fwrite(&temporal, sizeof(venta), 1, bufferVentas);
+                }
+
+                fclose(bufferVentas);
+            }
+        }
+    }
+
+    FILE *buffer = fopen(ArchivoUsuarios, "r+b");
+    if (buffer != NULL)
+    {
+        while (fread(&Aux, sizeof(usuario), 1, buffer) > 0)
+        {
+            if (Aux.idCliente == idUsuario)
+            {
+                fseek(buffer, sizeof(usuario) * (-1), SEEK_CUR);
+                Aux.saldo += temporal.total;
+                Aux = cancelarVentaEnArray(Aux, idVenta);
                 fwrite(&Aux, sizeof(usuario), 1, buffer);
                 fclose(buffer);
             }
@@ -1675,7 +1735,7 @@ void cancelarVenta(int idUsuario, int idVenta) /// este idusuario que se pasa po
     }
 }
 
-void cancelarVentaEnArray(usuario A, int idVenta)
+usuario cancelarVentaEnArray(usuario A, int idVenta)
 {
     int i = 0;
     int flag = 0;
@@ -1688,5 +1748,7 @@ void cancelarVentaEnArray(usuario A, int idVenta)
         }
         i++;
     }
+
+    return A;
 }
 
