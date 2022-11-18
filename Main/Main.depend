@@ -582,7 +582,7 @@
 	"UserLibs.h"
 	"carritoCompras.h"
 
-1668743362 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\carritocompras.c
+1668781905 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\carritocompras.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -590,12 +590,12 @@
 	"carritoCompras.h"
 	"ventas.h"
 
-1668746689 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\userlibs.h
+1668777467 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\userlibs.h
 	"productos.h"
 
-1668738596 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\productos.h
+1668781298 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\productos.h
 
-1668743228 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\carritocompras.h
+1668781299 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\carritocompras.h
 	"productos.h"
 	"UserLibs.h"
 	"sistema.h"
@@ -623,7 +623,7 @@
 
 1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\loginalgoritmo.h
 
-1668738849 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\main.c
+1668777635 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -665,7 +665,7 @@
 	"sistema.h"
 	"menuEnvios.h"
 
-1668586009 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\menuproductos.c
+1668747521 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\menuproductos.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -705,7 +705,7 @@
 	<windows.h>
 	"sistema.h"
 
-1668746620 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\userlibs.c
+1668782607 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\userlibs.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -715,7 +715,7 @@
 	"carritoCompras.h"
 	"UserLibs.h"
 
-1668741689 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\ventas.c
+1668779056 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\ventas.c
 	"productos.h"
 	"UserLibs.h"
 	"carritoCompras.h"

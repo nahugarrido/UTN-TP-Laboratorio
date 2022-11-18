@@ -15,7 +15,8 @@ void generarCompra(int idUsuario, float gasto)
     if (verificarSaldo(deseado.saldo, gasto) == 0)
     {
         gotoxy(7, 21);
-        printf("Saldo insuficiente, elimine un producto de su carrito. \n");
+        printf("Saldo insuficiente...                    \n");
+        sleep(2);
     }
 
     if (verificarSaldo(deseado.saldo, gasto) == 1)

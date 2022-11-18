@@ -1241,8 +1241,6 @@ int historialComprasId(int id, int cursor) /// cursor es donde esta parado el >>
     int opcion = capturarTecla2();
 
     gotoxy(0, 0);
-    // printf("cursor: %i", cursor); //// PARA VER EL CURSOR  --------------------------------------------------------------------------->
-    // system("pause");
 
     /// SONIDO
     if (opcion == KEY_ENTER)
@@ -1557,10 +1555,26 @@ void cancelarVentaMenu(int idUsuario)
     printf("Introduzca el id de la venta: ");
     fflush(stdin);
     scanf("%i", &idVenta);
-    cancelarVentaAdmin(idUsuario, idVenta);
+    int flag = cancelarVentaAdmin(idUsuario, idVenta);
+    if(flag == 1)
+    {
+        gotoxy(7, 21);
+        printf("                                      ");
+        gotoxy(7, 21);
+        printf("Operacion realizada con exito!");
+        sleep(2);
+    }
+    else
+    {
+        gotoxy(7, 21);
+        printf("                                      ");
+        gotoxy(7, 21);
+        printf("El id es invalido... ");
+        sleep(2);
+    }
 
     gotoxy(7, 21);
-    printf("Para salir presionar ESC");
+    printf("Para salir presionar ESC               ");
 
     int opcion = capturarTecla2();
 
@@ -1600,10 +1614,26 @@ void cancelarCompraMenu(int idUsuario)
     fflush(stdin);
     scanf("%i", &idVenta);
     ///---- baja de la compra ----///
-    cancelarVenta(idUsuario, idVenta);
+    int flag = cancelarVenta(idUsuario, idVenta);
+    if(flag == 1)
+    {
+        gotoxy(7, 21);
+        printf("                                      ");
+        gotoxy(7, 21);
+        printf("Operacion realizada con exito!");
+        sleep(2);
+    }
+    else
+    {
+        gotoxy(7, 21);
+        printf("                                      ");
+        gotoxy(7, 21);
+        printf("El id es invalido... ");
+        sleep(2);
+    }
 
     gotoxy(7, 21);
-    printf("Para salir presionar ESC");
+    printf("Para salir presionar ESC               ");
 
     int opcion = capturarTecla2();
 
@@ -1631,7 +1661,7 @@ int cancelarVentaAdmin(int idUsuario, int idVenta) /// este idusuario que se pas
 
         while (fread(&temporal, sizeof(venta), 1, bufferVentas) > 0)
         {
-            if (temporal.idVenta == idVenta)
+            if ((temporal.idVenta == idVenta) && (temporal.estadoVenta == 0))
             {
                 flag = 1;
                 idUsuario = temporal.idCliente;
@@ -1681,9 +1711,9 @@ int cancelarVenta(int idUsuario, int idVenta) /// este idusuario que se pasa por
         {
             if (temporal.idVenta == idVenta)
             {
-                flag = 1;
-                if(idUsuario == temporal.idCliente)
+                if((idUsuario == temporal.idCliente) && (temporal.estadoVenta == 0))
                 {
+                    flag = 1;
                     idUsuario = temporal.idCliente;
                     fseek(bufferVentas, sizeof(venta) * (-1), SEEK_CUR);
                     temporal.estadoVenta = 1;

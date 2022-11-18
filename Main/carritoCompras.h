@@ -40,3 +40,4 @@ int mostrarsubVentas(int id, int cursor);
 int capturarTeclaCarrito();
 void suma();
 void cancelarCompra(int idUsuario);
+int sumarIgualesDelCarrito(int cantidad, producto Dato, int idCliente);

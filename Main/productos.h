@@ -67,4 +67,3 @@ nodoCategoria *buscarCategoria(nodoCategoria *lista, int nroCategoria);
 categoria crearCategoria(nodoProductoD *nuevo);
 /// MOSTRAR CATEGORIAS
 nodoCategoria *cargarListaDeListas(nodoCategoria *lista);
-int sumarIgualesDelCarrito(int cantidad, producto Dato, int idCliente);

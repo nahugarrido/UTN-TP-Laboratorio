@@ -171,11 +171,10 @@ nodoListaDSubVenta *obtenerSubVenta(usuario A, nodoListaDSubVenta *lista)
 
     for (int i = 0; i < A.validosCarrito; i++)
     {
-        if (A.carrito[i].flag == 0)
-        {
+
             nuevo = crearNodoDSubVenta(A.carrito[i]);
             lista = agregarAlFinalDSubVenta(lista, nuevo);
-        }
+
     }
 
     return lista;

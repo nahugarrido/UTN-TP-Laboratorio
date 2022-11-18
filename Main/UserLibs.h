@@ -21,7 +21,7 @@ typedef struct
 
 typedef struct
 {
-    subVenta arreglo[50];
+    subVenta arreglo[20];
     destino despachar;
     float total;
     int idVenta;
@@ -34,8 +34,8 @@ typedef struct
 {
     char username[30]; //
     char password[30]; //
-    venta compras[30]; /// Fila
-    subVenta carrito[50];
+    venta compras[15];
+    subVenta carrito[20];
     int validosCarrito;
     int validosCompras;
     float saldo;
@@ -43,6 +43,10 @@ typedef struct
     int estadoCliente; // 0 baja // 1 alta
     int idCliente;
 } usuario;
+
+/// ASI ESTABA PERO SOLO PODIAMOS CREAR 4 USUARIOS POR UN PROBLEMA DE MEMORIA
+//    venta compras[30];
+//    subVenta carrito[50];
 
 ///// ESTRUCTURAS USER LIBS
 typedef struct
