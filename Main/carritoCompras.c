@@ -20,36 +20,42 @@ void agregarAlCarrito(int idCliente, int cantidadProductos, producto Dato)
 
     usuario Aux;
 
-    usuario temporal = BuscarUsuario(idCliente);
-
     producto deseado = ObtenerProducto(Dato);
 
     float subtotal = (deseado.precioVenta * cantidadProductos);
 
-    //    printf("\nAux username: %s     Temporal username: %s\n", Aux.username, temporal.username);
-    //    system("pause");
     if (bufferUsuarios)
     {
         while (fread(&Aux, sizeof(usuario), 1, bufferUsuarios) > 0)
         {
-            if (strcmpi(Aux.username, temporal.username) >= 0)
-            {
 
+            if (Aux.idCliente == idCliente)
+            {
                 fseek(bufferUsuarios, sizeof(usuario) * (-1), SEEK_CUR);
                 Aux.carrito[Aux.validosCarrito].dato = Dato;
                 Aux.carrito[Aux.validosCarrito].cantidad = cantidadProductos;
                 Aux.carrito[Aux.validosCarrito].subtotal = subtotal;
-                gotoxy(10, 14);
-                system("cls");
-                printf("AUX USUARIO: %s VALIDOS CARRITO: %i\n", Aux.username, Aux.validosCarrito);
-                printf("DATOS DEL AUX: PRODUCTO: %s CANTIDAD: %i SUBTOTAL: %f \n", Aux.carrito[Aux.validosCarrito].dato.nombre, Aux.carrito[Aux.validosCarrito].cantidad, Aux.carrito[Aux.validosCarrito].subtotal);
-                system("pause");
                 Aux.validosCarrito = (Aux.validosCarrito + 1);
                 fwrite(&Aux, sizeof(usuario), 1, bufferUsuarios);
                 fclose(bufferUsuarios);
             }
         }
     }
+}
+
+int sumarIgualesDelCarrito(int cantidad, producto Dato, int idCliente)
+{
+    usuario A = BuscarUsuario(idCliente);
+
+    for (int i = 0; i < A.validosCarrito; i++)
+    {
+
+        if (strcmpi(Dato.nombre, A.carrito[i].dato.nombre) == 0)
+        {
+            cantidad += A.carrito[i].cantidad;
+        }
+    }
+    return cantidad;
 }
 
 producto ObtenerProducto(producto dato)

@@ -114,7 +114,7 @@
 
 1666732969 D
 
-1668626691 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\main.c
+1668736476 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -307,7 +307,7 @@
 	"sistema.h"
 	"menuProductos.h"
 
-1668626692 c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.h
+1668735033 c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.h
 
 1668626691 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\menuusuariosadmin.c
 	<stdio.h>
@@ -317,19 +317,20 @@
 	"menuUsuariosAdmin.h"
 	"UserLibs.h"
 
-1668626692 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.c
+1668737036 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\productos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	<time.h>
 	<stdbool.h>
+	"carritoCompras.h"
 	"productos.h"
 
 1668626691 c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.h
 	"productos.h"
 
-1668626691 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.c
+1668736131 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\userlibs.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -520,7 +521,7 @@
 	"sistema.h"
 	"menuProductos.h"
 
-1668630235 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\carritocompras.c
+1668735068 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\carritocompras.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -530,7 +531,7 @@
 
 1668484519 c:\users\jeremias\desktop\utn-tp-laboratorio\main\estructuras.h
 
-1668626691 c:\users\jeremias\desktop\utn-tp-laboratorio\main\carritocompras.h
+1668735435 c:\users\jeremias\desktop\utn-tp-laboratorio\main\carritocompras.h
 	"productos.h"
 	"UserLibs.h"
 	"sistema.h"
@@ -568,7 +569,7 @@
 	"UserLibs.h"
 	"carritoCompras.h"
 
-1668626932 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\ventas.c
+1668631279 source:c:\users\jeremias\desktop\utn-tp-laboratorio\main\ventas.c
 	"productos.h"
 	"UserLibs.h"
 	"carritoCompras.h"
@@ -581,7 +582,7 @@
 	"UserLibs.h"
 	"carritoCompras.h"
 
-1668737518 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\carritocompras.c
+1668738596 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\carritocompras.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -592,9 +593,9 @@
 1668625243 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\userlibs.h
 	"productos.h"
 
-1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\productos.h
+1668738596 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\productos.h
 
-1668737083 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\carritocompras.h
+1668738596 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\carritocompras.h
 	"productos.h"
 	"UserLibs.h"
 	"sistema.h"
@@ -622,7 +623,7 @@
 
 1668558721 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\loginalgoritmo.h
 
-1668736574 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\main.c
+1668738849 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -688,13 +689,14 @@
 	"menuUsuariosAdmin.h"
 	"UserLibs.h"
 
-1668733913 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\productos.c
+1668738596 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\productos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	<time.h>
 	<stdbool.h>
+	"carritoCompras.h"
 	"productos.h"
 
 1668558721 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\sistema.c

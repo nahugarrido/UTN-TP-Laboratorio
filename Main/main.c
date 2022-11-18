@@ -17,7 +17,6 @@ int main()
     desactivarMaximizar();
     system("mode con: cols=80 lines=25"); // SE DEFINE LAS DIMENSIONES DE LA VENTANA DEL PROGRAMA A 80 COLUMNAS Y 25 FILAS
     system("COLOR 0A");                   // SE DA UN COLOR DE FONDO Y COLOR A LAS LETRAS /// E0 // 5F // B0 // 0A
-
     do
     {
         int id = 0;
@@ -27,36 +26,35 @@ int main()
         //id = 3;
 
         int opcion;
+
         nodoArbolUsuario* arbol;
+
         arbol = inicArbol();
         arbol = leerArchivo(arbol);
 
         int flagAdmin = buscarPorIdUsuario(arbol, id);
 
         /// TESTEAR ADMIN /// CON ESTO SE PUEDE ACCEDER AL MENU DE ADMIN SIN PASAR POR EL LOGIN 1 ES ADMIN
-        //flagAdmin = 1;
+        //flagAdmin = 0;
 
-        if(flagAdmin == 0)
+        if (flagAdmin == 0)
         {
             do
             {
-                opcion = menuUsuario(id,1);
-                switchUsuario(id,opcion);
-            }
-            while( opcion != 0 && opcion != 7);
+                opcion = menuUsuario(id, 1);
+                switchUsuario(id, opcion);
+            } while (opcion != 0 && opcion != 7);
         }
         else if (flagAdmin == 1)
         {
             do
             {
-                opcion = menuAdmin(id,1);
-                switchAdmin(id,opcion);
-            }
-            while( opcion != 0 && opcion != 6);
+                opcion = menuAdmin(id, 1);
+                switchAdmin(id, opcion);
+            } while (opcion != 0 && opcion != 6);
         }
 
-    }
-    while(1 == 1);
+    } while (1 == 1);
 
     /// TERMINAR EJECUCION
     system("cls");

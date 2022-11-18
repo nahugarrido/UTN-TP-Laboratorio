@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "userlibs.h": "c"
+        "userlibs.h": "c",
+        "loginalgoritmo.h": "c"
     }
 }
