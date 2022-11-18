@@ -142,10 +142,10 @@ int historialComprasTodas(int id, int cursor);
 void mostrarOpcionesVentaTodas(nodoVentaD *lista, int cursor);
 void cancelarVentaMenu(int idUsuario);
 void cancelarCompraMenu(int idUsuario);
-void cancelarVenta(int idUsuario, int idVenta);
 usuario cancelarVentaEnArray(usuario A, int idVenta);
 void cancelarVentaEnArchivoUsuarios(int idUsuario);
 void cancelarVentaEnArchivoVentas(int idVenta);
 float calcularSubTotal(int idUsuario);
-void cancelarVentaAdmin(int idUsuario,int idVenta);
+int cancelarVentaAdmin(int idUsuario, int idVenta);
+int cancelarVenta(int idUsuario, int idVenta);
 

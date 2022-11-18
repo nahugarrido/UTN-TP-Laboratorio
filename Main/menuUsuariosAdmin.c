@@ -17,7 +17,7 @@ int menuUsuariosAdmin(int id, int cursor) /// cursor es donde esta parado el >>>
 
     system("cls");
 
-    opciones arreglo[] = {"Ver usuarios", "Ver informacion usuario id", "Crear usuario", "Modificar datos de acceso de un usuario", "Modificar estado y saldo de un usuario", "Salir"};
+    opciones arreglo[] = {"Ver usuarios", "Ver informacion usuario id", "Crear usuario", "Modificar datos de acceso de un usuario", "Modificar saldo de un usuario", "Salir"};
     int cantidadOpciones = 6;
 
     dibujarCuadro(0,0,79,24); //SE DIBUJA EL CUADRO PRINCIPAL

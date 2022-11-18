@@ -825,7 +825,7 @@ producto modificarCampoProducto(producto aModificar, char modificarCampo[])
             printf("Modifique el numero de la categoria\n");
             fflush(stdin);
             gotoxy(3,13);
-            gets(aux.nroCategoria);
+            scanf("%i", &aux.nroCategoria);
         }
     }
 

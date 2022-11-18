@@ -1618,11 +1618,12 @@ void cancelarCompraMenu(int idUsuario)
     }
 }
 
-void cancelarVentaAdmin(int idUsuario, int idVenta) /// este idusuario que se pasa por parametro no se esta utilizando se esta asisgnado otro valor en el primer while
+int cancelarVentaAdmin(int idUsuario, int idVenta) /// este idusuario que se pasa por parametro no se esta utilizando se esta asisgnado otro valor en el primer while
 {
 
     usuario Aux;
     venta temporal;
+    int flag = 0;
 
     FILE *bufferVentas = fopen(archivoVentas, "r+b");
     if (bufferVentas != NULL)
@@ -1632,6 +1633,7 @@ void cancelarVentaAdmin(int idUsuario, int idVenta) /// este idusuario que se pa
         {
             if (temporal.idVenta == idVenta)
             {
+                flag = 1;
                 idUsuario = temporal.idCliente;
                 fseek(bufferVentas, sizeof(venta) * (-1), SEEK_CUR);
                 temporal.estadoVenta = 1;
@@ -1641,30 +1643,35 @@ void cancelarVentaAdmin(int idUsuario, int idVenta) /// este idusuario que se pa
         }
     }
 
-    FILE *buffer = fopen(ArchivoUsuarios, "r+b");
-    if (buffer != NULL)
+    if(flag == 1)
     {
-        while (fread(&Aux, sizeof(usuario), 1, buffer) > 0)
+        FILE *buffer = fopen(ArchivoUsuarios, "r+b");
+        if (buffer != NULL)
         {
-            if (Aux.idCliente == idUsuario)
+            while (fread(&Aux, sizeof(usuario), 1, buffer) > 0)
             {
-                fseek(buffer, sizeof(usuario) * (-1), SEEK_CUR);
-                Aux.saldo += temporal.total;
-                Aux = cancelarVentaEnArray(Aux, idVenta);
-                fwrite(&Aux, sizeof(usuario), 1, buffer);
-                fclose(buffer);
+                if (Aux.idCliente == idUsuario)
+                {
+                    fseek(buffer, sizeof(usuario) * (-1), SEEK_CUR);
+                    Aux.saldo += temporal.total;
+                    Aux = cancelarVentaEnArray(Aux, idVenta);
+                    fwrite(&Aux, sizeof(usuario), 1, buffer);
+                    fclose(buffer);
+                }
             }
-        }
 
+        }
     }
 
+    return flag;
 }
 
-void cancelarVenta(int idUsuario, int idVenta) /// este idusuario que se pasa por parametro no se esta utilizando se esta asisgnado otro valor en el primer while
+int cancelarVenta(int idUsuario, int idVenta) /// este idusuario que se pasa por parametro no se esta utilizando se esta asisgnado otro valor en el primer while
 {
 
     usuario Aux;
     venta temporal;
+    int flag = 0;
 
     FILE *bufferVentas = fopen(archivoVentas, "r+b");
     if (bufferVentas != NULL)
@@ -1674,6 +1681,7 @@ void cancelarVenta(int idUsuario, int idVenta) /// este idusuario que se pasa po
         {
             if (temporal.idVenta == idVenta)
             {
+                flag = 1;
                 if(idUsuario == temporal.idCliente)
                 {
                     idUsuario = temporal.idCliente;
@@ -1687,22 +1695,27 @@ void cancelarVenta(int idUsuario, int idVenta) /// este idusuario que se pasa po
         }
     }
 
-    FILE *buffer = fopen(ArchivoUsuarios, "r+b");
-    if (buffer != NULL)
+    if(flag == 1)
     {
-        while (fread(&Aux, sizeof(usuario), 1, buffer) > 0)
+        FILE *buffer = fopen(ArchivoUsuarios, "r+b");
+        if (buffer != NULL)
         {
-            if (Aux.idCliente == idUsuario)
+            while (fread(&Aux, sizeof(usuario), 1, buffer) > 0)
             {
-                fseek(buffer, sizeof(usuario) * (-1), SEEK_CUR);
-                Aux.saldo += temporal.total;
-                Aux = cancelarVentaEnArray(Aux, idVenta);
-                fwrite(&Aux, sizeof(usuario), 1, buffer);
-                fclose(buffer);
+                if (Aux.idCliente == idUsuario)
+                {
+                    fseek(buffer, sizeof(usuario) * (-1), SEEK_CUR);
+                    Aux.saldo += temporal.total;
+                    Aux = cancelarVentaEnArray(Aux, idVenta);
+                    fwrite(&Aux, sizeof(usuario), 1, buffer);
+                    fclose(buffer);
+                }
             }
         }
 
     }
+
+    return flag;
 }
 
 usuario cancelarVentaEnArray(usuario A, int idVenta)

@@ -590,7 +590,7 @@
 	"carritoCompras.h"
 	"ventas.h"
 
-1668744149 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\userlibs.h
+1668746689 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\userlibs.h
 	"productos.h"
 
 1668738596 c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\productos.h
@@ -681,7 +681,7 @@
 	"menuUsuario.h"
 	"carritoCompras.h"
 
-1668743995 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\menuusuariosadmin.c
+1668746019 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\menuusuariosadmin.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
@@ -705,7 +705,7 @@
 	<windows.h>
 	"sistema.h"
 
-1668744300 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\userlibs.c
+1668746620 source:c:\users\garri\desktop\tp integrador chaldu\utn-tp-laboratorio\main\userlibs.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
