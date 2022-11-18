@@ -519,15 +519,16 @@ void modificarEstadoCliente(usuario A)
                 A = modificarEstadoContable(A);
                 fwrite(&A, sizeof(usuario), 1, buffer);
                 flag = 1;
+        fclose(buffer);
             }
         }
-        fclose(buffer);
     }
 }
 
 usuario modificarEstadoContable(usuario A)
 {
     char option;
+    float nuevo = 0;
     fflush(stdin);
     gotoxy(7, 7);
     printf("Datos actuales del cliente:");
@@ -553,18 +554,20 @@ usuario modificarEstadoContable(usuario A)
         gotoxy(7, 21);
         printf("Ingrese nuevo saldo: ");
         fflush(stdin);
-        scanf("%f", &A.saldo);
+        scanf("%f", &nuevo);
+        A.saldo = nuevo;
     }
-    gotoxy(7, 21);
-    printf("                                                            ");
-    gotoxy(7, 21);
-    printf("Desea dar de baja el usuario? s/n: ");
-    fflush(stdin);
-    scanf("%c", &option);
-    if (option == 's')
-    {
-        BajaCliente(A);
-    }
+
+//    gotoxy(7, 21);
+//    printf("                                                            ");
+//    gotoxy(7, 21);
+//    printf("Desea dar de baja el usuario? s/n: ");
+//    fflush(stdin);
+//    scanf("%c", &option);
+//    if (option == 's')
+//    {
+//        BajaCliente(A);
+//    }
 
     return A;
 }
@@ -1651,8 +1654,6 @@ void cancelarVenta(int idUsuario, int idVenta) /// este idusuario que se pasa po
             }
         }
 
-         system("cls");
-         system("pause");
     }
 
     if (bufferVentas != NULL)
@@ -1681,11 +1682,8 @@ void cancelarVentaEnArray(usuario A, int idVenta)
     {
         if (A.compras[i].idVenta == idVenta)
         {
-            system("cls");
             A.compras[i].estadoVenta = 1;
-            printf("\n IDVENTA: %i  | ESTADO:  %i ",A.compras[i].idVenta,A.compras[i].estadoVenta);
             flag = 1;
-            system("PAUSE");
         }
         i++;
     }

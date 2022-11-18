@@ -23,11 +23,11 @@ int main()
     {
         int id = 0;
         id = login(1);
+
         /// TESTEAR SIN PASAR POR EL LOGIN
         //id = 3;
 
         int opcion;
-
         nodoArbolUsuario* arbol;
         arbol = inicArbol();
         arbol = leerArchivo(arbol);
@@ -35,7 +35,7 @@ int main()
         int flagAdmin = buscarPorIdUsuario(arbol, id);
 
         /// TESTEAR ADMIN /// CON ESTO SE PUEDE ACCEDER AL MENU DE ADMIN SIN PASAR POR EL LOGIN 1 ES ADMIN
-        //flagAdmin = 0;
+        flagAdmin = 1;
 
         if(flagAdmin == 0)
         {

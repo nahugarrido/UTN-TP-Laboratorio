@@ -137,7 +137,6 @@ void switchUsuariosAdmin(int id, int opcion)
             modificarClienteMenu();
         break;
     case 5:
-
         modificarEstadoClienteMenu();
         break;
     case 6:
