@@ -29,7 +29,7 @@ typedef struct
 typedef struct
 {
     categoria Categoria;
-    nodoProductoD* lista;
+    nodoProductoD *lista;
     struct nodoCategoria *siguiente;
     struct nodoCategoria *anterior;
 
@@ -64,6 +64,7 @@ nodoCategoria *inicCategoria();
 nodoCategoria *agregarAlPrincipioCategoria(nodoCategoria *lista, nodoCategoria *nuevo);
 nodoCategoria *alta(nodoCategoria *listaCategorias, nodoProductoD *nuevo, int nroCategoria);
 nodoCategoria *buscarCategoria(nodoCategoria *lista, int nroCategoria);
-categoria crearCategoria(nodoProductoD* nuevo);
+categoria crearCategoria(nodoProductoD *nuevo);
 /// MOSTRAR CATEGORIAS
-nodoCategoria* cargarListaDeListas(nodoCategoria* lista);
+nodoCategoria *cargarListaDeListas(nodoCategoria *lista);
+int sumarIgualesDelCarrito(int cantidad, producto Dato, int idCliente);

@@ -5,6 +5,7 @@
 #include <time.h>
 #include <stdbool.h>
 #define ArchProductos "Stock.Dat"
+#include "carritoCompras.h"
 #include "productos.h"
 
 #define KEY_UP 72 + 256
@@ -43,10 +44,10 @@ producto cargarProducto()
     printf("Ingrese una descripcion: (240 caracteres) \n");
     fflush(stdin);
     gets(nuevo.descripcion);
-//    printf("Ingrese una categoria: \n");
-//    showCategorias();
-//    fflush(stdin);
-//    gets(nuevo.categoria);
+    //    printf("Ingrese una categoria: \n");
+    //    showCategorias();
+    //    fflush(stdin);
+    //    gets(nuevo.categoria);
     printf("Ingrese el precio venta: \n");
     fflush(stdin);
     scanf("%f", &nuevo.precioVenta);
@@ -343,9 +344,9 @@ int mostrarProductos(int id, int cursor, int nroCategoria) /// cursor es donde e
     lista = cargarListaDeListas(lista);
 
     /// BUSCO LA CATEGORIA QUE ME INTERESA
-    while(lista != NULL && (lista->Categoria.nroCategoria != nroCategoria))
+    while (lista != NULL && (lista->Categoria.nroCategoria != nroCategoria))
     {
-        if(lista->Categoria.nroCategoria != nroCategoria)
+        if (lista->Categoria.nroCategoria != nroCategoria)
         {
             lista = lista->siguiente;
         }
@@ -360,7 +361,7 @@ int mostrarProductos(int id, int cursor, int nroCategoria) /// cursor es donde e
     printf("ID: %i", id);
 
     /// MUESTRA LAS OPCIONES
-    gotoxy(9,7);
+    gotoxy(9, 7);
     int cantidadOpciones = contarOpcionesProductos(lista->lista);
     // printf("\ncantidadOpciones: %i", cantidadOpciones);
     // system("pause");
@@ -445,9 +446,9 @@ void mostrarUnProductoUsuario(int idUsuario, int id, int nroCategoria)
     lista = cargarListaDeListas(lista);
 
     /// BUSCO LA CATEGORIA QUE ME INTERESA
-    while(lista != NULL && (lista->Categoria.nroCategoria != nroCategoria))
+    while (lista != NULL && (lista->Categoria.nroCategoria != nroCategoria))
     {
-        if(lista->Categoria.nroCategoria != nroCategoria)
+        if (lista->Categoria.nroCategoria != nroCategoria)
         {
             lista = lista->siguiente;
         }
@@ -479,8 +480,8 @@ void mostrarUnProductoUsuario(int idUsuario, int id, int nroCategoria)
     printf("Precio: ");
     printf("%$%.2f", mostrar.precioVenta);
     gotoxy(8, 14);
-//    printf("Categoria: ");
-//    printCategoriaProducto(mostrar);
+    //    printf("Categoria: ");
+    //    printCategoriaProducto(mostrar);
     gotoxy(8, 16);
     printf("Cantidad disponible: ");
     printf("%i", mostrar.cantidad);
@@ -489,7 +490,9 @@ void mostrarUnProductoUsuario(int idUsuario, int id, int nroCategoria)
     printf("Deseas agregar este producto a tu carrito?");
     dibujarCuadro(1, 19, 78, 23); // SE DIBUJA EL CUADRO MENSAJE DE CONSOLA
     int capturarOpcion = seleccionarSiNo(1);
+
     int cantidad;
+    int total;
 
     if (capturarOpcion == 1)
     {
@@ -502,13 +505,12 @@ void mostrarUnProductoUsuario(int idUsuario, int id, int nroCategoria)
             fflush(stdin);
             scanf("%i", &cantidad);
 
-//            system("cls");
-//            printf("idUsuario: %i, cantidad: %i, producto: %s \n", idUsuario, cantidad, lista->dato.nombre);
-//            system("pause");
+            //            system("cls");
+            //            printf("idUsuario: %i, cantidad: %i, producto: %s \n", idUsuario, cantidad, lista->dato.nombre);
+            //            system("pause");
+            total = sumarIgualesDelCarrito(cantidad, lista->lista->dato, idUsuario);
 
-            agregarAlCarrito(idUsuario,cantidad,lista->lista->dato);
-
-            if (cantidad > mostrar.cantidad)
+            if (total > mostrar.cantidad)
             {
 
                 limpiarConsola();
@@ -516,7 +518,9 @@ void mostrarUnProductoUsuario(int idUsuario, int id, int nroCategoria)
                 printf("No hay suficientes unidades disponibles . . .");
                 sleep(2);
             }
-        } while (cantidad > mostrar.cantidad);
+        } while (total > mostrar.cantidad);
+
+        agregarAlCarrito(idUsuario, cantidad, lista->lista->dato);
 
         /// FUNCION QUE A�ADE A CARRITO Y MODIFICA EL STOCK DEL PRODUCTO
         limpiarConsola();
@@ -555,31 +559,31 @@ void printDescripcionProducto(producto mostrar)
     }
 }
 
-//void printCategoriaProducto(producto mostrar)
+// void printCategoriaProducto(producto mostrar)
 //{
-//    int opcion = mostrar.categoria;
-//    switch (opcion)
-//    {
-//    case 1:
-//        printf("Smartphones");
-//        break;
-//    case 2:
-//        printf("Tv smarts");
-//        break;
-//    case 3:
-//        printf("Notebooks");
-//        break;
-//    case 4:
-//        printf("Componentes de pc");
-//        break;
-//    case 5:
-//        printf("Auriculares");
-//        break;
-//    default:
-//        return 0;
-//        break;
-//    }
-//}
+//     int opcion = mostrar.categoria;
+//     switch (opcion)
+//     {
+//     case 1:
+//         printf("Smartphones");
+//         break;
+//     case 2:
+//         printf("Tv smarts");
+//         break;
+//     case 3:
+//         printf("Notebooks");
+//         break;
+//     case 4:
+//         printf("Componentes de pc");
+//         break;
+//     case 5:
+//         printf("Auriculares");
+//         break;
+//     default:
+//         return 0;
+//         break;
+//     }
+// }
 
 /// MOSTRAR STOCK
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -591,9 +595,9 @@ int mostrarStock(int id, int cursor, int nroCategoria) /// cursor es donde esta 
     lista = cargarListaDeListas(lista);
 
     /// BUSCO LA CATEGORIA QUE ME INTERESA
-    while(lista != NULL && (lista->Categoria.nroCategoria != nroCategoria))
+    while (lista != NULL && (lista->Categoria.nroCategoria != nroCategoria))
     {
-        if(lista->Categoria.nroCategoria != nroCategoria)
+        if (lista->Categoria.nroCategoria != nroCategoria)
         {
             lista = lista->siguiente;
         }
@@ -618,7 +622,7 @@ int mostrarStock(int id, int cursor, int nroCategoria) /// cursor es donde esta 
     printf("PRECIO.VENTA");
 
     /// MUESTRA LAS OPCIONES
-    gotoxy(9,7);
+    gotoxy(9, 7);
     int cantidadOpciones = contarOpcionesProductos(lista->lista);
     // printf("\ncantidadOpciones: %i", cantidadOpciones);
     // system("pause");
@@ -758,7 +762,6 @@ void mostrarOpcionesStock(nodoProductoD *lista, int cursor)
     }
 }
 
-
 /// MOSTRAR CATEGORIAS PRODUCTOS
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// LISTAS DE LISTAS
@@ -826,12 +829,12 @@ nodoCategoria *buscarCategoria(nodoCategoria *lista, int nroCategoria)
     return encontrada;
 }
 
-categoria crearCategoria(nodoProductoD* nuevo)
+categoria crearCategoria(nodoProductoD *nuevo)
 {
 
     categoria C;
     C.nroCategoria = nuevo->dato.nroCategoria;
-    strcpy(C.nombreCategoria,nuevo->dato.nombreCategoria);
+    strcpy(C.nombreCategoria, nuevo->dato.nombreCategoria);
 
     return C;
 }
@@ -844,7 +847,7 @@ int contarOpcionesCategoria(nodoCategoria *lista)
 
     if (lista == NULL)
     {
-        gotoxy(7,7);
+        gotoxy(7, 7);
         printf("lista vacia");
     }
 
@@ -933,7 +936,6 @@ void mostrarOpcionesCategoria(nodoCategoria *lista, int cursor)
         lista = lista->siguiente;
     }
 }
-
 
 int mostrarCategorias(int id, int cursor) /// cursor es donde esta parado el >>>> , opcion es la tecla que introduce el usuario
 {
@@ -1028,23 +1030,19 @@ int mostrarCategorias(int id, int cursor) /// cursor es donde esta parado el >>>
     return mostrarCategorias(id, cursor);
 }
 
-
-nodoCategoria* cargarListaDeListas(nodoCategoria* lista)
+nodoCategoria *cargarListaDeListas(nodoCategoria *lista)
 {
-    FILE* fp = fopen(ArchProductos,"rb");
+    FILE *fp = fopen(ArchProductos, "rb");
     producto registro;
-    nodoProductoD* aux;
+    nodoProductoD *aux;
     if (fp)
     {
-        while (fread(&registro,sizeof(producto),1,fp) > 0)
+        while (fread(&registro, sizeof(producto), 1, fp) > 0)
         {
             aux = crearNodoDobleProducto(registro);
-            lista = alta(lista,aux,registro.nroCategoria);
+            lista = alta(lista, aux, registro.nroCategoria);
         }
         fclose(fp);
     }
     return lista;
 }
-
-
-
