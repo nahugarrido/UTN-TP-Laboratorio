@@ -1658,19 +1658,6 @@ void cancelarVentaAdmin(int idUsuario, int idVenta) /// este idusuario que se pa
 
     }
 
-    if (bufferVentas != NULL)
-    {
-        while (fread(&temporal, sizeof(venta), 1, bufferVentas) > 0)
-        {
-            if (temporal.idVenta == idVenta)
-            {
-                fseek(bufferVentas, sizeof(venta) * (-1), SEEK_CUR);
-                temporal.estadoVenta = 1;
-                fwrite(&temporal, sizeof(venta), 1, bufferVentas);
-                fclose(bufferVentas);
-            }
-        }
-    }
 }
 
 void cancelarVenta(int idUsuario, int idVenta) /// este idusuario que se pasa por parametro no se esta utilizando se esta asisgnado otro valor en el primer while
@@ -1715,23 +1702,6 @@ void cancelarVenta(int idUsuario, int idVenta) /// este idusuario que se pasa po
             }
         }
 
-    }
-
-    if (bufferVentas != NULL)
-    {
-
-        while (fread(&temporal, sizeof(venta), 1, bufferVentas) > 0)
-        {
-
-            if (temporal.idVenta == idVenta)
-            {
-
-                fseek(bufferVentas, sizeof(venta) * (-1), SEEK_CUR);
-                temporal.estadoVenta = 1;
-                fwrite(&temporal, sizeof(venta), 1, bufferVentas);
-                fclose(bufferVentas);
-            }
-        }
     }
 }
 
